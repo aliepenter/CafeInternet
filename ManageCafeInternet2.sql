@@ -114,15 +114,16 @@ SELECT * FROM [user] WHERE account = @account
 GO
 CREATE PROC [get_food]
 AS
-SELECT * FROM [food]
+SELECT * FROM [area]
 GO
-ALTER PROC [get_price_area]
+Alter PROC [get_price_area]
 AS
 SELECT 
 a.entity_id as 'Area',
+a.name as 'Name',
 a.price as 'Price',
 COUNT(c.area_id) as 'Number of computers'
 FROM computer c
-join area a on a.entity_id = c.area_id
-group by a.entity_id,a.price
+right join area a on a.entity_id = c.area_id
+group by a.entity_id,a.price,a.name
 GO

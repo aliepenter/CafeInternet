@@ -162,6 +162,11 @@ namespace CafeInternet
             }
         }
 
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            DisplayArea();
+            DisplayComputer();
+        }
         private void btnSearch_Click_1(object sender, EventArgs e)
         {
             if (txtSearch.Text != "")
@@ -194,8 +199,8 @@ namespace CafeInternet
         private void DisplayA()
         {
             var count = dc.get_price_area();
-            dgvShowArea.DataSource = count;
-            DisplayADetail();
+            dgvShowArea.DataSource = count.ToList();
+            
         }
         private void DisplayADetail()
         {
@@ -206,7 +211,6 @@ namespace CafeInternet
                 txtPr.Text = row2.Cells[1].Value.ToString();
                 txtNumofCom.Text = row2.Cells[2].Value.ToString();
                 txtNumofCom.ReadOnly = true;
-                dgvShowArea.Sort(dgvShowArea.Columns[1], ListSortDirection.Ascending);
             }
         }
         private void tabComputer_Selecting(object sender, TabControlCancelEventArgs e)
@@ -214,10 +218,109 @@ namespace CafeInternet
             DisplayA();
             DisplayADetail();
         }
-
         private void dgvShowArea_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             DisplayADetail();
-        } 
+        }
+
+        private void btnAddAr_Click(object sender, EventArgs e)
+        {
+            var u = dc.areas.FirstOrDefault(x => x.name == txtNa.Text);
+            if (u == null)
+            {
+                var k = new area();
+                //gán giá trị
+                k.name = txtNa.Text;
+                k.price = Convert.ToDouble(txtPr.Text);
+                dc.areas.InsertOnSubmit(k);
+                dc.SubmitChanges();
+                DisplayA();
+                DisplayADetail();
+            }
+            else
+            {
+                MessageBox.Show("This name has already existed!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void tabComputer_Selected(object sender, TabControlEventArgs e)
+        {
+            DisplayArea();
+            DisplayComputer();
+            DisplayA();
+            DisplayADetail();
+        }
+
+        private void btnUpdateAr_Click(object sender, EventArgs e)
+        {
+            var u = dc.areas.FirstOrDefault(x => x.name == txtNa.Text);
+            if (u == null)
+            {
+                DataGridViewRow row = dgvShowArea.CurrentRow;
+                int id = Convert.ToInt32(row.Cells[0].Value.ToString());
+                var f = dc.areas.FirstOrDefault(x => x.entity_id == id);
+                f.name = txtNa.Text;
+                f.price = Convert.ToDouble(txtPr.Text); ;
+                //f.image = txtImage.Text;
+                dc.SubmitChanges();
+                DisplayA();
+                DisplayADetail();
+            }
+            else
+            {
+                if (u.price != Convert.ToDouble(txtPr.Text))
+                {
+                    DataGridViewRow row = dgvShowArea.CurrentRow;
+                    int id = Convert.ToInt32(row.Cells[0].Value.ToString());
+                    var f = dc.areas.FirstOrDefault(x => x.entity_id == id);
+                    f.name = txtNa.Text;
+                    f.price = Convert.ToDouble(txtPr.Text); ;
+                    //f.image = txtImage.Text;
+                    dc.SubmitChanges();
+                    DisplayA();
+                    DisplayADetail();
+                }
+                else
+                {
+                    MessageBox.Show("Nothing change!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private void btnDelAr_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow row = dgvShowArea.CurrentRow;
+            int id = Convert.ToInt32(row.Cells[2].Value.ToString());
+            if (id != 0)
+            {
+                MessageBox.Show("You can't delete this area, this area contains computers!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                
+                if (dgvShowArea.CurrentRow != null)
+                {
+                    if (MessageBox.Show("Do you want to delete?", "Delete",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        //tìm nhân viên có mã như trên form
+                        var f = dc.areas.FirstOrDefault(x => x.name == txtNa.Text);
+                        if (f != null)
+                        {
+                            dc.areas.DeleteOnSubmit(f);
+                            dc.SubmitChanges();
+                            DisplayA();
+                            DisplayADetail();
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Can not find the data", "Warning",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            
+        }
     }
 }
