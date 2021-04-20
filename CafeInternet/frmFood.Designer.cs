@@ -239,6 +239,7 @@ namespace CafeInternet
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.Size = new System.Drawing.Size(138, 34);
             this.txtQuantity.TabIndex = 3;
+            this.txtQuantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtQuantity_KeyPress);
             // 
             // txtPrice
             // 
@@ -249,6 +250,7 @@ namespace CafeInternet
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(127, 34);
             this.txtPrice.TabIndex = 6;
+            this.txtPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrice_KeyPress);
             // 
             // comboBox1
             // 

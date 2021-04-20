@@ -65,6 +65,12 @@
     <Compile Include="frmAdminLogin.Designer.cs">
       <DependentUpon>frmAdminLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmChangePass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmChangePass.Designer.cs">
+      <DependentUpon>frmChangePass.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmComputer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +101,12 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUser.Designer.cs">
+      <DependentUpon>frmUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmAdmin.resx">
@@ -102,6 +114,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmAdminLogin.resx">
       <DependentUpon>frmAdminLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmChangePass.resx">
+      <DependentUpon>frmChangePass.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmComputer.resx">
       <DependentUpon>frmComputer.cs</DependentUpon>
@@ -114,6 +129,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUser.resx">
+      <DependentUpon>frmUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -169,6 +187,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\gameroom_6044.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\businessapplication_edit_male_user_thepencil_theclient_negocio_2321.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

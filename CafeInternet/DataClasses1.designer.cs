@@ -1908,6 +1908,8 @@ namespace CafeInternet
 	public partial class get_price_areaResult
 	{
 		
+		private int _Area;
+		
 		private string _Name;
 		
 		private double _Price;
@@ -1916,6 +1918,22 @@ namespace CafeInternet
 		
 		public get_price_areaResult()
 		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Area", DbType="Int NOT NULL")]
+		public int Area
+		{
+			get
+			{
+				return this._Area;
+			}
+			set
+			{
+				if ((this._Area != value))
+				{
+					this._Area = value;
+				}
+			}
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]

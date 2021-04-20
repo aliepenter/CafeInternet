@@ -84,53 +84,67 @@ namespace CafeInternet
         }
         private void btnAdd_Click_1(object sender, EventArgs e)
         {
-            var u = dc.computers.FirstOrDefault(x => x.name == txtName.Text);
-            if (u == null)
+            if (txtName.Text.Length != 0)
             {
-                var f = new computer();
-                //gán giá trị
-                f.name = txtName.Text;
-                f.area_id = Convert.ToInt32(cbArea.SelectedIndex.ToString()) + 1;
-                dc.computers.InsertOnSubmit(f);
-                dc.SubmitChanges();
-                DisplayComputer();
+                var u = dc.computers.FirstOrDefault(x => x.name == txtName.Text);
+                if (u == null)
+                {
+                    var f = new computer();
+                    //gán giá trị
+                    f.name = txtName.Text;
+                    f.area_id = Convert.ToInt32(cbArea.SelectedIndex.ToString()) + 1;
+                    dc.computers.InsertOnSubmit(f);
+                    dc.SubmitChanges();
+                    DisplayComputer();
+                }
+                else
+                {
+                    MessageBox.Show("This name has already existed!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             else
             {
-                MessageBox.Show("This name has already existed!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("You must fill all the textbox!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
         private void btnUpdate_Click_1(object sender, EventArgs e)
         {
-            var u = dc.computers.FirstOrDefault(x => x.name == txtName.Text);
-            if (u == null)
+            if (txtName.Text.Length != 0)
             {
-                DataGridViewRow row = dgvShowComputer.CurrentRow;
-                int id = Convert.ToInt32(row.Cells[0].Value.ToString());
-                var f = dc.computers.FirstOrDefault(x => x.entity_id == id);
-                f.name = txtName.Text;
-                f.area_id = Convert.ToInt32(cbArea.SelectedIndex.ToString()) + 1;
-                //f.image = txtImage.Text;
-                dc.SubmitChanges();
-                DisplayComputer();
-            }
-            else
-            {
-                if (u.area_id == Convert.ToInt32(cbArea.SelectedIndex.ToString()) + 1)
-                {
-                    MessageBox.Show("Nothing change!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
+                var u = dc.computers.FirstOrDefault(x => x.name == txtName.Text);
+                if (u == null)
                 {
                     DataGridViewRow row = dgvShowComputer.CurrentRow;
                     int id = Convert.ToInt32(row.Cells[0].Value.ToString());
                     var f = dc.computers.FirstOrDefault(x => x.entity_id == id);
+                    f.name = txtName.Text;
                     f.area_id = Convert.ToInt32(cbArea.SelectedIndex.ToString()) + 1;
                     //f.image = txtImage.Text;
                     dc.SubmitChanges();
                     DisplayComputer();
                 }
+                else
+                {
+                    if (u.area_id == Convert.ToInt32(cbArea.SelectedIndex.ToString()) + 1)
+                    {
+                        MessageBox.Show("Nothing change!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        DataGridViewRow row = dgvShowComputer.CurrentRow;
+                        int id = Convert.ToInt32(row.Cells[0].Value.ToString());
+                        var f = dc.computers.FirstOrDefault(x => x.entity_id == id);
+                        f.area_id = Convert.ToInt32(cbArea.SelectedIndex.ToString()) + 1;
+                        //f.image = txtImage.Text;
+                        dc.SubmitChanges();
+                        DisplayComputer();
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("You must fill all the textbox!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -200,16 +214,16 @@ namespace CafeInternet
         {
             var count = dc.get_price_area();
             dgvShowArea.DataSource = count.ToList();
-            
+
         }
         private void DisplayADetail()
         {
             if (dgvShowArea.CurrentRow != null)
             {
                 DataGridViewRow row2 = dgvShowArea.CurrentRow;
-                txtNa.Text = row2.Cells[0].Value.ToString();
-                txtPr.Text = row2.Cells[1].Value.ToString();
-                txtNumofCom.Text = row2.Cells[2].Value.ToString();
+                txtNa.Text = row2.Cells[1].Value.ToString();
+                txtPr.Text = row2.Cells[2].Value.ToString();
+                txtNumofCom.Text = row2.Cells[3].Value.ToString();
                 txtNumofCom.ReadOnly = true;
             }
         }
@@ -225,21 +239,35 @@ namespace CafeInternet
 
         private void btnAddAr_Click(object sender, EventArgs e)
         {
-            var u = dc.areas.FirstOrDefault(x => x.name == txtNa.Text);
-            if (u == null)
+            if (txtNa.Text.Length != 0 && txtPr.Text.Length != 0)
             {
-                var k = new area();
-                //gán giá trị
-                k.name = txtNa.Text;
-                k.price = Convert.ToDouble(txtPr.Text);
-                dc.areas.InsertOnSubmit(k);
-                dc.SubmitChanges();
-                DisplayA();
-                DisplayADetail();
+                if (Convert.ToDouble(txtPr.Text) >= 0)
+                {
+                    var u = dc.areas.FirstOrDefault(x => x.name == txtNa.Text);
+                    if (u == null)
+                    {
+                        var k = new area();
+                        //gán giá trị
+                        k.name = txtNa.Text;
+                        k.price = Convert.ToDouble(txtPr.Text);
+                        dc.areas.InsertOnSubmit(k);
+                        dc.SubmitChanges();
+                        DisplayA();
+                        DisplayADetail();
+                    }
+                    else
+                    {
+                        MessageBox.Show("This name has already existed!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Price must be equal or more than 0!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
             else
             {
-                MessageBox.Show("This name has already existed!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("You must fill all the textbox!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -253,51 +281,64 @@ namespace CafeInternet
 
         private void btnUpdateAr_Click(object sender, EventArgs e)
         {
-            var u = dc.areas.FirstOrDefault(x => x.name == txtNa.Text);
-            if (u == null)
+            if (txtNa.Text.Length != 0 && txtPr.Text.Length != 0)
             {
-                DataGridViewRow row = dgvShowArea.CurrentRow;
-                int id = Convert.ToInt32(row.Cells[0].Value.ToString());
-                var f = dc.areas.FirstOrDefault(x => x.entity_id == id);
-                f.name = txtNa.Text;
-                f.price = Convert.ToDouble(txtPr.Text); ;
-                //f.image = txtImage.Text;
-                dc.SubmitChanges();
-                DisplayA();
-                DisplayADetail();
-            }
-            else
-            {
-                if (u.price != Convert.ToDouble(txtPr.Text))
+                if (Convert.ToDouble(txtPr.Text) >= 0)
                 {
-                    DataGridViewRow row = dgvShowArea.CurrentRow;
-                    int id = Convert.ToInt32(row.Cells[0].Value.ToString());
-                    var f = dc.areas.FirstOrDefault(x => x.entity_id == id);
-                    f.name = txtNa.Text;
-                    f.price = Convert.ToDouble(txtPr.Text); ;
-                    //f.image = txtImage.Text;
-                    dc.SubmitChanges();
-                    DisplayA();
-                    DisplayADetail();
+                    var u = dc.areas.FirstOrDefault(x => x.name == txtNa.Text);
+                    if (u == null)
+                    {
+                        DataGridViewRow row = dgvShowArea.CurrentRow;
+                        int id = Convert.ToInt32(row.Cells[0].Value.ToString());
+                        var f = dc.areas.FirstOrDefault(x => x.entity_id == id);
+                        f.name = txtNa.Text;
+                        f.price = Convert.ToDouble(txtPr.Text); ;
+                        //f.image = txtImage.Text;
+                        dc.SubmitChanges();
+                        DisplayA();
+                        DisplayADetail();
+                    }
+                    else
+                    {
+                        if (u.price != Convert.ToDouble(txtPr.Text))
+                        {
+                            DataGridViewRow row = dgvShowArea.CurrentRow;
+                            int kx = Convert.ToInt32(row.Cells[0].Value.ToString());
+                            var f = dc.areas.FirstOrDefault(x => x.entity_id == kx);
+                            f.name = txtNa.Text;
+                            f.price = Convert.ToDouble(txtPr.Text); ;
+                            //f.image = txtImage.Text;
+                            dc.SubmitChanges();
+                            DisplayA();
+                            DisplayADetail();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Nothing change!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Nothing change!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Price must be equal or more than 0!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
+            else
+            {
+                MessageBox.Show("You must fill all the textbox!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
-
         private void btnDelAr_Click(object sender, EventArgs e)
         {
             DataGridViewRow row = dgvShowArea.CurrentRow;
-            int id = Convert.ToInt32(row.Cells[2].Value.ToString());
+            int id = Convert.ToInt32(row.Cells[3].Value.ToString());
             if (id != 0)
             {
                 MessageBox.Show("You can't delete this area, this area contains computers!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
-                
+
                 if (dgvShowArea.CurrentRow != null)
                 {
                     if (MessageBox.Show("Do you want to delete?", "Delete",
@@ -320,7 +361,15 @@ namespace CafeInternet
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            
+
+        }
+
+        private void txtPr_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Space && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true;
+            }
         }
     }
 }

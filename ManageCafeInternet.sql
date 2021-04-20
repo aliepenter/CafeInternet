@@ -78,9 +78,9 @@ INSERT INTO [role] VALUES
 (N'SHop Manager')
 GO
 INSERT INTO [user] VALUES
-(N'admin',N'123',N'Đặng Tuấn Đạt',N'C:/Users/dangt/Desktop/CafeInternet/CafeInternet/Resources/avatar.jpg',1),
-(N'user1',N'123',N'Đỗ Hồng Ngọc',N'C:/Users/dangt/Desktop/CafeInternet/CafeInternet/Resources/avatar.jpg',2),
-(N'user2',N'123',N'Nguyễn Tuấn Minh',N'C:/Users/dangt/Desktop/CafeInternet/CafeInternet/Resources/redsting.jpg',3)
+(N'admin',N'123',N'Đặng Tuấn Đạt',N'E:/CafeInternet/CafeInternet/Resources/avatar.jpg',1),
+(N'user1',N'123',N'Đỗ Hồng Ngọc',N'E:/CafeInternet/CafeInternet/Resources/avatar.jpg',2),
+(N'user2',N'123',N'Nguyễn Tuấn Minh',N'E:/CafeInternet/CafeInternet/Resources/redsting.jpg',3)
 GO
 INSERT INTO [food_type] VALUES
 (N'Đồ ăn'),
@@ -88,9 +88,9 @@ INSERT INTO [food_type] VALUES
 (N'Đồ uống pha chế')
 GO
 INSERT INTO [food] VALUES
-(N'Red Sting',0.5,10,N'C:/Users/dangt/Desktop/CafeInternet/CafeInternet/Resources/redsting.jpg','12/02/2021',2),
-(N'Yellow Sting',0.5,20,N'C:/Users/dangt/Desktop/CafeInternet/CafeInternet/Resources/yellowsting.jpg','12/02/2021',2),
-(N'Egg Cafe',1.5,10,N'C:/Users/dangt/Desktop/CafeInternet/CafeInternet/Resources/eggcafe.jpg','12/02/2021',3)
+(N'Red Sting',0.5,10,N'E:/CafeInternet/CafeInternet/Resources/redsting.jpg','12/02/2021',2),
+(N'Yellow Sting',0.5,20,N'E:/CafeInternet/CafeInternet/Resources/yellowsting.jpg','12/02/2021',2),
+(N'Egg Cafe',1.5,10,N'E:/CafeInternet/CafeInternet/Resources/eggcafe.jpg','12/02/2021',3)
 GO
 INSERT INTO [area] VALUES
 (N'Pro',0.5),
@@ -114,10 +114,16 @@ SELECT * FROM [user] WHERE account = @account
 GO
 CREATE PROC [get_food]
 AS
-SELECT * FROM [food]
+SELECT * FROM [area]
 GO
 CREATE PROC [get_price_area]
-@id INT
 AS
-SELECT price FROM area WHERE entity_id = @id
+SELECT 
+a.entity_id as 'Area',
+a.name as 'Name',
+a.price as 'Price',
+COUNT(c.area_id) as 'Number of computers'
+FROM computer c
+right join area a on a.entity_id = c.area_id
+group by a.entity_id,a.price,a.name
 GO

@@ -16,19 +16,20 @@ namespace CafeInternet
         public string imgLink;
         public string nameAdmin;
         public string acc;
+        public int checkrole;
         public frmAdmin()
         {
             InitializeComponent();
 
         }
-        public frmAdmin(string e, string f, string a)
+        public frmAdmin(string e, string f, string a, int cr)
         {
             InitializeComponent();
 
             imgLink = e;
             nameAdmin = f;
             acc = a;
-            
+            checkrole = cr;
         }
         private void frmAdmin_Leave(object sender, EventArgs e)
         {
@@ -146,6 +147,18 @@ namespace CafeInternet
             //frmar.Dock = DockStyle.Fill;
             //frmar.Show();
             //pnlMain.Controls.Add(frmar);
+        }
+
+        private void btnUser_Click(object sender, EventArgs e)
+        {
+            frmUser fu = new frmUser(checkrole);
+            fu.TopLevel = false;
+            Size s = pnlMain.Size;
+            pnlMain.Controls.Clear();
+            fu.Size = s;
+            fu.Dock = DockStyle.Fill;
+            fu.Show();
+            pnlMain.Controls.Add(fu);
         }
     }
 }

@@ -660,6 +660,7 @@
             this.txtPr.Name = "txtPr";
             this.txtPr.Size = new System.Drawing.Size(134, 38);
             this.txtPr.TabIndex = 6;
+            this.txtPr.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPr_KeyPress);
             // 
             // btnAddAr
             // 

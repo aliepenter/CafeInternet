@@ -109,58 +109,10 @@ namespace CafeInternet
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            var u = dc.foods.FirstOrDefault(x => x.name == txtName.Text);
-            if (u == null)
+            if (txtName.Text.Length != 0 && txtPrice.Text.Length != 0 && txtQuantity.Text.Length != 0)
             {
-                
-                if (Convert.ToDouble(txtPrice.Text) >= 0 && Convert.ToInt32(txtQuantity.Text) >=0)
-                {
-                    var f = new food();
-                    f.name = txtName.Text;
-                    f.price = Convert.ToDouble(txtPrice.Text);
-                    f.quantity = Convert.ToInt32(txtQuantity.Text);
-                    f.food_type_id = Convert.ToInt32(comboBox1.SelectedIndex.ToString()) + 1;
-                    f.receipt_date = DateTime.Now;
-                    //f.image = txtImage.Text;
-                    f.image = imgLocation;
-                    dc.foods.InsertOnSubmit(f);
-                    dc.SubmitChanges();
-                    DisplayFood();
-                }
-                else
-                {
-                    MessageBox.Show("Price and Quantity must be equal or more than 0!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                //gán giá trị
-                
-            }
-            else 
-            {
-                if (u.food_type_id == Convert.ToInt32(comboBox1.SelectedIndex.ToString()) + 1)
-                {
-                    if (u.price == Convert.ToDouble(txtPrice.Text))
-                    {
-                        if (Convert.ToDouble(txtPrice.Text) >= 0 && Convert.ToInt32(txtQuantity.Text) >= 0)
-                        {
-                            u.quantity += Convert.ToInt32(txtQuantity.Text);
-                            //u.food_type_id = Convert.ToInt32(comboBox1.SelectedIndex.ToString()) + 1;
-                            //f.image = txtImage.Text;
-                            u.image = imgLocation;
-                            dc.SubmitChanges();
-                            DisplayFood();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Price and Quantity must be equal or more than 0!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
-                    }
-                    
-                    else
-                    {
-                        MessageBox.Show("You can only update price for this item!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                }
-                else
+                var u = dc.foods.FirstOrDefault(x => x.name == txtName.Text);
+                if (u == null)
                 {
                     if (Convert.ToDouble(txtPrice.Text) >= 0 && Convert.ToInt32(txtQuantity.Text) >= 0)
                     {
@@ -170,7 +122,6 @@ namespace CafeInternet
                         f.quantity = Convert.ToInt32(txtQuantity.Text);
                         f.food_type_id = Convert.ToInt32(comboBox1.SelectedIndex.ToString()) + 1;
                         f.receipt_date = DateTime.Now;
-                        //f.image = txtImage.Text;
                         f.image = imgLocation;
                         dc.foods.InsertOnSubmit(f);
                         dc.SubmitChanges();
@@ -181,6 +132,66 @@ namespace CafeInternet
                         MessageBox.Show("Price and Quantity must be equal or more than 0!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
+                else
+                {
+                    if (u.food_type_id == Convert.ToInt32(comboBox1.SelectedIndex.ToString()) + 1)
+                    {
+                        if (u.price == Convert.ToDouble(txtPrice.Text))
+                        {
+                            if (Convert.ToDouble(txtPrice.Text) >= 0 && Convert.ToInt32(txtQuantity.Text) >= 0)
+                            {
+                                u.quantity += Convert.ToInt32(txtQuantity.Text);
+                                u.image = imgLocation;
+                                dc.SubmitChanges();
+                                DisplayFood();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Price and Quantity must be equal or more than 0!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("You can only update price for this item!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                    else
+                    {
+                        if (Convert.ToDouble(txtPrice.Text) >= 0 && Convert.ToInt32(txtQuantity.Text) >= 0)
+                        {
+                            var k = dc.foods.FirstOrDefault(x => x.name == txtName.Text && x.food_type_id == Convert.ToInt32(comboBox1.SelectedIndex.ToString() + 1));
+                            if (k != null)
+                            {
+                                k.quantity += Convert.ToInt32(txtQuantity.Text);
+                                k.image = imgLocation;
+                                dc.SubmitChanges();
+                                DisplayFood();
+                            }
+                            else
+                            {
+                                var f = new food();
+                                f.name = txtName.Text;
+                                f.price = Convert.ToDouble(txtPrice.Text);
+                                f.quantity = Convert.ToInt32(txtQuantity.Text);
+                                f.food_type_id = Convert.ToInt32(comboBox1.SelectedIndex.ToString()) + 1;
+                                f.receipt_date = DateTime.Now;
+                                f.image = imgLocation;
+                                dc.foods.InsertOnSubmit(f);
+                                dc.SubmitChanges();
+                                DisplayFood();
+                            }
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Price and Quantity must be equal or more than 0!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("You must fill all the textbox!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -191,16 +202,12 @@ namespace CafeInternet
                 if (MessageBox.Show("Bạn có muốn xóa không?", "Thông báo",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    //tìm nhân viên có mã như trên form
                     var f = dc.foods.FirstOrDefault(x => x.name ==
                     txtName.Text);
                     if (f != null)
                     {
-                        //xóa dữ liệu
                         dc.foods.DeleteOnSubmit(f);
-                        //lưu
                         dc.SubmitChanges();
-                        //hiển thị lại dữ liệu
                         DisplayFood();
                     }
                 }
@@ -215,26 +222,37 @@ namespace CafeInternet
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            
-            if (Convert.ToDouble(txtPrice.Text) >= 0 && Convert.ToInt32(txtQuantity.Text) >= 0)
+            if (txtName.Text.Length != 0 && txtPrice.Text.Length != 0 && txtQuantity.Text.Length != 0)
             {
-                DataGridViewRow row = dgvShowFood.CurrentRow;
-                int id = Convert.ToInt32(row.Cells[0].Value.ToString());
-                var f = dc.foods.FirstOrDefault(x => x.entity_id == id);
-                f.name = txtName.Text;
-                f.price = Convert.ToDouble(txtPrice.Text);
-                f.quantity = Convert.ToInt32(txtQuantity.Text);
-                f.food_type_id = Convert.ToInt32(comboBox1.SelectedIndex.ToString()) + 1;
-                //f.image = txtImage.Text;
-                f.image = imgLocation;
-                dc.SubmitChanges();
-                DisplayFood();
-                //dgvShowFood.Rows[0].Selected = false;
-                //dgvShowFood.Rows[f.entity_id].Selected = true;
+                if (Convert.ToDouble(txtPrice.Text) >= 0 && Convert.ToInt32(txtQuantity.Text) >= 0)
+                {
+                    var u = dc.foods.FirstOrDefault(x => x.name == txtName.Text && x.price == Convert.ToDouble(txtPrice.Text) && x.quantity == Convert.ToInt32(txtQuantity.Text) && x.food_type_id == Convert.ToInt32(comboBox1.SelectedIndex.ToString())+1 && x.image == imgLocation);
+                    if (u == null)
+                    {
+                        DataGridViewRow row = dgvShowFood.CurrentRow;
+                        int id = Convert.ToInt32(row.Cells[0].Value.ToString());
+                        var f = dc.foods.FirstOrDefault(x => x.entity_id == id);
+                        f.name = txtName.Text;
+                        f.price = Convert.ToDouble(txtPrice.Text);
+                        f.quantity = Convert.ToInt32(txtQuantity.Text);
+                        f.food_type_id = Convert.ToInt32(comboBox1.SelectedIndex.ToString()) + 1;
+                        f.image = imgLocation;
+                        dc.SubmitChanges();
+                        DisplayFood();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Nothing change!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Price and Quantity must be equal or more than 0!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
             else
             {
-                MessageBox.Show("Price and Quantity must be equal or more than 0!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("You must fill all the textbox!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -281,6 +299,22 @@ namespace CafeInternet
             {
                 MessageBox.Show("Search box can't be null", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+            }
+        }
+
+        private void txtQuantity_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar !=(char) Keys.Space && e.KeyChar !=(char) Keys.Back)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtPrice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Space && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true;
             }
         }
     }

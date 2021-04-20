@@ -30,7 +30,7 @@ namespace CafeInternet
                     {
                         if (u.role_id == 2)
                         {
-                            frmAdmin frm = new frmAdmin(u.image, u.name, u.account);
+                            frmAdmin frm = new frmAdmin(u.image, u.name, u.account, u.role_id);
                             frm.Show();
                             this.Hide();
                         }
@@ -43,7 +43,7 @@ namespace CafeInternet
                     }
                     else
                     {
-                        frmAdminLogin frmA = new frmAdminLogin(u.image, u.name, u.account);
+                        frmAdminLogin frmA = new frmAdminLogin(u.image, u.name, u.account, u.role_id);
                         frmA.Show();
                         this.Hide();
                     }

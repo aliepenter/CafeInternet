@@ -15,11 +15,12 @@ namespace CafeInternet
         public string imgLink;
         public string nameAdmin;
         public string acc;
+        public int checkrole;
         public frmAdminLogin()
         {
             InitializeComponent();
         }
-        public frmAdminLogin(string e, string n, string a)
+        public frmAdminLogin(string e, string n, string a, int ck)
         {
             InitializeComponent();
             Rectangle r = new Rectangle(0, 0, ptbIconApp.Width, ptbIconApp.Height);
@@ -30,6 +31,7 @@ namespace CafeInternet
             imgLink = e;
             nameAdmin = n;
             acc = a;
+            checkrole = ck;
         }
         private void btnCancel_Click(object sender, EventArgs e)
         {
@@ -56,7 +58,7 @@ namespace CafeInternet
 
         private void btnInventor_Click(object sender, EventArgs e)
         {
-            frmAdmin frm = new frmAdmin(imgLink, nameAdmin, acc);
+            frmAdmin frm = new frmAdmin(imgLink, nameAdmin, acc, checkrole);
             frm.Show();
             this.Hide();
         }
