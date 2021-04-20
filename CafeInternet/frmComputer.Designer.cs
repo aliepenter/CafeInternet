@@ -69,7 +69,7 @@
             this.btnUpdateAr = new System.Windows.Forms.Button();
             this.btnDelAr = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtSearchAr = new System.Windows.Forms.TextBox();
             this.txtNumofCom = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -503,7 +503,7 @@
             this.tableLayoutPanel4.Controls.Add(this.btnUpdateAr, 1, 1);
             this.tableLayoutPanel4.Controls.Add(this.btnDelAr, 2, 1);
             this.tableLayoutPanel4.Controls.Add(this.button5, 3, 1);
-            this.tableLayoutPanel4.Controls.Add(this.textBox3, 4, 1);
+            this.tableLayoutPanel4.Controls.Add(this.txtSearchAr, 4, 1);
             this.tableLayoutPanel4.Controls.Add(this.txtNumofCom, 5, 0);
             this.tableLayoutPanel4.Controls.Add(this.label9, 4, 0);
             this.tableLayoutPanel4.Controls.Add(this.label10, 2, 0);
@@ -532,6 +532,7 @@
             this.btnSearchAr.TabIndex = 19;
             this.btnSearchAr.Text = "Search";
             this.btnSearchAr.UseVisualStyleBackColor = true;
+            this.btnSearchAr.Click += new System.EventHandler(this.btnSearchAr_Click);
             // 
             // imageList2
             // 
@@ -609,15 +610,15 @@
             this.button5.Text = "Refresh";
             this.button5.UseVisualStyleBackColor = true;
             // 
-            // textBox3
+            // txtSearchAr
             // 
-            this.textBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(533, 47);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(123, 38);
-            this.textBox3.TabIndex = 14;
+            this.txtSearchAr.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtSearchAr.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearchAr.Location = new System.Drawing.Point(533, 47);
+            this.txtSearchAr.Multiline = true;
+            this.txtSearchAr.Name = "txtSearchAr";
+            this.txtSearchAr.Size = new System.Drawing.Size(123, 38);
+            this.txtSearchAr.TabIndex = 14;
             // 
             // txtNumofCom
             // 
@@ -807,7 +808,7 @@
         private System.Windows.Forms.Button btnUpdateAr;
         private System.Windows.Forms.Button btnDelAr;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtSearchAr;
         private System.Windows.Forms.Button btnAddAr;
         private System.Windows.Forms.DataGridView dgvShowArea;
     }

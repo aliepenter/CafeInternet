@@ -114,4 +114,13 @@
       <Column Name="[Number of computers]" Member="Number_of_computers" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.search_area" Method="search_area">
+    <Parameter Name="name" Type="System.String" DbType="NVarChar(255)" />
+    <ElementType Name="search_areaResult">
+      <Column Name="Area" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="[Number of computers]" Member="Number_of_computers" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

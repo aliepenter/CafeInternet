@@ -127,3 +127,16 @@ FROM computer c
 right join area a on a.entity_id = c.area_id
 group by a.entity_id,a.price,a.name
 GO
+CREATE PROC [search_area]
+@name NVARCHAR(255)
+AS
+SELECT
+a.entity_id as 'Area',
+a.name as 'Name',
+a.price as 'Price',
+COUNT(c.area_id) as 'Number of computers'
+FROM computer c
+right join area a on a.entity_id = c.area_id
+WHERE a.name like @name
+group by a.entity_id,a.price,a.name
+GO

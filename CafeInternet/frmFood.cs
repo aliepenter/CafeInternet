@@ -279,7 +279,6 @@ namespace CafeInternet
         {
             if (txtSearch.Text != "")
             {
-                int a = Convert.ToInt32(txtSearch.Text);
                 var food = from f in dc.foods.Where(p => p.name.Contains(txtSearch.Text))
                            select new
                            {
@@ -297,8 +296,8 @@ namespace CafeInternet
             }
             else
             {
-                MessageBox.Show("Search box can't be null", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                DisplayFoodType();
+                DisplayFood();
             }
         }
 

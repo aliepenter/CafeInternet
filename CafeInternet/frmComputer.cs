@@ -185,24 +185,44 @@ namespace CafeInternet
         {
             if (txtSearch.Text != "")
             {
-                int a = Convert.ToInt32(txtSearch.Text);
-                var com = from f in dc.computers.Where(p => p.name.Contains(txtSearch.Text) || p.profit >= a)
-                          select new
-                          {
-                              Id = f.entity_id,
-                              Name = f.name,
-                              Area = f.area_id,
-                              Status = f.status == 0 ? "OFFLINE" : "ONLINE",
-                              Total_Used_Times = f.total_used_time,
-                              Profit = f.profit
-                          };
-                //hiển thị lên lưới
-                dgvShowComputer.DataSource = com;
-                DisplayComputerDetail();
+                if (Int32.TryParse(txtSearch.Text, out int value))
+                {
+                    int a = Convert.ToInt32(txtSearch.Text);
+                    var com = from f in dc.computers.Where(p => p.name.Contains(txtSearch.Text) || p.profit >= a)
+                              select new
+                              {
+                                  Id = f.entity_id,
+                                  Name = f.name,
+                                  Area = f.area_id,
+                                  Status = f.status == 0 ? "OFFLINE" : "ONLINE",
+                                  Total_Used_Times = f.total_used_time,
+                                  Profit = f.profit
+                              };
+                    //hiển thị lên lưới
+                    dgvShowComputer.DataSource = com;
+                    DisplayComputerDetail();
+                }
+                else
+                {
+                    var com = from f in dc.computers.Where(p => p.name.Contains(txtSearch.Text))
+                              select new
+                              {
+                                  Id = f.entity_id,
+                                  Name = f.name,
+                                  Area = f.area_id,
+                                  Status = f.status == 0 ? "OFFLINE" : "ONLINE",
+                                  Total_Used_Times = f.total_used_time,
+                                  Profit = f.profit
+                              };
+                    //hiển thị lên lưới
+                    dgvShowComputer.DataSource = com;
+                    DisplayComputerDetail();
+                }
             }
             else
             {
-                MessageBox.Show("Search box can't be null", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DisplayArea();
+                DisplayComputer();
             }
         }
 
@@ -369,6 +389,26 @@ namespace CafeInternet
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Space && e.KeyChar != (char)Keys.Back)
             {
                 e.Handled = true;
+            }
+        }
+
+        private void btnSearchAr_Click(object sender, EventArgs e)
+        {
+            if (txtSearchAr.Text != "")
+            {
+
+                var count = dc.search_area(txtSearchAr.Text);
+
+
+                //hiển thị lên lưới
+                dgvShowArea.DataSource = count.ToList();
+                DisplayADetail();
+            }
+            else
+            {
+                var count = dc.get_price_area();
+                //hiển thị lên lưới
+                dgvShowArea.DataSource = count.ToList();
             }
         }
     }

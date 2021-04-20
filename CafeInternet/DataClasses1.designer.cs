@@ -177,6 +177,13 @@ namespace CafeInternet
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<get_price_areaResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.search_area")]
+		public ISingleResult<search_areaResult> search_area([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(255)")] string name)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), name);
+			return ((ISingleResult<search_areaResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.area")]
@@ -1917,6 +1924,86 @@ namespace CafeInternet
 		private System.Nullable<int> _Number_of_computers;
 		
 		public get_price_areaResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Area", DbType="Int NOT NULL")]
+		public int Area
+		{
+			get
+			{
+				return this._Area;
+			}
+			set
+			{
+				if ((this._Area != value))
+				{
+					this._Area = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Float NOT NULL")]
+		public double Price
+		{
+			get
+			{
+				return this._Price;
+			}
+			set
+			{
+				if ((this._Price != value))
+				{
+					this._Price = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Number of computers]", Storage="_Number_of_computers", DbType="Int")]
+		public System.Nullable<int> Number_of_computers
+		{
+			get
+			{
+				return this._Number_of_computers;
+			}
+			set
+			{
+				if ((this._Number_of_computers != value))
+				{
+					this._Number_of_computers = value;
+				}
+			}
+		}
+	}
+	
+	public partial class search_areaResult
+	{
+		
+		private int _Area;
+		
+		private string _Name;
+		
+		private double _Price;
+		
+		private System.Nullable<int> _Number_of_computers;
+		
+		public search_areaResult()
 		{
 		}
 		

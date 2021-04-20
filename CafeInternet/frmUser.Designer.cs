@@ -50,7 +50,7 @@ namespace CafeInternet
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.btnChangePass = new System.Windows.Forms.Button();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnImage = new System.Windows.Forms.Button();
             this.ptbAvatar = new System.Windows.Forms.PictureBox();
@@ -229,7 +229,7 @@ namespace CafeInternet
             this.tableLayoutPanel1.Controls.Add(this.btnAdd, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.btnUpdate, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.btnDelete, 2, 2);
-            this.tableLayoutPanel1.Controls.Add(this.btnChangePass, 3, 2);
+            this.tableLayoutPanel1.Controls.Add(this.btnRefresh, 3, 2);
             this.tableLayoutPanel1.Controls.Add(this.txtSearch, 4, 2);
             this.tableLayoutPanel1.Controls.Add(this.btnImage, 4, 0);
             this.tableLayoutPanel1.Controls.Add(this.ptbAvatar, 5, 0);
@@ -258,6 +258,7 @@ namespace CafeInternet
             this.btnSearch.TabIndex = 19;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // cbRole
             // 
@@ -312,21 +313,23 @@ namespace CafeInternet
             this.btnDelete.TabIndex = 12;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // btnChangePass
+            // btnRefresh
             // 
-            this.btnChangePass.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnChangePass.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnChangePass.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnChangePass.ImageIndex = 4;
-            this.btnChangePass.ImageList = this.imageList2;
-            this.btnChangePass.Location = new System.Drawing.Point(399, 83);
-            this.btnChangePass.Name = "btnChangePass";
-            this.btnChangePass.Size = new System.Drawing.Size(137, 36);
-            this.btnChangePass.TabIndex = 13;
-            this.btnChangePass.Text = "Password";
-            this.btnChangePass.UseVisualStyleBackColor = true;
-            this.btnChangePass.Click += new System.EventHandler(this.btnChangePass_Click);
+            this.btnRefresh.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRefresh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRefresh.ImageIndex = 4;
+            this.btnRefresh.ImageList = this.imageList2;
+            this.btnRefresh.Location = new System.Drawing.Point(399, 83);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(137, 36);
+            this.btnRefresh.TabIndex = 13;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // txtSearch
             // 
@@ -453,7 +456,7 @@ namespace CafeInternet
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Button btnChangePass;
+        private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnImage;
         private System.Windows.Forms.PictureBox ptbAvatar;

@@ -169,12 +169,12 @@ namespace CafeInternet
                         DataGridViewRow row = dgvUser.CurrentRow;
                         int id = Convert.ToInt32(row.Cells[0].Value.ToString());
                         var f = dc.users.FirstOrDefault(x => x.entity_id == id);
-                            f.account = txtAcc.Text;
-                            f.name = txtNam.Text;
-                            f.role_id = Convert.ToInt32(cbRole.SelectedIndex.ToString()) + 1;
-                            f.image = imgLocation;
-                            dc.SubmitChanges();
-                            DisplayUser();   
+                        f.account = txtAcc.Text;
+                        f.name = txtNam.Text;
+                        f.role_id = Convert.ToInt32(cbRole.SelectedIndex.ToString()) + 1;
+                        f.image = imgLocation;
+                        dc.SubmitChanges();
+                        DisplayUser();
                     }
                     else
                     {
@@ -196,8 +196,78 @@ namespace CafeInternet
         {
         }
 
-        private void btnChangePass_Click(object sender, EventArgs e)
-        {      
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            DisplayRole();
+            DisplayUser();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (checkrole == 1)
+            {
+                if (txtAcc.Text != "admin")
+                {
+                    if (dgvUser.CurrentRow != null)
+                    {
+                        if (MessageBox.Show("Do you want to delete?", "Delete",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            //tìm nhân viên có mã như trên form
+                            var f = dc.users.FirstOrDefault(x => x.account ==
+                            txtAcc.Text);
+                            if (f != null)
+                            {
+                                //xóa dữ liệu
+                                dc.users.DeleteOnSubmit(f);
+                                //lưu
+                                dc.SubmitChanges();
+                                //hiển thị lại dữ liệu
+                                DisplayUser();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Can not find the data", "Warning",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Cannot delete adminstrator!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                MessageBox.Show("You are not adminstrator!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            if (txtSearch.Text != "")
+            {
+                var com = from f in dc.users.Where(p => p.account.Contains(txtSearch.Text) || p.name.Contains(txtSearch.Text))
+                          select new
+                          {
+                              Id = f.entity_id,
+                              Account = f.account,
+                              Password = f.password,
+                              Name = f.name,
+                              Role = f.role_id,
+                              Image_Link = f.image
+                          };
+                //hiển thị lên lưới
+                dgvUser.DataSource = com;
+                DisplayUserDetail();
+
+            }
+            else
+            {
+                DisplayRole();
+                DisplayUser();
+            }
         }
     }
 }
