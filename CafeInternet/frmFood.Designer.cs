@@ -51,7 +51,7 @@ namespace CafeInternet
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
-            this.txtDate = new System.Windows.Forms.TextBox();
+            this.txtReport = new System.Windows.Forms.TextBox();
             this.btnImage = new System.Windows.Forms.Button();
             this.ptbImageFood = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -125,7 +125,7 @@ namespace CafeInternet
             this.tableLayoutPanel1.Controls.Add(this.btnDelete, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.btnRefresh, 3, 2);
             this.tableLayoutPanel1.Controls.Add(this.txtSearch, 4, 2);
-            this.tableLayoutPanel1.Controls.Add(this.txtDate, 5, 1);
+            this.tableLayoutPanel1.Controls.Add(this.txtReport, 5, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnImage, 4, 0);
             this.tableLayoutPanel1.Controls.Add(this.ptbImageFood, 5, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -170,11 +170,11 @@ namespace CafeInternet
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(613, 50);
+            this.label6.Location = new System.Drawing.Point(599, 50);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(48, 20);
+            this.label6.Size = new System.Drawing.Size(62, 20);
             this.label6.TabIndex = 17;
-            this.label6.Text = "Date:";
+            this.label6.Text = "Report:";
             // 
             // label3
             // 
@@ -332,15 +332,15 @@ namespace CafeInternet
             this.txtSearch.Size = new System.Drawing.Size(115, 36);
             this.txtSearch.TabIndex = 14;
             // 
-            // txtDate
+            // txtReport
             // 
-            this.txtDate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDate.Location = new System.Drawing.Point(667, 43);
-            this.txtDate.Multiline = true;
-            this.txtDate.Name = "txtDate";
-            this.txtDate.Size = new System.Drawing.Size(130, 34);
-            this.txtDate.TabIndex = 20;
+            this.txtReport.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtReport.Location = new System.Drawing.Point(667, 43);
+            this.txtReport.Multiline = true;
+            this.txtReport.Name = "txtReport";
+            this.txtReport.Size = new System.Drawing.Size(130, 34);
+            this.txtReport.TabIndex = 20;
             // 
             // btnImage
             // 
@@ -465,7 +465,7 @@ namespace CafeInternet
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.DataGridView dgvShowFood;
         private System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.TextBox txtDate;
+        private System.Windows.Forms.TextBox txtReport;
         private System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.Button btnImage;
         private System.Windows.Forms.PictureBox ptbImageFood;

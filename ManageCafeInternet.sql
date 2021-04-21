@@ -28,7 +28,6 @@ CREATE TABLE [food]
 	price FLOAT NOT NULL,
 	quantity INT NOT NULL,
 	image NVARCHAR(255) NOT NULL,
-	receipt_date datetime NOT NULL,
 	food_type_id INT NOT NULL,
 	FOREIGN KEY (food_type_id) REFERENCES [food_type](entity_id)
 )
@@ -72,6 +71,19 @@ CREATE TABLE [order]
 	FOREIGN KEY (computer_status_id) REFERENCES [computer_status](entity_id)
 )
 GO
+CREATE TABLE [report]
+(
+	entity_id INT PRIMARY KEY IDENTITY,
+	[date] DATETIME NOT NULL,
+	[time] DATETIME NOT NULL,
+	[information] NVARCHAR(255) NOT NULL,
+	[performer] NVARCHAR(255) NOT NULL,
+	[activity] NVARCHAR(255) NOT NULL,
+	[type] INT NOT NULL
+)
+GO
+SELECT * FROM [report]
+GO
 INSERT INTO [role] VALUES
 (N'admin'),
 (N'Inventory Manager'),
@@ -88,9 +100,9 @@ INSERT INTO [food_type] VALUES
 (N'Đồ uống pha chế')
 GO
 INSERT INTO [food] VALUES
-(N'Red Sting',0.5,10,N'E:/CafeInternet/CafeInternet/Resources/redsting.jpg','12/02/2021',2),
-(N'Yellow Sting',0.5,20,N'E:/CafeInternet/CafeInternet/Resources/yellowsting.jpg','12/02/2021',2),
-(N'Egg Cafe',1.5,10,N'E:/CafeInternet/CafeInternet/Resources/eggcafe.jpg','12/02/2021',3)
+(N'Red Sting',0.5,10,N'E:/CafeInternet/CafeInternet/Resources/redsting.jpg',2),
+(N'Yellow Sting',0.5,20,N'E:/CafeInternet/CafeInternet/Resources/yellowsting.jpg',2),
+(N'Egg Cafe',1.5,10,N'E:/CafeInternet/CafeInternet/Resources/eggcafe.jpg',3)
 GO
 INSERT INTO [area] VALUES
 (N'Pro',0.5),

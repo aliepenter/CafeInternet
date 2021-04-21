@@ -51,18 +51,6 @@
       <Association Name="role_user" Member="role" ThisKey="role_id" OtherKey="entity_id" Type="role" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.food" Member="foods">
-    <Type Name="food">
-      <Column Name="entity_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="image" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="receipt_date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="food_type_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="food_type_food" Member="food_type" ThisKey="food_type_id" OtherKey="entity_id" Type="food_type" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.computer" Member="computers">
     <Type Name="computer">
       <Column Name="entity_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -72,6 +60,28 @@
       <Column Name="total_used_time" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="profit" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Association Name="area_computer" Member="area" ThisKey="area_id" OtherKey="entity_id" Type="area" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.food" Member="foods">
+    <Type Name="food">
+      <Column Name="entity_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="image" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="food_type_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="food_type_food" Member="food_type" ThisKey="food_type_id" OtherKey="entity_id" Type="food_type" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.report" Member="reports">
+    <Type Name="report">
+      <Column Name="entity_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="time" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="information" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="performer" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="activity" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="type" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Function Name="dbo.login_permission" Method="login_permission">

@@ -71,6 +71,12 @@
     <Compile Include="frmChangePass.Designer.cs">
       <DependentUpon>frmChangePass.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmCommit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCommit.Designer.cs">
+      <DependentUpon>frmCommit.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmComputer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +123,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmChangePass.resx">
       <DependentUpon>frmChangePass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCommit.resx">
+      <DependentUpon>frmCommit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmComputer.resx">
       <DependentUpon>frmComputer.cs</DependentUpon>

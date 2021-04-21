@@ -36,6 +36,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.dgvShowComputer = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.txtReport = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.label2 = new System.Windows.Forms.Label();
@@ -53,6 +54,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txtProfit = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.ptbComputer = new System.Windows.Forms.PictureBox();
@@ -62,18 +64,20 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.dgvShowArea = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnSearchAr = new System.Windows.Forms.Button();
-            this.imageList2 = new System.Windows.Forms.ImageList(this.components);
+            this.txtRe = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.txtNa = new System.Windows.Forms.TextBox();
-            this.btnUpdateAr = new System.Windows.Forms.Button();
-            this.btnDelAr = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.txtSearchAr = new System.Windows.Forms.TextBox();
             this.txtNumofCom = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.txtPr = new System.Windows.Forms.TextBox();
+            this.txtSearchAr = new System.Windows.Forms.TextBox();
+            this.btnSearchAr = new System.Windows.Forms.Button();
+            this.imageList2 = new System.Windows.Forms.ImageList(this.components);
+            this.btnDelAr = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.txtNa = new System.Windows.Forms.TextBox();
+            this.lb = new System.Windows.Forms.Label();
+            this.btnUpdateAr = new System.Windows.Forms.Button();
             this.btnAddAr = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -167,6 +171,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.63894F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.59734F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.84692F));
+            this.tableLayoutPanel1.Controls.Add(this.txtReport, 5, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnSearch, 5, 2);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
@@ -183,6 +188,7 @@
             this.tableLayoutPanel1.Controls.Add(this.label5, 4, 0);
             this.tableLayoutPanel1.Controls.Add(this.label3, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtProfit, 5, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label8, 4, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 41);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -193,6 +199,17 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(786, 122);
             this.tableLayoutPanel1.TabIndex = 19;
+            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
+            // 
+            // txtReport
+            // 
+            this.txtReport.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtReport.Location = new System.Drawing.Point(653, 43);
+            this.txtReport.Multiline = true;
+            this.txtReport.Name = "txtReport";
+            this.txtReport.Size = new System.Drawing.Size(130, 34);
+            this.txtReport.TabIndex = 24;
             // 
             // btnSearch
             // 
@@ -395,6 +412,17 @@
             this.txtProfit.Size = new System.Drawing.Size(130, 34);
             this.txtProfit.TabIndex = 22;
             // 
+            // label8
+            // 
+            this.label8.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(585, 50);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(62, 20);
+            this.label8.TabIndex = 23;
+            this.label8.Text = "Report:";
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.tableLayoutPanel2);
@@ -467,9 +495,9 @@
             // 
             this.panel5.Controls.Add(this.dgvShowArea);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(0, 129);
+            this.panel5.Location = new System.Drawing.Point(0, 168);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(786, 286);
+            this.panel5.Size = new System.Drawing.Size(786, 247);
             this.panel5.TabIndex = 20;
             // 
             // dgvShowArea
@@ -484,7 +512,7 @@
             this.dgvShowArea.Name = "dgvShowArea";
             this.dgvShowArea.ReadOnly = true;
             this.dgvShowArea.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvShowArea.Size = new System.Drawing.Size(786, 281);
+            this.dgvShowArea.Size = new System.Drawing.Size(786, 242);
             this.dgvShowArea.TabIndex = 0;
             this.dgvShowArea.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvShowArea_CellClick);
             // 
@@ -497,27 +525,104 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.9128F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.45932F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.95287F));
-            this.tableLayoutPanel4.Controls.Add(this.btnSearchAr, 5, 1);
+            this.tableLayoutPanel4.Controls.Add(this.txtRe, 1, 1);
             this.tableLayoutPanel4.Controls.Add(this.label11, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.txtNa, 1, 0);
-            this.tableLayoutPanel4.Controls.Add(this.btnUpdateAr, 1, 1);
-            this.tableLayoutPanel4.Controls.Add(this.btnDelAr, 2, 1);
-            this.tableLayoutPanel4.Controls.Add(this.button5, 3, 1);
-            this.tableLayoutPanel4.Controls.Add(this.txtSearchAr, 4, 1);
             this.tableLayoutPanel4.Controls.Add(this.txtNumofCom, 5, 0);
             this.tableLayoutPanel4.Controls.Add(this.label9, 4, 0);
             this.tableLayoutPanel4.Controls.Add(this.label10, 2, 0);
             this.tableLayoutPanel4.Controls.Add(this.txtPr, 3, 0);
-            this.tableLayoutPanel4.Controls.Add(this.btnAddAr, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.txtSearchAr, 4, 2);
+            this.tableLayoutPanel4.Controls.Add(this.btnSearchAr, 5, 2);
+            this.tableLayoutPanel4.Controls.Add(this.btnDelAr, 1, 2);
+            this.tableLayoutPanel4.Controls.Add(this.button5, 3, 2);
+            this.tableLayoutPanel4.Controls.Add(this.txtNa, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.lb, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.btnUpdateAr, 1, 2);
+            this.tableLayoutPanel4.Controls.Add(this.btnAddAr, 0, 2);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 41);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 2;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.RowCount = 3;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(786, 88);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(786, 127);
             this.tableLayoutPanel4.TabIndex = 19;
+            // 
+            // txtRe
+            // 
+            this.txtRe.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtRe.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRe.Location = new System.Drawing.Point(133, 45);
+            this.txtRe.Multiline = true;
+            this.txtRe.Name = "txtRe";
+            this.txtRe.Size = new System.Drawing.Size(124, 36);
+            this.txtRe.TabIndex = 27;
+            // 
+            // label11
+            // 
+            this.label11.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(72, 11);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(55, 20);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "Name:";
+            // 
+            // txtNumofCom
+            // 
+            this.txtNumofCom.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtNumofCom.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNumofCom.Location = new System.Drawing.Point(662, 3);
+            this.txtNumofCom.Multiline = true;
+            this.txtNumofCom.Name = "txtNumofCom";
+            this.txtNumofCom.Size = new System.Drawing.Size(121, 36);
+            this.txtNumofCom.TabIndex = 3;
+            // 
+            // label9
+            // 
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(568, 1);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(88, 40);
+            this.label9.TabIndex = 4;
+            this.label9.Text = "Number of computers:";
+            // 
+            // label10
+            // 
+            this.label10.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(339, 11);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(48, 20);
+            this.label10.TabIndex = 1;
+            this.label10.Text = "Price:";
+            // 
+            // txtPr
+            // 
+            this.txtPr.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtPr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPr.Location = new System.Drawing.Point(393, 3);
+            this.txtPr.Multiline = true;
+            this.txtPr.Name = "txtPr";
+            this.txtPr.Size = new System.Drawing.Size(134, 36);
+            this.txtPr.TabIndex = 6;
+            this.txtPr.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPr_KeyPress);
+            // 
+            // txtSearchAr
+            // 
+            this.txtSearchAr.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtSearchAr.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearchAr.Location = new System.Drawing.Point(533, 87);
+            this.txtSearchAr.Multiline = true;
+            this.txtSearchAr.Name = "txtSearchAr";
+            this.txtSearchAr.Size = new System.Drawing.Size(123, 37);
+            this.txtSearchAr.TabIndex = 24;
             // 
             // btnSearchAr
             // 
@@ -526,10 +631,10 @@
             this.btnSearchAr.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSearchAr.ImageIndex = 2;
             this.btnSearchAr.ImageList = this.imageList2;
-            this.btnSearchAr.Location = new System.Drawing.Point(662, 47);
+            this.btnSearchAr.Location = new System.Drawing.Point(662, 87);
             this.btnSearchAr.Name = "btnSearchAr";
-            this.btnSearchAr.Size = new System.Drawing.Size(121, 38);
-            this.btnSearchAr.TabIndex = 19;
+            this.btnSearchAr.Size = new System.Drawing.Size(121, 37);
+            this.btnSearchAr.TabIndex = 25;
             this.btnSearchAr.Text = "Search";
             this.btnSearchAr.UseVisualStyleBackColor = true;
             this.btnSearchAr.Click += new System.EventHandler(this.btnSearchAr_Click);
@@ -545,42 +650,6 @@
             this.imageList2.Images.SetKeyName(4, "update.ico");
             this.imageList2.Images.SetKeyName(5, "img.ico");
             // 
-            // label11
-            // 
-            this.label11.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(72, 12);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(55, 20);
-            this.label11.TabIndex = 0;
-            this.label11.Text = "Name:";
-            // 
-            // txtNa
-            // 
-            this.txtNa.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtNa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNa.Location = new System.Drawing.Point(133, 3);
-            this.txtNa.Multiline = true;
-            this.txtNa.Name = "txtNa";
-            this.txtNa.Size = new System.Drawing.Size(124, 38);
-            this.txtNa.TabIndex = 2;
-            // 
-            // btnUpdateAr
-            // 
-            this.btnUpdateAr.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnUpdateAr.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdateAr.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUpdateAr.ImageIndex = 3;
-            this.btnUpdateAr.ImageList = this.imageList2;
-            this.btnUpdateAr.Location = new System.Drawing.Point(133, 47);
-            this.btnUpdateAr.Name = "btnUpdateAr";
-            this.btnUpdateAr.Size = new System.Drawing.Size(124, 38);
-            this.btnUpdateAr.TabIndex = 11;
-            this.btnUpdateAr.Text = "Update";
-            this.btnUpdateAr.UseVisualStyleBackColor = true;
-            this.btnUpdateAr.Click += new System.EventHandler(this.btnUpdateAr_Click);
-            // 
             // btnDelAr
             // 
             this.btnDelAr.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -588,10 +657,10 @@
             this.btnDelAr.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDelAr.ImageIndex = 1;
             this.btnDelAr.ImageList = this.imageList2;
-            this.btnDelAr.Location = new System.Drawing.Point(263, 47);
+            this.btnDelAr.Location = new System.Drawing.Point(263, 87);
             this.btnDelAr.Name = "btnDelAr";
-            this.btnDelAr.Size = new System.Drawing.Size(124, 38);
-            this.btnDelAr.TabIndex = 12;
+            this.btnDelAr.Size = new System.Drawing.Size(124, 37);
+            this.btnDelAr.TabIndex = 22;
             this.btnDelAr.Text = "Delete";
             this.btnDelAr.UseVisualStyleBackColor = true;
             this.btnDelAr.Click += new System.EventHandler(this.btnDelAr_Click);
@@ -603,65 +672,49 @@
             this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button5.ImageIndex = 4;
             this.button5.ImageList = this.imageList2;
-            this.button5.Location = new System.Drawing.Point(393, 47);
+            this.button5.Location = new System.Drawing.Point(393, 87);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(134, 38);
-            this.button5.TabIndex = 13;
+            this.button5.Size = new System.Drawing.Size(134, 37);
+            this.button5.TabIndex = 23;
             this.button5.Text = "Refresh";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
-            // txtSearchAr
+            // txtNa
             // 
-            this.txtSearchAr.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtSearchAr.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearchAr.Location = new System.Drawing.Point(533, 47);
-            this.txtSearchAr.Multiline = true;
-            this.txtSearchAr.Name = "txtSearchAr";
-            this.txtSearchAr.Size = new System.Drawing.Size(123, 38);
-            this.txtSearchAr.TabIndex = 14;
+            this.txtNa.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtNa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNa.Location = new System.Drawing.Point(133, 3);
+            this.txtNa.Multiline = true;
+            this.txtNa.Name = "txtNa";
+            this.txtNa.Size = new System.Drawing.Size(124, 36);
+            this.txtNa.TabIndex = 2;
             // 
-            // txtNumofCom
+            // lb
             // 
-            this.txtNumofCom.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtNumofCom.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNumofCom.Location = new System.Drawing.Point(662, 3);
-            this.txtNumofCom.Multiline = true;
-            this.txtNumofCom.Name = "txtNumofCom";
-            this.txtNumofCom.Size = new System.Drawing.Size(121, 38);
-            this.txtNumofCom.TabIndex = 3;
+            this.lb.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lb.AutoSize = true;
+            this.lb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb.Location = new System.Drawing.Point(65, 53);
+            this.lb.Name = "lb";
+            this.lb.Size = new System.Drawing.Size(62, 20);
+            this.lb.TabIndex = 26;
+            this.lb.Text = "Report:";
             // 
-            // label9
+            // btnUpdateAr
             // 
-            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(568, 2);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(88, 40);
-            this.label9.TabIndex = 4;
-            this.label9.Text = "Number of computers:";
-            // 
-            // label10
-            // 
-            this.label10.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(339, 12);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(48, 20);
-            this.label10.TabIndex = 1;
-            this.label10.Text = "Price:";
-            // 
-            // txtPr
-            // 
-            this.txtPr.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtPr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPr.Location = new System.Drawing.Point(393, 3);
-            this.txtPr.Multiline = true;
-            this.txtPr.Name = "txtPr";
-            this.txtPr.Size = new System.Drawing.Size(134, 38);
-            this.txtPr.TabIndex = 6;
-            this.txtPr.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPr_KeyPress);
+            this.btnUpdateAr.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnUpdateAr.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdateAr.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUpdateAr.ImageIndex = 3;
+            this.btnUpdateAr.ImageList = this.imageList2;
+            this.btnUpdateAr.Location = new System.Drawing.Point(133, 87);
+            this.btnUpdateAr.Name = "btnUpdateAr";
+            this.btnUpdateAr.Size = new System.Drawing.Size(124, 37);
+            this.btnUpdateAr.TabIndex = 21;
+            this.btnUpdateAr.Text = "Update";
+            this.btnUpdateAr.UseVisualStyleBackColor = true;
+            this.btnUpdateAr.Click += new System.EventHandler(this.btnUpdateAr_Click_1);
             // 
             // btnAddAr
             // 
@@ -670,13 +723,13 @@
             this.btnAddAr.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAddAr.ImageIndex = 0;
             this.btnAddAr.ImageList = this.imageList2;
-            this.btnAddAr.Location = new System.Drawing.Point(3, 47);
+            this.btnAddAr.Location = new System.Drawing.Point(3, 87);
             this.btnAddAr.Name = "btnAddAr";
-            this.btnAddAr.Size = new System.Drawing.Size(124, 38);
-            this.btnAddAr.TabIndex = 10;
+            this.btnAddAr.Size = new System.Drawing.Size(124, 37);
+            this.btnAddAr.TabIndex = 20;
             this.btnAddAr.Text = "Add";
             this.btnAddAr.UseVisualStyleBackColor = true;
-            this.btnAddAr.Click += new System.EventHandler(this.btnAddAr_Click);
+            this.btnAddAr.Click += new System.EventHandler(this.btnAddAr_Click_1);
             // 
             // panel4
             // 
@@ -804,12 +857,16 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button btnSearchAr;
+        private System.Windows.Forms.DataGridView dgvShowArea;
+        private System.Windows.Forms.TextBox txtReport;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtRe;
         private System.Windows.Forms.Button btnUpdateAr;
-        private System.Windows.Forms.Button btnDelAr;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.TextBox txtSearchAr;
         private System.Windows.Forms.Button btnAddAr;
-        private System.Windows.Forms.DataGridView dgvShowArea;
+        private System.Windows.Forms.Button btnSearchAr;
+        private System.Windows.Forms.Button btnDelAr;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Label lb;
     }
 }

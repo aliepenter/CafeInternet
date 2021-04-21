@@ -76,7 +76,7 @@ namespace CafeInternet
 
         private void button1_Click(object sender, EventArgs e)
         {
-            frmFood frmfood = new frmFood();
+            frmFood frmfood = new frmFood(nameAdmin);
             frmfood.TopLevel = false;
             Size s = pnlMain.Size;
             pnlMain.Controls.Clear();
@@ -110,7 +110,14 @@ namespace CafeInternet
 
         private void button7_Click(object sender, EventArgs e)
         {
-
+            frmCommit fc = new frmCommit();
+            fc.TopLevel = false;
+            Size s = pnlMain.Size;
+            pnlMain.Controls.Clear();
+            fc.Size = s;
+            fc.Dock = DockStyle.Fill;
+            fc.Show();
+            pnlMain.Controls.Add(fc);
         }
 
         private void btnDashbroad_Click(object sender, EventArgs e)
@@ -127,7 +134,7 @@ namespace CafeInternet
 
         private void btnComputer_Click(object sender, EventArgs e)
         {
-            frmComputer frmc = new frmComputer();
+            frmComputer frmc = new frmComputer(nameAdmin);
             frmc.TopLevel = false;
             Size s = pnlMain.Size;
             pnlMain.Controls.Clear();

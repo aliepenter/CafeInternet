@@ -14,6 +14,7 @@ namespace CafeInternet
     {
         DataClasses1DataContext dc = new DataClasses1DataContext();
         int position;
+        public string checkrole;
         public frmComputer()
         {
             InitializeComponent();
@@ -22,6 +23,11 @@ namespace CafeInternet
             gp.AddEllipse(0, 0, ptbComputer.Width - 3, ptbComputer.Height - 3);
             Region rg = new Region(gp);
             ptbComputer.Region = rg;
+        }
+        public frmComputer(string c)
+        {
+            InitializeComponent();
+            checkrole = c;
         }
         private void DisplayArea()
         {
@@ -44,7 +50,7 @@ namespace CafeInternet
                         Id = f.entity_id,
                         Name = f.name,
                         Area = f.area_id,
-                        Status = f.status == 0 ? "OFFLINE" : "ONLINE",
+                        Status = f.status == 0 ? "GOOD" : "BREAK",
                         Total_Used_Times = f.total_used_time,
                         Profit = f.profit
                     };
@@ -84,96 +90,154 @@ namespace CafeInternet
         }
         private void btnAdd_Click_1(object sender, EventArgs e)
         {
-            if (txtName.Text.Length != 0)
+            if (txtReport.Text.Length != 0)
             {
-                var u = dc.computers.FirstOrDefault(x => x.name == txtName.Text);
-                if (u == null)
+                if (txtName.Text.Length != 0)
                 {
-                    var f = new computer();
-                    //gán giá trị
-                    f.name = txtName.Text;
-                    f.area_id = Convert.ToInt32(cbArea.SelectedIndex.ToString()) + 1;
-                    dc.computers.InsertOnSubmit(f);
-                    dc.SubmitChanges();
-                    DisplayComputer();
+                    var u = dc.computers.FirstOrDefault(x => x.name == txtName.Text);
+                    if (u == null)
+                    {
+                        var f = new computer();
+                        //gán giá trị
+                        f.name = txtName.Text;
+                        f.area_id = Convert.ToInt32(cbArea.SelectedIndex.ToString()) + 1;
+                        var k = new report();
+                        k.date = DateTime.Today;
+                        k.time = DateTime.Now;
+                        k.information = txtReport.Text;
+                        k.performer = checkrole;
+                        k.activity = "Add new computer";
+                        k.type = 2;
+                        dc.reports.InsertOnSubmit(k);
+                        dc.computers.InsertOnSubmit(f);
+                        dc.SubmitChanges();
+                        DisplayComputer();
+                        txtReport.Text = "";
+                    }
+                    else
+                    {
+                        MessageBox.Show("This name has already existed!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("This name has already existed!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("You must fill all the textbox!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             else
             {
-                MessageBox.Show("You must fill all the textbox!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("You must commit the activity!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
         private void btnUpdate_Click_1(object sender, EventArgs e)
         {
-            if (txtName.Text.Length != 0)
+            if (txtReport.Text.Length != 0)
             {
-                var u = dc.computers.FirstOrDefault(x => x.name == txtName.Text);
-                if (u == null)
+                if (txtName.Text.Length != 0)
                 {
-                    DataGridViewRow row = dgvShowComputer.CurrentRow;
-                    int id = Convert.ToInt32(row.Cells[0].Value.ToString());
-                    var f = dc.computers.FirstOrDefault(x => x.entity_id == id);
-                    f.name = txtName.Text;
-                    f.area_id = Convert.ToInt32(cbArea.SelectedIndex.ToString()) + 1;
-                    //f.image = txtImage.Text;
-                    dc.SubmitChanges();
-                    DisplayComputer();
-                }
-                else
-                {
-                    if (u.area_id == Convert.ToInt32(cbArea.SelectedIndex.ToString()) + 1)
-                    {
-                        MessageBox.Show("Nothing change!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
+                    var u = dc.computers.FirstOrDefault(x => x.name == txtName.Text);
+                    if (u == null)
                     {
                         DataGridViewRow row = dgvShowComputer.CurrentRow;
                         int id = Convert.ToInt32(row.Cells[0].Value.ToString());
                         var f = dc.computers.FirstOrDefault(x => x.entity_id == id);
+                        f.name = txtName.Text;
                         f.area_id = Convert.ToInt32(cbArea.SelectedIndex.ToString()) + 1;
                         //f.image = txtImage.Text;
+                        var k = new report();
+                        k.date = DateTime.Today;
+                        k.time = DateTime.Now;
+                        k.information = txtReport.Text;
+                        k.performer = checkrole;
+                        k.activity = "Update computer";
+                        k.type = 2;
+                        dc.reports.InsertOnSubmit(k);
                         dc.SubmitChanges();
                         DisplayComputer();
+                        txtReport.Text = "";
                     }
+                    else
+                    {
+                        if (u.area_id == Convert.ToInt32(cbArea.SelectedIndex.ToString()) + 1)
+                        {
+                            MessageBox.Show("Nothing change!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            DataGridViewRow row = dgvShowComputer.CurrentRow;
+                            int id = Convert.ToInt32(row.Cells[0].Value.ToString());
+                            var f = dc.computers.FirstOrDefault(x => x.entity_id == id);
+                            f.area_id = Convert.ToInt32(cbArea.SelectedIndex.ToString()) + 1;
+                            var k = new report();
+                            k.date = DateTime.Today;
+                            k.time = DateTime.Now;
+                            k.information = txtReport.Text;
+                            k.performer = checkrole;
+                            k.activity = "Update area of computer";
+                            k.type = 2;
+                            dc.reports.InsertOnSubmit(k);
+                            //f.image = txtImage.Text;
+                            dc.SubmitChanges();
+                            DisplayComputer();
+                            txtReport.Text = "";
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("You must fill all the textbox!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             else
             {
-                MessageBox.Show("You must fill all the textbox!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("You must commit the activity!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
         private void btnDelete_Click_1(object sender, EventArgs e)
         {
-            if (dgvShowComputer.CurrentRow != null)
+            if (txtReport.Text.Length != 0)
             {
-                if (MessageBox.Show("Do you want to delete?", "Delete",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (dgvShowComputer.CurrentRow != null)
                 {
-                    //tìm nhân viên có mã như trên form
-                    var f = dc.computers.FirstOrDefault(x => x.name ==
-                    txtName.Text);
-                    if (f != null)
+                    if (MessageBox.Show("Do you want to delete?", "Delete",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        //xóa dữ liệu
-                        dc.computers.DeleteOnSubmit(f);
-                        //lưu
-                        dc.SubmitChanges();
-                        //hiển thị lại dữ liệu
-                        DisplayComputer();
+                        //tìm nhân viên có mã như trên form
+                        var f = dc.computers.FirstOrDefault(x => x.name ==
+                        txtName.Text);
+                        if (f != null)
+                        {
+                            var k = new report();
+                            k.date = DateTime.Today;
+                            k.time = DateTime.Now;
+                            k.information = txtReport.Text;
+                            k.performer = checkrole;
+                            k.activity = "Delete computer";
+                            k.type = 2;
+                            dc.reports.InsertOnSubmit(k);
+                            //xóa dữ liệu
+                            dc.computers.DeleteOnSubmit(f);
+                            //lưu
+                            dc.SubmitChanges();
+                            //hiển thị lại dữ liệu
+                            DisplayComputer();
+                            txtReport.Text = "";
+                        }
                     }
+                }
+                else
+                {
+                    MessageBox.Show("Can not find the data", "Warning",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             else
             {
-                MessageBox.Show("Can not find the data", "Warning",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("You must commit the activity!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
@@ -194,7 +258,7 @@ namespace CafeInternet
                                   Id = f.entity_id,
                                   Name = f.name,
                                   Area = f.area_id,
-                                  Status = f.status == 0 ? "OFFLINE" : "ONLINE",
+                                  Status = f.status == 0 ? "GOOD" : "BREAK",
                                   Total_Used_Times = f.total_used_time,
                                   Profit = f.profit
                               };
@@ -210,7 +274,7 @@ namespace CafeInternet
                                   Id = f.entity_id,
                                   Name = f.name,
                                   Area = f.area_id,
-                                  Status = f.status == 0 ? "OFFLINE" : "ONLINE",
+                                  Status = f.status == 0 ? "GOOD" : "BREAK",
                                   Total_Used_Times = f.total_used_time,
                                   Profit = f.profit
                               };
@@ -256,41 +320,6 @@ namespace CafeInternet
         {
             DisplayADetail();
         }
-
-        private void btnAddAr_Click(object sender, EventArgs e)
-        {
-            if (txtNa.Text.Length != 0 && txtPr.Text.Length != 0)
-            {
-                if (Convert.ToDouble(txtPr.Text) >= 0)
-                {
-                    var u = dc.areas.FirstOrDefault(x => x.name == txtNa.Text);
-                    if (u == null)
-                    {
-                        var k = new area();
-                        //gán giá trị
-                        k.name = txtNa.Text;
-                        k.price = Convert.ToDouble(txtPr.Text);
-                        dc.areas.InsertOnSubmit(k);
-                        dc.SubmitChanges();
-                        DisplayA();
-                        DisplayADetail();
-                    }
-                    else
-                    {
-                        MessageBox.Show("This name has already existed!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Price must be equal or more than 0!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-            else
-            {
-                MessageBox.Show("You must fill all the textbox!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
         private void tabComputer_Selected(object sender, TabControlEventArgs e)
         {
             DisplayArea();
@@ -298,98 +327,200 @@ namespace CafeInternet
             DisplayA();
             DisplayADetail();
         }
-
-        private void btnUpdateAr_Click(object sender, EventArgs e)
+        private void txtPr_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (txtNa.Text.Length != 0 && txtPr.Text.Length != 0)
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != ('.') && e.KeyChar != (char)Keys.Back)
             {
-                if (Convert.ToDouble(txtPr.Text) >= 0)
+                e.Handled = true;
+            }
+        }
+
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnAddAr_Click_1(object sender, EventArgs e)
+        {
+            if (txtRe.Text.Length != 0)
+            {
+                if (txtNa.Text.Length != 0 && txtPr.Text.Length != 0)
                 {
-                    var u = dc.areas.FirstOrDefault(x => x.name == txtNa.Text);
-                    if (u == null)
+                    if (Convert.ToDouble(txtPr.Text) >= 0)
                     {
-                        DataGridViewRow row = dgvShowArea.CurrentRow;
-                        int id = Convert.ToInt32(row.Cells[0].Value.ToString());
-                        var f = dc.areas.FirstOrDefault(x => x.entity_id == id);
-                        f.name = txtNa.Text;
-                        f.price = Convert.ToDouble(txtPr.Text); ;
-                        //f.image = txtImage.Text;
-                        dc.SubmitChanges();
-                        DisplayA();
-                        DisplayADetail();
+                        var u = dc.areas.FirstOrDefault(x => x.name == txtNa.Text);
+                        if (u == null)
+                        {
+                            var a = new area();
+                            //gán giá trị
+                            a.name = txtNa.Text;
+                            a.price = Convert.ToDouble(txtPr.Text);
+                            var k = new report();
+                            k.date = DateTime.Today;
+                            k.time = DateTime.Now;
+                            k.information = txtRe.Text;
+                            k.performer = checkrole;
+                            k.activity = "Add area";
+                            k.type = 3;
+                            dc.reports.InsertOnSubmit(k);
+                            dc.areas.InsertOnSubmit(a);
+                            dc.SubmitChanges();
+                            DisplayA();
+                            DisplayADetail();
+                            txtRe.Text = "";
+                        }
+                        else
+                        {
+                            MessageBox.Show("This name has already existed!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                     }
                     else
                     {
-                        if (u.price != Convert.ToDouble(txtPr.Text))
+                        MessageBox.Show("Price must be equal or more than 0!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("You must fill all the textbox!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                MessageBox.Show("You must commit the activity!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btnUpdateAr_Click_1(object sender, EventArgs e)
+        {
+            if (txtRe.Text.Length != 0)
+            {
+                if (txtNa.Text.Length != 0 && txtPr.Text.Length != 0)
+                {
+                    if (Convert.ToDouble(txtPr.Text) >= 0)
+                    {
+                        var u = dc.areas.FirstOrDefault(x => x.name == txtNa.Text);
+                        if (u == null)
                         {
                             DataGridViewRow row = dgvShowArea.CurrentRow;
-                            int kx = Convert.ToInt32(row.Cells[0].Value.ToString());
-                            var f = dc.areas.FirstOrDefault(x => x.entity_id == kx);
+                            int id = Convert.ToInt32(row.Cells[0].Value.ToString());
+                            var f = dc.areas.FirstOrDefault(x => x.entity_id == id);
                             f.name = txtNa.Text;
-                            f.price = Convert.ToDouble(txtPr.Text); ;
+                            f.price = Convert.ToDouble(txtPr.Text);
+                            var k = new report();
+                            k.date = DateTime.Today;
+                            k.time = DateTime.Now;
+                            k.information = txtRe.Text;
+                            k.performer = checkrole;
+                            k.activity = "Update area";
+                            k.type = 3;
+                            dc.reports.InsertOnSubmit(k);
                             //f.image = txtImage.Text;
                             dc.SubmitChanges();
                             DisplayA();
                             DisplayADetail();
+                            txtRe.Text = "";
                         }
                         else
                         {
-                            MessageBox.Show("Nothing change!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            if (u.price != Convert.ToDouble(txtPr.Text))
+                            {
+                                DataGridViewRow row = dgvShowArea.CurrentRow;
+                                int kx = Convert.ToInt32(row.Cells[0].Value.ToString());
+                                var f = dc.areas.FirstOrDefault(x => x.entity_id == kx);
+                                f.name = txtNa.Text;
+                                f.price = Convert.ToDouble(txtPr.Text);
+                                var k = new report();
+                                k.date = DateTime.Today;
+                                k.time = DateTime.Now;
+                                k.information = txtRe.Text;
+                                k.performer = checkrole;
+                                k.activity = "Update area";
+                                k.type = 3;
+                                dc.reports.InsertOnSubmit(k);
+                                //f.image = txtImage.Text;
+                                dc.SubmitChanges();
+                                DisplayA();
+                                DisplayADetail();
+                                txtRe.Text = "";
+                            }
+                            else
+                            {
+                                MessageBox.Show("Nothing change!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
                         }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Price must be equal or more than 0!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Price must be equal or more than 0!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("You must fill all the textbox!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             else
             {
-                MessageBox.Show("You must fill all the textbox!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("You must commit the activity!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
         private void btnDelAr_Click(object sender, EventArgs e)
         {
-            DataGridViewRow row = dgvShowArea.CurrentRow;
-            int id = Convert.ToInt32(row.Cells[3].Value.ToString());
-            if (id != 0)
+            if (txtRe.Text.Length != 0)
             {
-                MessageBox.Show("You can't delete this area, this area contains computers!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            else
-            {
-
-                if (dgvShowArea.CurrentRow != null)
+                DataGridViewRow row = dgvShowArea.CurrentRow;
+                int id = Convert.ToInt32(row.Cells[3].Value.ToString());
+                if (id != 0)
                 {
-                    if (MessageBox.Show("Do you want to delete?", "Delete",
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        //tìm nhân viên có mã như trên form
-                        var f = dc.areas.FirstOrDefault(x => x.name == txtNa.Text);
-                        if (f != null)
-                        {
-                            dc.areas.DeleteOnSubmit(f);
-                            dc.SubmitChanges();
-                            DisplayA();
-                            DisplayADetail();
-                        }
-                    }
+                    MessageBox.Show("You can't delete this area, this area contains computers!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 {
-                    MessageBox.Show("Can not find the data", "Warning",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    if (dgvShowArea.CurrentRow != null)
+                    {
+                        if (MessageBox.Show("Do you want to delete?", "Delete",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            //tìm nhân viên có mã như trên form
+                            var f = dc.areas.FirstOrDefault(x => x.name == txtNa.Text);
+                            if (f != null)
+                            {
+                                var k = new report();
+                                k.date = DateTime.Today;
+                                k.time = DateTime.Now;
+                                k.information = txtRe.Text;
+                                k.performer = checkrole;
+                                k.activity = "Delete area";
+                                k.type = 3;
+                                dc.reports.InsertOnSubmit(k);
+                                dc.areas.DeleteOnSubmit(f);
+                                dc.SubmitChanges();
+                                DisplayA();
+                                DisplayADetail();
+                                txtRe.Text = "";
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Can not find the data", "Warning",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
             }
-
+            else
+            {
+                MessageBox.Show("You must commit the activity!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
-        private void txtPr_KeyPress(object sender, KeyPressEventArgs e)
+        private void button5_Click(object sender, EventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Space && e.KeyChar != (char)Keys.Back)
-            {
-                e.Handled = true;
-            }
+            DisplayArea();
+            DisplayADetail();
         }
 
         private void btnSearchAr_Click(object sender, EventArgs e)

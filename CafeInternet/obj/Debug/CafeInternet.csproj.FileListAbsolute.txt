@@ -84,3 +84,4 @@ E:\CafeInternet\CafeInternet\obj\Debug\CafeInternet.exe
 E:\CafeInternet\CafeInternet\obj\Debug\CafeInternet.pdb
 E:\CafeInternet\CafeInternet\obj\Debug\CafeInternet.frmUser.resources
 E:\CafeInternet\CafeInternet\obj\Debug\CafeInternet.frmChangePass.resources
+E:\CafeInternet\CafeInternet\obj\Debug\CafeInternet.frmCommit.resources

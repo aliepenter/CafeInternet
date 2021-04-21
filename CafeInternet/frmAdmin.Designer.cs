@@ -168,7 +168,7 @@
             this.pnlButton.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlButton.Location = new System.Drawing.Point(0, 60);
             this.pnlButton.Name = "pnlButton";
-            this.pnlButton.Size = new System.Drawing.Size(182, 522);
+            this.pnlButton.Size = new System.Drawing.Size(183, 522);
             this.pnlButton.TabIndex = 1;
             // 
             // btnDashbroad
@@ -216,7 +216,7 @@
             this.btnReport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnReport.ImageIndex = 5;
             this.btnReport.ImageList = this.imageList1;
-            this.btnReport.Location = new System.Drawing.Point(3, 371);
+            this.btnReport.Location = new System.Drawing.Point(4, 298);
             this.btnReport.Name = "btnReport";
             this.btnReport.Size = new System.Drawing.Size(176, 67);
             this.btnReport.TabIndex = 6;
@@ -256,7 +256,7 @@
             this.btnUser.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnUser.ImageIndex = 6;
             this.btnUser.ImageList = this.imageList1;
-            this.btnUser.Location = new System.Drawing.Point(3, 298);
+            this.btnUser.Location = new System.Drawing.Point(3, 225);
             this.btnUser.Name = "btnUser";
             this.btnUser.Size = new System.Drawing.Size(176, 67);
             this.btnUser.TabIndex = 4;
@@ -276,7 +276,7 @@
             this.btnArea.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnArea.ImageIndex = 4;
             this.btnArea.ImageList = this.imageList1;
-            this.btnArea.Location = new System.Drawing.Point(3, 225);
+            this.btnArea.Location = new System.Drawing.Point(4, 371);
             this.btnArea.Name = "btnArea";
             this.btnArea.Size = new System.Drawing.Size(176, 67);
             this.btnArea.TabIndex = 3;
