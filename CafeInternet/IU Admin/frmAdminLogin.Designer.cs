@@ -35,19 +35,19 @@ namespace CafeInternet
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.ptbIconApp = new System.Windows.Forms.PictureBox();
-            this.btnInventor = new System.Windows.Forms.Button();
-            this.btnShop = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnLogOut = new System.Windows.Forms.Button();
-            this.ptbAdminAvatar = new System.Windows.Forms.PictureBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.lbAdminName = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.lbAdminName = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnLogOut = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnShop = new System.Windows.Forms.Button();
+            this.btnInventor = new System.Windows.Forms.Button();
+            this.ptbAdminAvatar = new System.Windows.Forms.PictureBox();
+            this.ptbIconApp = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ptbIconApp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptbAdminAvatar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbIconApp)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -113,63 +113,24 @@ namespace CafeInternet
             this.panel2.Size = new System.Drawing.Size(286, 269);
             this.panel2.TabIndex = 1;
             // 
-            // ptbIconApp
+            // label5
             // 
-            this.ptbIconApp.Image = global::CafeInternet.Properties.Resources.shop_cafe_22672;
-            this.ptbIconApp.Location = new System.Drawing.Point(68, 12);
-            this.ptbIconApp.Name = "ptbIconApp";
-            this.ptbIconApp.Size = new System.Drawing.Size(100, 92);
-            this.ptbIconApp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.ptbIconApp.TabIndex = 0;
-            this.ptbIconApp.TabStop = false;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(70, 154);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(153, 16);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "What do you want to do?";
             // 
-            // btnInventor
+            // lbAdminName
             // 
-            this.btnInventor.Location = new System.Drawing.Point(11, 176);
-            this.btnInventor.Name = "btnInventor";
-            this.btnInventor.Size = new System.Drawing.Size(129, 38);
-            this.btnInventor.TabIndex = 0;
-            this.btnInventor.Text = "Manage Inventory ";
-            this.btnInventor.UseVisualStyleBackColor = true;
-            this.btnInventor.Click += new System.EventHandler(this.btnInventor_Click);
-            // 
-            // btnShop
-            // 
-            this.btnShop.Location = new System.Drawing.Point(145, 175);
-            this.btnShop.Name = "btnShop";
-            this.btnShop.Size = new System.Drawing.Size(129, 38);
-            this.btnShop.TabIndex = 1;
-            this.btnShop.Text = "Manage Shop";
-            this.btnShop.UseVisualStyleBackColor = true;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Location = new System.Drawing.Point(145, 219);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(129, 38);
-            this.btnCancel.TabIndex = 2;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // btnLogOut
-            // 
-            this.btnLogOut.Location = new System.Drawing.Point(11, 219);
-            this.btnLogOut.Name = "btnLogOut";
-            this.btnLogOut.Size = new System.Drawing.Size(129, 38);
-            this.btnLogOut.TabIndex = 3;
-            this.btnLogOut.Text = "Log Out";
-            this.btnLogOut.UseVisualStyleBackColor = true;
-            this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
-            // 
-            // ptbAdminAvatar
-            // 
-            this.ptbAdminAvatar.Location = new System.Drawing.Point(92, 12);
-            this.ptbAdminAvatar.Name = "ptbAdminAvatar";
-            this.ptbAdminAvatar.Size = new System.Drawing.Size(100, 92);
-            this.ptbAdminAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.ptbAdminAvatar.TabIndex = 4;
-            this.ptbAdminAvatar.TabStop = false;
+            this.lbAdminName.AutoSize = true;
+            this.lbAdminName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbAdminName.Location = new System.Drawing.Point(157, 115);
+            this.lbAdminName.Name = "lbAdminName";
+            this.lbAdminName.Size = new System.Drawing.Size(0, 16);
+            this.lbAdminName.TabIndex = 6;
             // 
             // label4
             // 
@@ -181,24 +142,64 @@ namespace CafeInternet
             this.label4.TabIndex = 5;
             this.label4.Text = "Welcome back Admin";
             // 
-            // lbAdminName
+            // btnLogOut
             // 
-            this.lbAdminName.AutoSize = true;
-            this.lbAdminName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbAdminName.Location = new System.Drawing.Point(157, 115);
-            this.lbAdminName.Name = "lbAdminName";
-            this.lbAdminName.Size = new System.Drawing.Size(0, 16);
-            this.lbAdminName.TabIndex = 6;
+            this.btnLogOut.Location = new System.Drawing.Point(11, 219);
+            this.btnLogOut.Name = "btnLogOut";
+            this.btnLogOut.Size = new System.Drawing.Size(129, 38);
+            this.btnLogOut.TabIndex = 3;
+            this.btnLogOut.Text = "Log Out";
+            this.btnLogOut.UseVisualStyleBackColor = true;
+            this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
             // 
-            // label5
+            // btnCancel
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(70, 154);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(153, 16);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "What do you want to do?";
+            this.btnCancel.Location = new System.Drawing.Point(145, 219);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(129, 38);
+            this.btnCancel.TabIndex = 2;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // btnShop
+            // 
+            this.btnShop.Location = new System.Drawing.Point(145, 175);
+            this.btnShop.Name = "btnShop";
+            this.btnShop.Size = new System.Drawing.Size(129, 38);
+            this.btnShop.TabIndex = 1;
+            this.btnShop.Text = "Manage Shop";
+            this.btnShop.UseVisualStyleBackColor = true;
+            this.btnShop.Click += new System.EventHandler(this.btnShop_Click);
+            // 
+            // btnInventor
+            // 
+            this.btnInventor.Location = new System.Drawing.Point(11, 176);
+            this.btnInventor.Name = "btnInventor";
+            this.btnInventor.Size = new System.Drawing.Size(129, 38);
+            this.btnInventor.TabIndex = 0;
+            this.btnInventor.Text = "Manage Inventory ";
+            this.btnInventor.UseVisualStyleBackColor = true;
+            this.btnInventor.Click += new System.EventHandler(this.btnInventor_Click);
+            // 
+            // ptbAdminAvatar
+            // 
+            this.ptbAdminAvatar.Location = new System.Drawing.Point(92, 12);
+            this.ptbAdminAvatar.Name = "ptbAdminAvatar";
+            this.ptbAdminAvatar.Size = new System.Drawing.Size(100, 92);
+            this.ptbAdminAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.ptbAdminAvatar.TabIndex = 4;
+            this.ptbAdminAvatar.TabStop = false;
+            // 
+            // ptbIconApp
+            // 
+            this.ptbIconApp.Image = global::CafeInternet.Properties.Resources.shop_cafe_22672;
+            this.ptbIconApp.Location = new System.Drawing.Point(68, 12);
+            this.ptbIconApp.Name = "ptbIconApp";
+            this.ptbIconApp.Size = new System.Drawing.Size(100, 92);
+            this.ptbIconApp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.ptbIconApp.TabIndex = 0;
+            this.ptbIconApp.TabStop = false;
             // 
             // frmAdminLogin
             // 
@@ -217,8 +218,8 @@ namespace CafeInternet
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ptbIconApp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptbAdminAvatar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbIconApp)).EndInit();
             this.ResumeLayout(false);
 
         }

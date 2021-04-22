@@ -54,19 +54,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="crpArea1.cs">
+    <Compile Include="ReportAdmin\crpArea1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>crpArea1.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="crpComputer.cs">
+    <Compile Include="ReportAdmin\crpComputer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>crpComputer.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="crpFood.cs">
+    <Compile Include="ReportAdmin\crpFood.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>crpFood.rpt</DependentUpon>
@@ -78,114 +78,117 @@
       <DependentUpon>DataClasses1.dbml</DependentUpon>
     </Compile>
     <Compile Include="Food.cs" />
-    <Compile Include="frmAdmin.cs">
+    <Compile Include="IU Admin\frmAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAdmin.Designer.cs">
+    <Compile Include="IU Admin\frmAdmin.Designer.cs">
       <DependentUpon>frmAdmin.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmAdminLogin.cs">
+    <Compile Include="IU Admin\frmAdminLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAdminLogin.Designer.cs">
+    <Compile Include="IU Admin\frmAdminLogin.Designer.cs">
       <DependentUpon>frmAdminLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmChangePass.cs">
+    <Compile Include="UI Setting\frmChangePass.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmChangePass.Designer.cs">
+    <Compile Include="UI Setting\frmChangePass.Designer.cs">
       <DependentUpon>frmChangePass.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmCommit.cs">
+    <Compile Include="IU Admin\frmCommit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCommit.Designer.cs">
+    <Compile Include="IU Admin\frmCommit.Designer.cs">
       <DependentUpon>frmCommit.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmComputer.cs">
+    <Compile Include="IU Admin\frmComputer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmComputer.Designer.cs">
+    <Compile Include="IU Admin\frmComputer.Designer.cs">
       <DependentUpon>frmComputer.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDashbroad.cs">
+    <Compile Include="IU Admin\frmDashbroad.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDashbroad.Designer.cs">
+    <Compile Include="IU Admin\frmDashbroad.Designer.cs">
       <DependentUpon>frmDashbroad.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmFood.cs">
+    <Compile Include="IU Admin\frmFood.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmFood.Designer.cs">
+    <Compile Include="IU Admin\frmFood.Designer.cs">
       <DependentUpon>frmFood.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmLogin.cs">
+    <Compile Include="UI Setting\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmLogin.Designer.cs">
+    <Compile Include="UI Setting\frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmMain.cs">
+    <Compile Include="IU Shop Manage\frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMain.Designer.cs">
+    <Compile Include="IU Shop Manage\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmUser.cs">
+    <Compile Include="IU Admin\frmUser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmUser.Designer.cs">
+    <Compile Include="IU Admin\frmUser.Designer.cs">
       <DependentUpon>frmUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmViewer.cs">
+    <Compile Include="IU Admin\frmViewer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmViewer.Designer.cs">
+    <Compile Include="IU Admin\frmViewer.Designer.cs">
       <DependentUpon>frmViewer.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="crpArea1.rpt">
+    <EmbeddedResource Include="IU Shop Manage\frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportAdmin\crpArea1.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>crpArea1.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="crpComputer.rpt">
+    <EmbeddedResource Include="ReportAdmin\crpComputer.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>crpComputer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="crpFood.rpt">
+    <EmbeddedResource Include="ReportAdmin\crpFood.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>crpFood.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmAdmin.resx">
+    <EmbeddedResource Include="IU Admin\frmAdmin.resx">
       <DependentUpon>frmAdmin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmAdminLogin.resx">
+    <EmbeddedResource Include="IU Admin\frmAdminLogin.resx">
       <DependentUpon>frmAdminLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmChangePass.resx">
+    <EmbeddedResource Include="UI Setting\frmChangePass.resx">
       <DependentUpon>frmChangePass.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmCommit.resx">
+    <EmbeddedResource Include="IU Admin\frmCommit.resx">
       <DependentUpon>frmCommit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmComputer.resx">
+    <EmbeddedResource Include="IU Admin\frmComputer.resx">
       <DependentUpon>frmComputer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDashbroad.resx">
+    <EmbeddedResource Include="IU Admin\frmDashbroad.resx">
       <DependentUpon>frmDashbroad.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmFood.resx">
+    <EmbeddedResource Include="IU Admin\frmFood.resx">
       <DependentUpon>frmFood.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmLogin.resx">
+    <EmbeddedResource Include="UI Setting\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmUser.resx">
+    <EmbeddedResource Include="IU Admin\frmUser.resx">
       <DependentUpon>frmUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmViewer.resx">
+    <EmbeddedResource Include="IU Admin\frmViewer.resx">
       <DependentUpon>frmViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -247,5 +250,6 @@
   <ItemGroup>
     <None Include="Resources\businessapplication_edit_male_user_thepencil_theclient_negocio_2321.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

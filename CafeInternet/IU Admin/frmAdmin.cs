@@ -92,7 +92,7 @@ namespace CafeInternet
             if (MessageBox.Show("Do you want to exit?", "Exit",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                System.Environment.Exit(0);
+                this.Dispose();
             }
             
         }

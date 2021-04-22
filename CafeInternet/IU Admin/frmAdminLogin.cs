@@ -58,9 +58,18 @@ namespace CafeInternet
 
         private void btnInventor_Click(object sender, EventArgs e)
         {
-            frmAdmin frm = new frmAdmin(imgLink, nameAdmin, acc, checkrole);
-            frm.Show();
             this.Hide();
+            frmAdmin frm = new frmAdmin(imgLink, nameAdmin, acc, checkrole);
+            frm.ShowDialog();
+            this.Close();
+        }
+
+        private void btnShop_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmMain frm = new frmMain();
+            frm.ShowDialog();
+            this.Close();
         }
     }
 }

@@ -345,6 +345,7 @@
             this.Controls.Add(this.pnlButton);
             this.Controls.Add(this.pnlTop);
             this.Name = "frmAdmin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmAdmin";
             this.Load += new System.EventHandler(this.frmAdmin_Load);
             this.Leave += new System.EventHandler(this.frmAdmin_Leave);

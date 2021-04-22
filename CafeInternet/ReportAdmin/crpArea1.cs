@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CafeInternet {
+namespace CafeInternet.ReportAdmin {
     using System;
     using System.ComponentModel;
     using CrystalDecisions.Shared;
@@ -16,14 +16,14 @@ namespace CafeInternet {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class crpComputer : ReportClass {
+    public class crpArea1 : ReportClass {
         
-        public crpComputer() {
+        public crpArea1() {
         }
         
         public override string ResourceName {
             get {
-                return "crpComputer.rpt";
+                return "crpArea1.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace CafeInternet {
         
         public override string FullResourceName {
             get {
-                return "CafeInternet.crpComputer.rpt";
+                return "CafeInternet.ReportAdmin.crpArea1.rpt";
             }
             set {
                 // Do nothing
@@ -90,9 +90,9 @@ namespace CafeInternet {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedcrpComputer : Component, ICachedReport {
+    public class CachedcrpArea1 : Component, ICachedReport {
         
-        public CachedcrpComputer() {
+        public CachedcrpArea1() {
         }
         
         [Browsable(false)]
@@ -129,7 +129,7 @@ namespace CafeInternet {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            crpComputer rpt = new crpComputer();
+            crpArea1 rpt = new crpArea1();
             rpt.Site = this.Site;
             return rpt;
         }

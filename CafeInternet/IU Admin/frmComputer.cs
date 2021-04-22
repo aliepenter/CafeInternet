@@ -546,7 +546,7 @@ namespace CafeInternet
         private void btnPrint_Click(object sender, EventArgs e)
         {
             frmViewer fv = new frmViewer();
-            crpComputer c = new crpComputer();
+            ReportAdmin.crpComputer c = new ReportAdmin.crpComputer();
             var com = dc.computers.Select(f => new
             {
                 Entity_id = f.entity_id,
@@ -577,7 +577,7 @@ namespace CafeInternet
             ds.Tables.Add(dt);
             ds.WriteXmlSchema("area.xml");
             frmViewer fv = new frmViewer();
-            crpArea1 ca = new crpArea1();
+            ReportAdmin.crpArea1 ca = new ReportAdmin.crpArea1();
             ca.SetDataSource(ds);
             fv.crpView.ReportSource = ca;
             fv.crpView.Refresh();

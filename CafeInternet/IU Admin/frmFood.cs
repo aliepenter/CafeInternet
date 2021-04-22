@@ -393,7 +393,7 @@ namespace CafeInternet
 
         private void txtQuantity_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar == (char)Keys.Subtract && e.KeyChar != (char)Keys.Back)
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != ('-') && e.KeyChar != (char)Keys.Back)
             {
                 e.Handled = true;
             }
@@ -409,7 +409,7 @@ namespace CafeInternet
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            crpFood c = new crpFood();
+           ReportAdmin.crpFood c = new ReportAdmin.crpFood();
             var food = dc.foods.Select(f => new
             {
                 Entity_id = f.entity_id,

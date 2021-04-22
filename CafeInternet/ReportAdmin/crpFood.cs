@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CafeInternet {
+namespace CafeInternet.ReportAdmin {
     using System;
     using System.ComponentModel;
     using CrystalDecisions.Shared;
@@ -41,7 +41,7 @@ namespace CafeInternet {
         
         public override string FullResourceName {
             get {
-                return "CafeInternet.crpFood.rpt";
+                return "CafeInternet.ReportAdmin.crpFood.rpt";
             }
             set {
                 // Do nothing

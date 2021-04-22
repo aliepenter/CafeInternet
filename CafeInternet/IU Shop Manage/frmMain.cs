@@ -15,6 +15,14 @@ namespace CafeInternet
         public frmMain()
         {
             InitializeComponent();
+            lbHour.Text = DateTime.Now.ToLongTimeString();
+            lbDay.Text = DateTime.Now.ToLongDateString();
+
+        }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

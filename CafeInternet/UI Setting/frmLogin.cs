@@ -44,8 +44,10 @@ namespace CafeInternet
                     else
                     {
                         frmAdminLogin frmA = new frmAdminLogin(u.image, u.name, u.account, u.role_id);
-                        frmA.Show();
                         this.Hide();
+                        frmA.ShowDialog();
+                        
+                        this.Close();
                     }
                 }
                 else lbErrorPassword.Text = "Mật khẩu không chính xác!";
@@ -67,7 +69,7 @@ namespace CafeInternet
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            System.Environment.Exit(0);
+            this.Dispose();
         }
 
         private void txtAccount_Enter(object sender, EventArgs e)
