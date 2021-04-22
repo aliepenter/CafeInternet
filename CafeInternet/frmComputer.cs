@@ -542,5 +542,46 @@ namespace CafeInternet
                 dgvShowArea.DataSource = count.ToList();
             }
         }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            frmViewer fv = new frmViewer();
+            crpComputer c = new crpComputer();
+            var com = dc.computers.Select(f => new
+            {
+                Entity_id = f.entity_id,
+                Name = f.name,
+                Status = f.status == 1 ? "Good" : "Break",
+                Total_used_time = f.total_used_time,
+                Profit = f.profit,
+                Area_Id = f.area_id
+            }).ToList();
+            c.SetDataSource(com);
+            fv.crpView.ReportSource = c;
+            fv.crpView.Refresh();
+            fv.Show();
+        }
+
+        private void btnPr_Click(object sender, EventArgs e)
+        {
+            DataSet ds = new DataSet();
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Id", typeof(int));
+            dt.Columns.Add("Name", typeof(string));
+            dt.Columns.Add("Price", typeof(double));
+            dt.Columns.Add("Number of Computer", typeof(int));
+            foreach (DataGridViewRow dgv in dgvShowArea.Rows)
+            {
+                dt.Rows.Add(dgv.Cells[0].Value, dgv.Cells[1].Value, dgv.Cells[2].Value, dgv.Cells[3].Value);
+            }
+            ds.Tables.Add(dt);
+            ds.WriteXmlSchema("area.xml");
+            frmViewer fv = new frmViewer();
+            crpArea1 ca = new crpArea1();
+            ca.SetDataSource(ds);
+            fv.crpView.ReportSource = ca;
+            fv.crpView.Refresh();
+            fv.Show();
+        }
     }
 }

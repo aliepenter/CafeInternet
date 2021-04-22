@@ -406,5 +406,23 @@ namespace CafeInternet
                 e.Handled = true;
             }
         }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            crpFood c = new crpFood();
+            var food = dc.foods.Select(f => new
+            {
+                Entity_id = f.entity_id,
+                Name = f.name,
+                Price = f.price,
+                Quantity = f.quantity,
+                Food_type_id = f.food_type_id == 1 ? "Foods" : f.food_type_id == 2 ? "Bottled drinks" : "Concoction drinks"
+            }).ToList();
+            c.SetDataSource(food);
+            frmViewer fv = new frmViewer();
+            fv.crpView.ReportSource = c;
+            fv.crpView.Refresh();
+            fv.Show();
+        }
     }
 }

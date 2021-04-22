@@ -83,6 +83,10 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnPrint = new System.Windows.Forms.Button();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnPr = new System.Windows.Forms.Button();
             this.tabComputer.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -100,6 +104,8 @@
             this.panel4.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tableLayoutPanel5.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabComputer
@@ -141,6 +147,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.tableLayoutPanel5);
             this.panel3.Controls.Add(this.dgvShowComputer);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 163);
@@ -493,6 +500,7 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.tableLayoutPanel6);
             this.panel5.Controls.Add(this.dgvShowArea);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(0, 168);
@@ -502,17 +510,15 @@
             // 
             // dgvShowArea
             // 
-            this.dgvShowArea.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvShowArea.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvShowArea.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvShowArea.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvShowArea.Location = new System.Drawing.Point(0, 0);
             this.dgvShowArea.MultiSelect = false;
             this.dgvShowArea.Name = "dgvShowArea";
             this.dgvShowArea.ReadOnly = true;
             this.dgvShowArea.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvShowArea.Size = new System.Drawing.Size(786, 242);
+            this.dgvShowArea.Size = new System.Drawing.Size(786, 247);
             this.dgvShowArea.TabIndex = 0;
             this.dgvShowArea.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvShowArea_CellClick);
             // 
@@ -778,6 +784,56 @@
             this.label6.TabIndex = 1;
             this.label6.Text = "Area Manage";
             // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.ColumnCount = 2;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 111F));
+            this.tableLayoutPanel5.Controls.Add(this.btnPrint, 1, 0);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 222);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 1;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(786, 30);
+            this.tableLayoutPanel5.TabIndex = 1;
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPrint.Location = new System.Drawing.Point(678, 3);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(105, 24);
+            this.btnPrint.TabIndex = 0;
+            this.btnPrint.Text = "Print";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.ColumnCount = 2;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 87.91348F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.08651F));
+            this.tableLayoutPanel6.Controls.Add(this.btnPr, 1, 0);
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 214);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 1;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(786, 33);
+            this.tableLayoutPanel6.TabIndex = 1;
+            // 
+            // btnPr
+            // 
+            this.btnPr.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPr.Location = new System.Drawing.Point(693, 3);
+            this.btnPr.Name = "btnPr";
+            this.btnPr.Size = new System.Drawing.Size(90, 27);
+            this.btnPr.TabIndex = 0;
+            this.btnPr.Text = "Print";
+            this.btnPr.UseVisualStyleBackColor = true;
+            this.btnPr.Click += new System.EventHandler(this.btnPr_Click);
+            // 
             // frmComputer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -809,6 +865,8 @@
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tableLayoutPanel5.ResumeLayout(false);
+            this.tableLayoutPanel6.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -868,5 +926,9 @@
         private System.Windows.Forms.Button btnDelAr;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label lb;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+        private System.Windows.Forms.Button btnPr;
     }
 }
