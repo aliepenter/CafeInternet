@@ -64,6 +64,8 @@ CREATE TABLE [computer_status]
 	food_id NVARCHAR(255)
 )
 GO
+SELECT * FROM [computer_status]
+GO
 CREATE TABLE [order]
 (
 	entity_id INT PRIMARY KEY IDENTITY,
@@ -82,8 +84,7 @@ CREATE TABLE [report]
 	[type] INT NOT NULL
 )
 GO
-SELECT * FROM [report]
-GO
+
 INSERT INTO [role] VALUES
 (N'admin'),
 (N'Inventory Manager'),
@@ -151,4 +152,15 @@ FROM computer c
 right join area a on a.entity_id = c.area_id
 WHERE a.name like @name
 group by a.entity_id,a.price,a.name
+GO
+Create PROC [getAllComputersFromArea]
+ 
+AS
+SELECT	[computer].entity_id AS 'Computer Id',
+		[computer].name AS 'Computer Name',
+		[area].name AS 'Area',
+		[area].price AS 'Price'
+FROM computer
+JOIN area 
+ON [computer].area_id = area.entity_id
 GO

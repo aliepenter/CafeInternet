@@ -195,6 +195,13 @@ namespace CafeInternet
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), name);
 			return ((ISingleResult<search_areaResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.getAllComputersFromArea")]
+		public ISingleResult<getAllComputersFromAreaResult> getAllComputersFromArea()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<getAllComputersFromAreaResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.area")]
@@ -2260,6 +2267,86 @@ namespace CafeInternet
 				if ((this._Number_of_computers != value))
 				{
 					this._Number_of_computers = value;
+				}
+			}
+		}
+	}
+	
+	public partial class getAllComputersFromAreaResult
+	{
+		
+		private int _Computer_Id;
+		
+		private string _Computer_Name;
+		
+		private string _Area;
+		
+		private double _Price;
+		
+		public getAllComputersFromAreaResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Computer Id]", Storage="_Computer_Id", DbType="Int NOT NULL")]
+		public int Computer_Id
+		{
+			get
+			{
+				return this._Computer_Id;
+			}
+			set
+			{
+				if ((this._Computer_Id != value))
+				{
+					this._Computer_Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Computer Name]", Storage="_Computer_Name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string Computer_Name
+		{
+			get
+			{
+				return this._Computer_Name;
+			}
+			set
+			{
+				if ((this._Computer_Name != value))
+				{
+					this._Computer_Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Area", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string Area
+		{
+			get
+			{
+				return this._Area;
+			}
+			set
+			{
+				if ((this._Area != value))
+				{
+					this._Area = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Float NOT NULL")]
+		public double Price
+		{
+			get
+			{
+				return this._Price;
+			}
+			set
+			{
+				if ((this._Price != value))
+				{
+					this._Price = value;
 				}
 			}
 		}

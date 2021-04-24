@@ -15,14 +15,27 @@ namespace CafeInternet
         public frmMain()
         {
             InitializeComponent();
-            lbHour.Text = DateTime.Now.ToLongTimeString();
-            lbDay.Text = DateTime.Now.ToLongDateString();
+            
 
         }
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            frmAll fsa = new frmAll();
+            fsa.TopLevel = false;
+            Size s = pnlShow.Size;
+            pnlShow.Controls.Clear();
+            fsa.Size = s;
+            fsa.Dock = DockStyle.Fill;
+            fsa.Show();
+            pnlShow.Controls.Add(fsa);
+            timer1.Start();
+        }
 
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            lbHour.Text = DateTime.Now.ToLongTimeString();
+            lbDay.Text = DateTime.Now.ToLongDateString();
         }
     }
 }

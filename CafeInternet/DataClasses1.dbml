@@ -133,4 +133,12 @@
       <Column Name="[Number of computers]" Member="Number_of_computers" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.getAllComputersFromArea" Method="getAllComputersFromArea">
+    <ElementType Name="getAllComputersFromAreaResult">
+      <Column Name="[Computer Id]" Member="Computer_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Computer Name]" Member="Computer_Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Area" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>
