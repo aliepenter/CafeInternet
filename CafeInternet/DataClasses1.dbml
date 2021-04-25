@@ -36,13 +36,6 @@
       <Association Name="computer_status_order" Member="computer_status" ThisKey="computer_status_id" OtherKey="entity_id" Type="computer_status" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.food_type" Member="food_types">
-    <Type Name="food_type">
-      <Column Name="entity_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Association Name="food_type_food" Member="foods" ThisKey="entity_id" OtherKey="food_type_id" Type="food" />
-    </Type>
-  </Table>
   <Table Name="dbo.food" Member="foods">
     <Type Name="food">
       <Column Name="entity_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -81,12 +74,28 @@
       <Column Name="name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="area_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Column Name="used_times" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="start_time" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="end_time" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="used_times" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="start_time" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="end_time" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="food_id" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Association Name="computer_status_order" Member="orders" ThisKey="entity_id" OtherKey="computer_status_id" Type="order" />
       <Association Name="area_computer_status" Member="area" ThisKey="area_id" OtherKey="entity_id" Type="area" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.service" Member="services">
+    <Type Name="service">
+      <Column Name="entity_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="computer_name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="service_name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="total" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.food_type" Member="food_types">
+    <Type Name="food_type">
+      <Column Name="entity_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="food_type_food" Member="foods" ThisKey="entity_id" OtherKey="food_type_id" Type="food" />
     </Type>
   </Table>
   <Function Name="dbo.search_area" Method="search_area">
@@ -147,9 +156,6 @@
   <Function Name="dbo.deleteComputerStatus" Method="deleteComputerStatus">
     <Return Type="System.Int32" />
   </Function>
-  <Function Name="dbo.send_data" Method="send_data">
-    <Return Type="System.Int32" />
-  </Function>
   <Function Name="dbo.getAllComputersFromComputerStatus" Method="getAllComputersFromComputerStatus">
     <ElementType Name="getAllComputersFromComputerStatusResult">
       <Column Name="[Computer Id]" Member="Computer_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -157,8 +163,11 @@
       <Column Name="Status" Type="System.String" DbType="VarChar(7) NOT NULL" CanBeNull="false" />
       <Column Name="Area" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="Price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="[Start Time]" Member="Start_Time" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Start Time]" Member="Start_Time" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="Used_time" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
+  </Function>
+  <Function Name="dbo.send_data" Method="send_data">
+    <Return Type="System.Int32" />
   </Function>
 </Database>

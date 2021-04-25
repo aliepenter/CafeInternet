@@ -42,9 +42,6 @@ namespace CafeInternet
     partial void Insertorder(order instance);
     partial void Updateorder(order instance);
     partial void Deleteorder(order instance);
-    partial void Insertfood_type(food_type instance);
-    partial void Updatefood_type(food_type instance);
-    partial void Deletefood_type(food_type instance);
     partial void Insertfood(food instance);
     partial void Updatefood(food instance);
     partial void Deletefood(food instance);
@@ -57,6 +54,12 @@ namespace CafeInternet
     partial void Insertcomputer_status(computer_status instance);
     partial void Updatecomputer_status(computer_status instance);
     partial void Deletecomputer_status(computer_status instance);
+    partial void Insertservice(service instance);
+    partial void Updateservice(service instance);
+    partial void Deleteservice(service instance);
+    partial void Insertfood_type(food_type instance);
+    partial void Updatefood_type(food_type instance);
+    partial void Deletefood_type(food_type instance);
     #endregion
 		
 		public DataClasses1DataContext() : 
@@ -121,14 +124,6 @@ namespace CafeInternet
 			}
 		}
 		
-		public System.Data.Linq.Table<food_type> food_types
-		{
-			get
-			{
-				return this.GetTable<food_type>();
-			}
-		}
-		
 		public System.Data.Linq.Table<food> foods
 		{
 			get
@@ -158,6 +153,22 @@ namespace CafeInternet
 			get
 			{
 				return this.GetTable<computer_status>();
+			}
+		}
+		
+		public System.Data.Linq.Table<service> services
+		{
+			get
+			{
+				return this.GetTable<service>();
+			}
+		}
+		
+		public System.Data.Linq.Table<food_type> food_types
+		{
+			get
+			{
+				return this.GetTable<food_type>();
 			}
 		}
 		
@@ -210,18 +221,18 @@ namespace CafeInternet
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.send_data")]
-		public int send_data()
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((int)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.getAllComputersFromComputerStatus")]
 		public ISingleResult<getAllComputersFromComputerStatusResult> getAllComputersFromComputerStatus()
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<getAllComputersFromComputerStatusResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.send_data")]
+		public int send_data()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((int)(result.ReturnValue));
 		}
 	}
 	
@@ -895,120 +906,6 @@ namespace CafeInternet
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.food_type")]
-	public partial class food_type : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _entity_id;
-		
-		private string _name;
-		
-		private EntitySet<food> _foods;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onentity_idChanging(int value);
-    partial void Onentity_idChanged();
-    partial void OnnameChanging(string value);
-    partial void OnnameChanged();
-    #endregion
-		
-		public food_type()
-		{
-			this._foods = new EntitySet<food>(new Action<food>(this.attach_foods), new Action<food>(this.detach_foods));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_entity_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int entity_id
-		{
-			get
-			{
-				return this._entity_id;
-			}
-			set
-			{
-				if ((this._entity_id != value))
-				{
-					this.Onentity_idChanging(value);
-					this.SendPropertyChanging();
-					this._entity_id = value;
-					this.SendPropertyChanged("entity_id");
-					this.Onentity_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string name
-		{
-			get
-			{
-				return this._name;
-			}
-			set
-			{
-				if ((this._name != value))
-				{
-					this.OnnameChanging(value);
-					this.SendPropertyChanging();
-					this._name = value;
-					this.SendPropertyChanged("name");
-					this.OnnameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="food_type_food", Storage="_foods", ThisKey="entity_id", OtherKey="food_type_id")]
-		public EntitySet<food> foods
-		{
-			get
-			{
-				return this._foods;
-			}
-			set
-			{
-				this._foods.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_foods(food entity)
-		{
-			this.SendPropertyChanging();
-			entity.food_type = this;
-		}
-		
-		private void detach_foods(food entity)
-		{
-			this.SendPropertyChanging();
-			entity.food_type = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.food")]
 	public partial class food : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1637,11 +1534,11 @@ namespace CafeInternet
 		
 		private byte _status;
 		
-		private string _used_times;
+		private int _used_times;
 		
-		private string _start_time;
+		private System.DateTime _start_time;
 		
-		private int _end_time;
+		private System.DateTime _end_time;
 		
 		private string _food_id;
 		
@@ -1663,11 +1560,11 @@ namespace CafeInternet
     partial void Onarea_idChanged();
     partial void OnstatusChanging(byte value);
     partial void OnstatusChanged();
-    partial void Onused_timesChanging(string value);
+    partial void Onused_timesChanging(int value);
     partial void Onused_timesChanged();
-    partial void Onstart_timeChanging(string value);
+    partial void Onstart_timeChanging(System.DateTime value);
     partial void Onstart_timeChanged();
-    partial void Onend_timeChanging(int value);
+    partial void Onend_timeChanging(System.DateTime value);
     partial void Onend_timeChanged();
     partial void Onfood_idChanging(string value);
     partial void Onfood_idChanged();
@@ -1784,8 +1681,8 @@ namespace CafeInternet
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_used_times", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string used_times
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_used_times", DbType="Int NOT NULL")]
+		public int used_times
 		{
 			get
 			{
@@ -1804,8 +1701,8 @@ namespace CafeInternet
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_start_time", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string start_time
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_start_time", DbType="DateTime NOT NULL")]
+		public System.DateTime start_time
 		{
 			get
 			{
@@ -1824,8 +1721,8 @@ namespace CafeInternet
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_end_time", DbType="Int NOT NULL")]
-		public int end_time
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_end_time", DbType="DateTime NOT NULL")]
+		public System.DateTime end_time
 		{
 			get
 			{
@@ -1941,6 +1838,278 @@ namespace CafeInternet
 		{
 			this.SendPropertyChanging();
 			entity.computer_status = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.service")]
+	public partial class service : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _entity_id;
+		
+		private string _computer_name;
+		
+		private string _service_name;
+		
+		private int _quantity;
+		
+		private double _total;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onentity_idChanging(int value);
+    partial void Onentity_idChanged();
+    partial void Oncomputer_nameChanging(string value);
+    partial void Oncomputer_nameChanged();
+    partial void Onservice_nameChanging(string value);
+    partial void Onservice_nameChanged();
+    partial void OnquantityChanging(int value);
+    partial void OnquantityChanged();
+    partial void OntotalChanging(double value);
+    partial void OntotalChanged();
+    #endregion
+		
+		public service()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_entity_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int entity_id
+		{
+			get
+			{
+				return this._entity_id;
+			}
+			set
+			{
+				if ((this._entity_id != value))
+				{
+					this.Onentity_idChanging(value);
+					this.SendPropertyChanging();
+					this._entity_id = value;
+					this.SendPropertyChanged("entity_id");
+					this.Onentity_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_computer_name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string computer_name
+		{
+			get
+			{
+				return this._computer_name;
+			}
+			set
+			{
+				if ((this._computer_name != value))
+				{
+					this.Oncomputer_nameChanging(value);
+					this.SendPropertyChanging();
+					this._computer_name = value;
+					this.SendPropertyChanged("computer_name");
+					this.Oncomputer_nameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_service_name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string service_name
+		{
+			get
+			{
+				return this._service_name;
+			}
+			set
+			{
+				if ((this._service_name != value))
+				{
+					this.Onservice_nameChanging(value);
+					this.SendPropertyChanging();
+					this._service_name = value;
+					this.SendPropertyChanged("service_name");
+					this.Onservice_nameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_quantity", DbType="Int NOT NULL")]
+		public int quantity
+		{
+			get
+			{
+				return this._quantity;
+			}
+			set
+			{
+				if ((this._quantity != value))
+				{
+					this.OnquantityChanging(value);
+					this.SendPropertyChanging();
+					this._quantity = value;
+					this.SendPropertyChanged("quantity");
+					this.OnquantityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total", DbType="Float NOT NULL")]
+		public double total
+		{
+			get
+			{
+				return this._total;
+			}
+			set
+			{
+				if ((this._total != value))
+				{
+					this.OntotalChanging(value);
+					this.SendPropertyChanging();
+					this._total = value;
+					this.SendPropertyChanged("total");
+					this.OntotalChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.food_type")]
+	public partial class food_type : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _entity_id;
+		
+		private string _name;
+		
+		private EntitySet<food> _foods;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onentity_idChanging(int value);
+    partial void Onentity_idChanged();
+    partial void OnnameChanging(string value);
+    partial void OnnameChanged();
+    #endregion
+		
+		public food_type()
+		{
+			this._foods = new EntitySet<food>(new Action<food>(this.attach_foods), new Action<food>(this.detach_foods));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_entity_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int entity_id
+		{
+			get
+			{
+				return this._entity_id;
+			}
+			set
+			{
+				if ((this._entity_id != value))
+				{
+					this.Onentity_idChanging(value);
+					this.SendPropertyChanging();
+					this._entity_id = value;
+					this.SendPropertyChanged("entity_id");
+					this.Onentity_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this.OnnameChanging(value);
+					this.SendPropertyChanging();
+					this._name = value;
+					this.SendPropertyChanged("name");
+					this.OnnameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="food_type_food", Storage="_foods", ThisKey="entity_id", OtherKey="food_type_id")]
+		public EntitySet<food> foods
+		{
+			get
+			{
+				return this._foods;
+			}
+			set
+			{
+				this._foods.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_foods(food entity)
+		{
+			this.SendPropertyChanging();
+			entity.food_type = this;
+		}
+		
+		private void detach_foods(food entity)
+		{
+			this.SendPropertyChanging();
+			entity.food_type = null;
 		}
 	}
 	
@@ -2491,7 +2660,7 @@ namespace CafeInternet
 		
 		private double _Price;
 		
-		private int _Start_Time;
+		private System.DateTime _Start_Time;
 		
 		private int _Used_time;
 		
@@ -2579,8 +2748,8 @@ namespace CafeInternet
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Start Time]", Storage="_Start_Time", DbType="Int NOT NULL")]
-		public int Start_Time
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Start Time]", Storage="_Start_Time", DbType="DateTime NOT NULL")]
+		public System.DateTime Start_Time
 		{
 			get
 			{

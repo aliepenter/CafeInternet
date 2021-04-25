@@ -48,9 +48,16 @@ namespace CafeInternet
             DataGridViewRow row = dgvAllCom.CurrentRow;
             int id = Convert.ToInt32(row.Cells[0].Value.ToString());
             var f = dc.computer_status.FirstOrDefault(x => x.computer_id == id);
-            f.status = 1;
-            f.start_time = DateTime.Now.ToString();
-            dc.SubmitChanges();
+            if (f.status == 0)
+            {
+                f.status = 1;
+                f.start_time = DateTime.Now;
+                dc.SubmitChanges();
+            }
+            else
+            {
+                MessageBox.Show("This PC has been already in used!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             //txtImage.Text = row.Cells[5].Value.ToString();
             //edit = true;
         }
@@ -58,10 +65,25 @@ namespace CafeInternet
         {
             DataGridViewRow row = dgvAllCom.CurrentRow;
             int id = Convert.ToInt32(row.Cells[0].Value.ToString());
+            string name = row.Cells[1].Value.ToString();
             var f = dc.computer_status.FirstOrDefault(x => x.computer_id == id);
-            f.status = 0;
-            f.end_time = DateTime.Now.ToString();
-            dc.SubmitChanges();
+            if (f.status == 1)
+            {
+                f.status = 0;
+                f.end_time = DateTime.Now;
+                TimeSpan interval = f.end_time - f.start_time;
+                int k = interval.Seconds;
+                float total = Convert.ToInt32(row.Cells[4].Value.ToString()) * k / 3600;
+                f.used_times += k;
+                var m = dc.computers.FirstOrDefault(n => n.name == name);
+                m.profit += total;
+                m.total_used_time += k;
+                dc.SubmitChanges();
+            }
+            else
+            {
+                MessageBox.Show("This PC isn't in used!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
         private void frmMain_Load(object sender, EventArgs e)
         {
@@ -78,7 +100,30 @@ namespace CafeInternet
 
         private void dgvAllCom_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            OpenCom();
+            
+            DataGridViewRow row = dgvAllCom.CurrentRow;
+            int id = Convert.ToInt32(row.Cells[0].Value.ToString());
+            string name = row.Cells[1].Value.ToString();
+            var f = dc.computer_status.FirstOrDefault(x => x.computer_id == id);
+            if (f.status == 0)
+            {
+                f.status = 1;
+                f.start_time = DateTime.Now;
+                dc.SubmitChanges();
+            }
+            else
+            {
+                f.status = 0;
+                f.end_time = DateTime.Now;
+                TimeSpan interval = f.end_time - f.start_time;
+                int k = interval.Seconds;
+                float total = Convert.ToInt32(row.Cells[4].Value.ToString()) * k / 3600;
+                f.used_times += k;
+                var m = dc.computers.FirstOrDefault(n => n.name == name);
+                m.profit += total;
+                m.total_used_time += k;
+                dc.SubmitChanges();
+            }
             DisplayPcOn();
             DisplayAll();
         }
@@ -90,12 +135,14 @@ namespace CafeInternet
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            TurnOffCom();
+            DisplayAll();
         }
-
         private void btnStart_Click(object sender, EventArgs e)
         {
-
+            OpenCom();
+            DisplayPcOn();
+            DisplayAll();
         }
     }
 }

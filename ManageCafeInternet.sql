@@ -5,7 +5,7 @@ GO
 CREATE TABLE [food_type]
 (
 	entity_id INT PRIMARY KEY IDENTITY,
-	name NVARCHAR(255) NOT NULL 
+	name NVARCHAR(255) NOT NULL
 )
 GO
 CREATE TABLE [area]
@@ -61,15 +61,23 @@ CREATE TABLE [computer_status]
 	name NVARCHAR(255) NOT NULL,
 	area_id INT NOT NULL,
 	status TINYINT NOT NULL,
-	used_times NVARCHAR(255) NOT NULL,
-	start_time NVARCHAR(255) NOT NULL,
-	end_time NVARCHAR NOT NULL,
+	used_times INT NOT NULL,
+	start_time DATETIME NOT NULL,
+	end_time DATETIME NOT NULL,
 	food_id NVARCHAR(255),
 	FOREIGN KEY (area_id) REFERENCES [area](entity_id)
 )
 GO
-
-SELECT * FROM [computer_status]
+CREATE TABLE [service]
+(
+	entity_id INT PRIMARY KEY IDENTITY,
+	computer_name NVARCHAR(255) NOT NULL,
+	service_name NVARCHAR(255) NOT NULL,
+	quantity INT NOT NULL,
+	total FLOAT NOT NULL
+)
+GO
+SELECT * FROM [food_type]
 GO
 CREATE TABLE [order]
 (
@@ -107,20 +115,20 @@ INSERT INTO [food_type] VALUES
 (N'Others')
 GO
 INSERT INTO [food] VALUES
-(N'Red Sting',0.5,10,N'E:/CafeInternet/CafeInternet/Resources/redsting.jpg',1),
-(N'Yellow Sting',0.5,20,N'E:/CafeInternet/CafeInternet/Resources/yellowsting.jpg',2),
-(N'Egg Cafe',1.5,10,N'E:/CafeInternet/CafeInternet/Resources/eggcafe.jpg',3),
-(N'Egg2 Cafe',1.5,10,N'E:/CafeInternet/CafeInternet/Resources/eggcafe.jpg',4)
+(N'Red Sting',10000,10,N'E:/CafeInternet/CafeInternet/Resources/redsting.jpg',1),
+(N'Yellow Sting',10000,20,N'E:/CafeInternet/CafeInternet/Resources/yellowsting.jpg',2),
+(N'Egg Cafe',15000,10,N'E:/CafeInternet/CafeInternet/Resources/eggcafe.jpg',3),
+(N'Egg2 Cafe',15000,10,N'E:/CafeInternet/CafeInternet/Resources/eggcafe.jpg',4)
 GO
 INSERT INTO [area] VALUES
-(N'Pro',0.5),
-(N'Vip',0.75),
-(N'Challenge',1)
+(N'Pro',5000),
+(N'Vip',10000),
+(N'Challenge',15000)
 GO
 INSERT INTO [computer] VALUES
-(N'PC01',1,1,100,50),
-(N'PC11',2,1,800,600),
-(N'PC21',3,1,500,500)
+(N'PC01',1,0,100,500000),
+(N'PC11',2,0,800,8000000),
+(N'PC21',3,0,500,7500000)
 GO
 CREATE PROC [login_permission] 
 @account NVARCHAR(255), @password NVARCHAR(255)
@@ -150,8 +158,8 @@ GO
 CREATE PROC [send_data]
 AS
 INSERT INTO [computer_status](computer_id,name, area_id, status,used_times,start_time, end_time)
-SELECT [computer].entity_id, [computer].name, [computer].area_id,0,0,0,0 FROM [computer]
-WHERE [computer].status = 1;
+SELECT [computer].entity_id, [computer].name, [computer].area_id,0,0,CURRENT_TIMESTAMP,0 FROM [computer]
+WHERE [computer].status = 0;
 GO
 CREATE PROC [search_area]
 @name NVARCHAR(255)
