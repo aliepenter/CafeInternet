@@ -58,12 +58,17 @@ CREATE TABLE [computer_status]
 (
 	entity_id INT PRIMARY KEY IDENTITY,
 	computer_id INT NOT NULL,
+	name NVARCHAR(255) NOT NULL,
+	area_id INT NOT NULL,
 	status TINYINT NOT NULL,
-	start_time DATETIME NOT NULL,
-	end_time DATETIME NOT NULL,
-	food_id NVARCHAR(255)
+	used_times NVARCHAR(255) NOT NULL,
+	start_time NVARCHAR(255) NOT NULL,
+	end_time NVARCHAR NOT NULL,
+	food_id NVARCHAR(255),
+	FOREIGN KEY (area_id) REFERENCES [area](entity_id)
 )
 GO
+
 SELECT * FROM [computer_status]
 GO
 CREATE TABLE [order]
@@ -88,7 +93,7 @@ GO
 INSERT INTO [role] VALUES
 (N'admin'),
 (N'Inventory Manager'),
-(N'SHop Manager')
+(N'Shop Manager')
 GO
 INSERT INTO [user] VALUES
 (N'admin',N'123',N'Đặng Tuấn Đạt',N'E:/CafeInternet/CafeInternet/Resources/avatar.jpg',1),
@@ -96,14 +101,16 @@ INSERT INTO [user] VALUES
 (N'user2',N'123',N'Nguyễn Tuấn Minh',N'E:/CafeInternet/CafeInternet/Resources/redsting.jpg',3)
 GO
 INSERT INTO [food_type] VALUES
-(N'Đồ ăn'),
-(N'Đồ uống đóng chai'),
-(N'Đồ uống pha chế')
+(N'Foods'),
+(N'Bottled drinks'),
+(N'Concoction drinks'),
+(N'Others')
 GO
 INSERT INTO [food] VALUES
-(N'Red Sting',0.5,10,N'E:/CafeInternet/CafeInternet/Resources/redsting.jpg',2),
+(N'Red Sting',0.5,10,N'E:/CafeInternet/CafeInternet/Resources/redsting.jpg',1),
 (N'Yellow Sting',0.5,20,N'E:/CafeInternet/CafeInternet/Resources/yellowsting.jpg',2),
-(N'Egg Cafe',1.5,10,N'E:/CafeInternet/CafeInternet/Resources/eggcafe.jpg',3)
+(N'Egg Cafe',1.5,10,N'E:/CafeInternet/CafeInternet/Resources/eggcafe.jpg',3),
+(N'Egg2 Cafe',1.5,10,N'E:/CafeInternet/CafeInternet/Resources/eggcafe.jpg',4)
 GO
 INSERT INTO [area] VALUES
 (N'Pro',0.5),
@@ -112,7 +119,7 @@ INSERT INTO [area] VALUES
 GO
 INSERT INTO [computer] VALUES
 (N'PC01',1,1,100,50),
-(N'PC11',2,0,800,600),
+(N'PC11',2,1,800,600),
 (N'PC21',3,1,500,500)
 GO
 CREATE PROC [login_permission] 
@@ -140,6 +147,12 @@ FROM computer c
 right join area a on a.entity_id = c.area_id
 group by a.entity_id,a.price,a.name
 GO
+CREATE PROC [send_data]
+AS
+INSERT INTO [computer_status](computer_id,name, area_id, status,used_times,start_time, end_time)
+SELECT [computer].entity_id, [computer].name, [computer].area_id,0,0,0,0 FROM [computer]
+WHERE [computer].status = 1;
+GO
 CREATE PROC [search_area]
 @name NVARCHAR(255)
 AS
@@ -153,14 +166,31 @@ right join area a on a.entity_id = c.area_id
 WHERE a.name like @name
 group by a.entity_id,a.price,a.name
 GO
-Create PROC [getAllComputersFromArea]
- 
+CREATE PROC [getAllComputersFromArea]
 AS
 SELECT	[computer].entity_id AS 'Computer Id',
 		[computer].name AS 'Computer Name',
 		[area].name AS 'Area',
 		[area].price AS 'Price'
 FROM computer
-JOIN area 
+JOIN area
 ON [computer].area_id = area.entity_id
+GO
+CREATE PROC [getAllComputersFromComputerStatus]
+AS
+SELECT	[computer_status].computer_id AS 'Computer Id',
+		[computer_status].name AS 'Computer Name',
+		(CASE WHEN [computer_status].status = 0 THEN 'OFFLINE' ELSE 'ONLINE' END) AS 'Status',
+		[area].name AS 'Area',
+		[area].price AS 'Price',
+		[computer_status].start_time AS 'Start Time',
+		[computer_status].used_times AS 'Used_time'
+FROM computer_status
+JOIN area
+ON [computer_status].area_id = area.entity_id
+GO
+
+CREATE PROC [deleteComputerStatus]
+AS
+DELETE [computer_status]
 GO

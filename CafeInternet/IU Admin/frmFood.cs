@@ -55,7 +55,7 @@ namespace CafeInternet
                            Name = f.name,
                            Price = f.price,
                            Quantity = f.quantity,
-                           Food_Type = f.food_type_id == 1 ? "Đồ ăn" : f.food_type_id == 2 ? "Đồ uống đóng chai" : "Đồ uống pha chế",
+                           Food_type_id = f.food_type_id == 1 ? "Foods" : f.food_type_id == 2 ? "Bottled drinks" : f.food_type_id == 3 ? "Concoction drinks" : "Others",
                            Image = f.image
                        };
             //hiển thị lên lưới
@@ -76,22 +76,27 @@ namespace CafeInternet
                 imgLocation = row.Cells[5].Value.ToString();
                 ptbImageFood.ImageLocation = imgLocation;
                 check = row.Cells[4].Value.ToString();
-                if (check == "Đồ ăn")
+                if (check == "Foods")
                 {
                     comboBox1.SelectedValue = 1;
                 }
-                else if (check == "Đồ uống đóng chai")
+                else if (check == "Bottled drinks")
                 {
                     comboBox1.SelectedValue = 2;
                 }
-                else
+                else if( check == "Concoction drinks")
                 {
                     comboBox1.SelectedValue = 3;
+                }
+                else
+                {
+                    comboBox1.SelectedValue = 4;
                 }
                 position = dgvShowFood.CurrentRow.Index;
                 //edit = true;
             }
         }
+
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             DisplayFoodType();
@@ -377,7 +382,7 @@ namespace CafeInternet
                                Name = f.name,
                                Price = f.price,
                                Quantity = f.quantity,
-                               Food_Type = f.food_type_id == 1 ? "Đồ ăn" : f.food_type_id == 2 ? "Đồ uống đóng chai" : "Đồ uống pha chế",
+                               Food_type_id = f.food_type_id == 1 ? "Foods" : f.food_type_id == 2 ? "Bottled drinks" : f.food_type_id == 3 ? "Concoction drinks" : "Others",
                                Image = f.image,
                            };
                 //hiển thị lên lưới
@@ -416,7 +421,7 @@ namespace CafeInternet
                 Name = f.name,
                 Price = f.price,
                 Quantity = f.quantity,
-                Food_type_id = f.food_type_id == 1 ? "Foods" : f.food_type_id == 2 ? "Bottled drinks" : "Concoction drinks"
+                Food_type_id = f.food_type_id == 1 ? "Foods" : f.food_type_id == 2 ? "Bottled drinks" : f.food_type_id == 3 ? "Concoction drinks" : "Others"
             }).ToList();
             c.SetDataSource(food);
             frmViewer fv = new frmViewer();

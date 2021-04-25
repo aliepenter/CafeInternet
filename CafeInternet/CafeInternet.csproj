@@ -54,11 +54,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IU Shop Manage\frmAll.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="IU Shop Manage\frmAll.Designer.cs">
-      <DependentUpon>frmAll.cs</DependentUpon>
+    <Compile Include="DataClasses1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataClasses1.dbml</DependentUpon>
     </Compile>
     <Compile Include="ReportAdmin\crpArea1.cs">
       <AutoGen>True</AutoGen>
@@ -77,11 +76,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>crpFood.rpt</DependentUpon>
       <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DataClasses1.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataClasses1.dbml</DependentUpon>
     </Compile>
     <Compile Include="Food.cs" />
     <Compile Include="IU Admin\frmAdmin.cs">
@@ -152,9 +146,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="IU Shop Manage\frmAll.resx">
-      <DependentUpon>frmAll.cs</DependentUpon>
-    </EmbeddedResource>
+    <None Include="DataClasses1.dbml.layout">
+      <DependentUpon>DataClasses1.dbml</DependentUpon>
+    </None>
     <EmbeddedResource Include="IU Shop Manage\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -215,9 +209,6 @@
       <LastGenOutput>DataClasses1.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="DataClasses1.dbml.layout">
-      <DependentUpon>DataClasses1.dbml</DependentUpon>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -236,8 +227,6 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ds_digital\DS-DIGIB.TTF" />
-    <None Include="Resources\ds_digital\DS-DIGII.TTF" />
     <None Include="Resources\woman_user_avatar_account_female_icon_153149.png" />
   </ItemGroup>
   <ItemGroup>
