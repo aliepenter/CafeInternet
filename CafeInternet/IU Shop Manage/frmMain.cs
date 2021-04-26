@@ -131,7 +131,7 @@ namespace CafeInternet
                 m.profit += total;
                 m.total_used_time += k;
                 dc.SubmitChanges();
-                dc.deleteServiceCondition(name);
+                dc.deleteServiceCondition(id);
             }
             DisplayPcOn();
             DisplayAll();
@@ -186,16 +186,16 @@ namespace CafeInternet
         private void btnAdd_Click(object sender, EventArgs e)
         {
             DataGridViewRow row = dgvAllCom.CurrentRow;
-            string name = row.Cells[1].Value.ToString();
+            int id = Convert.ToInt32(row.Cells[0].Value);
             var u = dc.foods.FirstOrDefault(x => x.entity_id == Convert.ToInt32(cbFoods.SelectedValue));
-            var com = dc.computer_status.FirstOrDefault(x => x.name == name);
-            var f = dc.services.FirstOrDefault(x => x.computer_name == name);
+            var com = dc.computer_status.FirstOrDefault(x => x.computer_id == id);
+            var f = dc.services.FirstOrDefault(x => x.computer_id == id);
             if (u.quantity >= Convert.ToInt32(txtAmount.Text))
             {
                 if (f == null)
                 {
                     var s = new service();
-                    s.computer_name = name;
+                    s.computer_id = id;
                     s.service_name = cbFoods.SelectedValue.ToString();
                     s.quantity = Convert.ToInt32(txtAmount.Text);
                     s.total = u.price * Convert.ToInt32(txtAmount.Text);
@@ -205,17 +205,18 @@ namespace CafeInternet
                 }
                 else
                 {
-                    if (f.service_name == (cbFoods.SelectedValue.ToString()))
+                    var m = dc.services.FirstOrDefault(x => x.computer_id == id && x.service_name == cbFoods.SelectedValue.ToString());
+                    if (m != null)
                     {
-                        var m = dc.services.FirstOrDefault(x => x.computer_name == name && x.service_name == cbFoods.SelectedValue.ToString());
                         m.quantity += Convert.ToInt32(txtAmount.Text);
-                        m.total = u.price * Convert.ToInt32(txtAmount.Text);
+                        m.total += u.price * Convert.ToInt32(txtAmount.Text);
                         dc.SubmitChanges();
+                        
                     }
                     else
                     {
                         var s = new service();
-                        s.computer_name = name;
+                        s.computer_id = id;
                         s.service_name = cbFoods.SelectedValue.ToString();
                         s.quantity = Convert.ToInt32(txtAmount.Text);
                         s.total = u.price * Convert.ToInt32(txtAmount.Text);
@@ -233,6 +234,14 @@ namespace CafeInternet
             {
                 MessageBox.Show("There are only " + u.quantity + " items remain!", "INFORMATION", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            var f = dc.computer_status.FirstOrDefault(x => x.status == 1);
+            f.service_charge = dc.getTotalServiceMoney(f.entity_id);
+            dc.SubmitChanges();   
+            DisplayAll();
         }
     }
 }

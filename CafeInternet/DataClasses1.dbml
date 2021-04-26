@@ -93,48 +93,38 @@
   <Table Name="dbo.service" Member="services">
     <Type Name="service">
       <Column Name="entity_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="computer_name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="computer_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="service_name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="total" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Function Name="dbo.search_area" Method="search_area">
-    <Parameter Name="name" Type="System.String" DbType="NVarChar(255)" />
-    <ElementType Name="search_areaResult">
-      <Column Name="Area" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+  <Function Name="dbo.deleteComputerStatus" Method="deleteComputerStatus">
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sum_service" Method="sum_service">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sum_serviceResult">
       <Column Name="Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="Price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="[Number of computers]" Member="Number_of_computers" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="total_money" Type="System.Double" DbType="Float" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.login_permission" Method="login_permission">
-    <Parameter Name="account" Type="System.String" DbType="NVarChar(255)" />
-    <Parameter Name="password" Type="System.String" DbType="NVarChar(255)" />
-    <ElementType Name="login_permissionResult">
+  <Function Name="dbo.deleteService" Method="deleteService">
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.deleteServiceCondition" Method="deleteServiceCondition">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.get_food" Method="get_food">
+    <ElementType Name="get_foodResult">
       <Column Name="entity_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="account" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="password" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="name" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="image" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="role_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.getAllComputersFromArea" Method="getAllComputersFromArea">
-    <ElementType Name="getAllComputersFromAreaResult">
-      <Column Name="[Computer Id]" Member="Computer_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="[Computer Name]" Member="Computer_Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="Area" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="Price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.get_price_area" Method="get_price_area">
-    <ElementType Name="get_price_areaResult">
-      <Column Name="Area" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="Price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="[Number of computers]" Member="Number_of_computers" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="food_type_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
   <Function Name="dbo.get_infor" Method="get_infor">
@@ -148,46 +138,29 @@
       <Column Name="role_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
-  <Function Name="dbo.get_food" Method="get_food">
-    <ElementType Name="get_foodResult">
-      <Column Name="entity_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.deleteComputerStatus" Method="deleteComputerStatus">
-    <Return Type="System.Int32" />
-  </Function>
-  <Function Name="dbo.getFoods" Method="getFoods">
-    <Parameter Name="id" Type="System.Int32" DbType="Int" />
-    <ElementType Name="getFoodsResult">
+  <Function Name="dbo.get_price_area" Method="get_price_area">
+    <ElementType Name="get_price_areaResult">
+      <Column Name="Area" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="Price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="Amount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.send_data" Method="send_data">
-    <Return Type="System.Int32" />
-  </Function>
-  <Function Name="dbo.getService" Method="getService">
-    <Parameter Name="name" Type="System.String" DbType="NVarChar(255)" />
-    <ElementType Name="getServiceResult">
-      <Column Name="[Computer Name]" Member="Computer_Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="Amont" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Total" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="[Number of computers]" Member="Number_of_computers" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
   <Function Name="dbo.get_service_price" Method="get_service_price">
     <ElementType Name="get_service_priceResult">
-      <Column Name="[Computer Name]" Member="Computer_Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="[Computer ID]" Member="Computer_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="[Service Name]" Member="Service_Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Total" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
-  <Function Name="dbo.deleteService" Method="deleteService">
-    <Return Type="System.Int32" />
+  <Function Name="dbo.getAllComputersFromArea" Method="getAllComputersFromArea">
+    <ElementType Name="getAllComputersFromAreaResult">
+      <Column Name="[Computer Id]" Member="Computer_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Computer Name]" Member="Computer_Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Area" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+    </ElementType>
   </Function>
   <Function Name="dbo.getAllComputersFromComputerStatus" Method="getAllComputersFromComputerStatus">
     <ElementType Name="getAllComputersFromComputerStatusResult">
@@ -201,15 +174,51 @@
       <Column Name="[Service Money]" Member="Service_Money" Type="System.Double" DbType="Float" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.sum_service" Method="sum_service">
-    <Parameter Name="name" Type="System.String" DbType="NVarChar(1)" />
-    <ElementType Name="sum_serviceResult">
+  <Function Name="dbo.getService" Method="getService">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <ElementType Name="getServiceResult">
+      <Column Name="[Computer ID]" Member="Computer_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="total_money" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Amont" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Total" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
-  <Function Name="dbo.deleteServiceCondition" Method="deleteServiceCondition">
+  <Function Name="dbo.getServiceMoney" Method="getServiceMoney">
+    <ElementType Name="getServiceMoneyResult">
+      <Column Name="entity_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="computer_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="service_name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="total" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="computer_status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.getTotalServiceMoney" Method="getTotalServiceMoney">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.login_permission" Method="login_permission">
+    <Parameter Name="account" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="password" Type="System.String" DbType="NVarChar(255)" />
+    <ElementType Name="login_permissionResult">
+      <Column Name="entity_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="account" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="password" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="image" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="role_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.search_area" Method="search_area">
     <Parameter Name="name" Type="System.String" DbType="NVarChar(255)" />
+    <ElementType Name="search_areaResult">
+      <Column Name="Area" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="[Number of computers]" Member="Number_of_computers" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.send_data" Method="send_data">
     <Return Type="System.Int32" />
   </Function>
 </Database>

@@ -172,48 +172,6 @@ namespace CafeInternet
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.search_area")]
-		public ISingleResult<search_areaResult> search_area([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(255)")] string name)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), name);
-			return ((ISingleResult<search_areaResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.login_permission")]
-		public ISingleResult<login_permissionResult> login_permission([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(255)")] string account, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(255)")] string password)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), account, password);
-			return ((ISingleResult<login_permissionResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.getAllComputersFromArea")]
-		public ISingleResult<getAllComputersFromAreaResult> getAllComputersFromArea()
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<getAllComputersFromAreaResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.get_price_area")]
-		public ISingleResult<get_price_areaResult> get_price_area()
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<get_price_areaResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.get_infor")]
-		public ISingleResult<get_inforResult> get_infor([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(255)")] string account)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), account);
-			return ((ISingleResult<get_inforResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.get_food")]
-		public ISingleResult<get_foodResult> get_food()
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<get_foodResult>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.deleteComputerStatus")]
 		public int deleteComputerStatus()
 		{
@@ -221,32 +179,11 @@ namespace CafeInternet
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.getFoods")]
-		public ISingleResult<getFoodsResult> getFoods([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sum_service")]
+		public ISingleResult<sum_serviceResult> sum_service([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
-			return ((ISingleResult<getFoodsResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.send_data")]
-		public int send_data()
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((int)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.getService")]
-		public ISingleResult<getServiceResult> getService([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(255)")] string name)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), name);
-			return ((ISingleResult<getServiceResult>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.get_service_price")]
-		public ISingleResult<get_service_priceResult> get_service_price()
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-			return ((ISingleResult<get_service_priceResult>)(result.ReturnValue));
+			return ((ISingleResult<sum_serviceResult>)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.deleteService")]
@@ -256,6 +193,48 @@ namespace CafeInternet
 			return ((int)(result.ReturnValue));
 		}
 		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.deleteServiceCondition")]
+		public int deleteServiceCondition([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.get_food")]
+		public ISingleResult<get_foodResult> get_food()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<get_foodResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.get_infor")]
+		public ISingleResult<get_inforResult> get_infor([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(255)")] string account)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), account);
+			return ((ISingleResult<get_inforResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.get_price_area")]
+		public ISingleResult<get_price_areaResult> get_price_area()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<get_price_areaResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.get_service_price")]
+		public ISingleResult<get_service_priceResult> get_service_price()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<get_service_priceResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.getAllComputersFromArea")]
+		public ISingleResult<getAllComputersFromAreaResult> getAllComputersFromArea()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<getAllComputersFromAreaResult>)(result.ReturnValue));
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.getAllComputersFromComputerStatus")]
 		public ISingleResult<getAllComputersFromComputerStatusResult> getAllComputersFromComputerStatus()
 		{
@@ -263,17 +242,45 @@ namespace CafeInternet
 			return ((ISingleResult<getAllComputersFromComputerStatusResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sum_service")]
-		public ISingleResult<sum_serviceResult> sum_service([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(1)")] string name)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.getService")]
+		public ISingleResult<getServiceResult> getService([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), name);
-			return ((ISingleResult<sum_serviceResult>)(result.ReturnValue));
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
+			return ((ISingleResult<getServiceResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.deleteServiceCondition")]
-		public int deleteServiceCondition([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(255)")] string name)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.getServiceMoney")]
+		public ISingleResult<getServiceMoneyResult> getServiceMoney()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<getServiceMoneyResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.getTotalServiceMoney")]
+		public int getTotalServiceMoney([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.login_permission")]
+		public ISingleResult<login_permissionResult> login_permission([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(255)")] string account, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(255)")] string password)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), account, password);
+			return ((ISingleResult<login_permissionResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.search_area")]
+		public ISingleResult<search_areaResult> search_area([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(255)")] string name)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), name);
+			return ((ISingleResult<search_areaResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.send_data")]
+		public int send_data()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((int)(result.ReturnValue));
 		}
 	}
@@ -2029,7 +2036,7 @@ namespace CafeInternet
 		
 		private int _entity_id;
 		
-		private string _computer_name;
+		private int _computer_id;
 		
 		private string _service_name;
 		
@@ -2045,8 +2052,8 @@ namespace CafeInternet
     partial void OnCreated();
     partial void Onentity_idChanging(int value);
     partial void Onentity_idChanged();
-    partial void Oncomputer_nameChanging(string value);
-    partial void Oncomputer_nameChanged();
+    partial void Oncomputer_idChanging(int value);
+    partial void Oncomputer_idChanged();
     partial void Onservice_nameChanging(string value);
     partial void Onservice_nameChanged();
     partial void OnquantityChanging(int value);
@@ -2082,22 +2089,22 @@ namespace CafeInternet
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_computer_name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string computer_name
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_computer_id", DbType="Int NOT NULL")]
+		public int computer_id
 		{
 			get
 			{
-				return this._computer_name;
+				return this._computer_id;
 			}
 			set
 			{
-				if ((this._computer_name != value))
+				if ((this._computer_id != value))
 				{
-					this.Oncomputer_nameChanging(value);
+					this.Oncomputer_idChanging(value);
 					this.SendPropertyChanging();
-					this._computer_name = value;
-					this.SendPropertyChanged("computer_name");
-					this.Oncomputer_nameChanged();
+					this._computer_id = value;
+					this.SendPropertyChanged("computer_id");
+					this.Oncomputer_idChanged();
 				}
 			}
 		}
@@ -2203,35 +2210,15 @@ namespace CafeInternet
 		}
 	}
 	
-	public partial class search_areaResult
+	public partial class sum_serviceResult
 	{
-		
-		private int _Area;
 		
 		private string _Name;
 		
-		private double _Price;
+		private System.Nullable<double> _total_money;
 		
-		private System.Nullable<int> _Number_of_computers;
-		
-		public search_areaResult()
+		public sum_serviceResult()
 		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Area", DbType="Int NOT NULL")]
-		public int Area
-		{
-			get
-			{
-				return this._Area;
-			}
-			set
-			{
-				if ((this._Area != value))
-				{
-					this._Area = value;
-				}
-			}
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
@@ -2250,55 +2237,39 @@ namespace CafeInternet
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Float NOT NULL")]
-		public double Price
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_money", DbType="Float")]
+		public System.Nullable<double> total_money
 		{
 			get
 			{
-				return this._Price;
+				return this._total_money;
 			}
 			set
 			{
-				if ((this._Price != value))
+				if ((this._total_money != value))
 				{
-					this._Price = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Number of computers]", Storage="_Number_of_computers", DbType="Int")]
-		public System.Nullable<int> Number_of_computers
-		{
-			get
-			{
-				return this._Number_of_computers;
-			}
-			set
-			{
-				if ((this._Number_of_computers != value))
-				{
-					this._Number_of_computers = value;
+					this._total_money = value;
 				}
 			}
 		}
 	}
 	
-	public partial class login_permissionResult
+	public partial class get_foodResult
 	{
 		
 		private int _entity_id;
 		
-		private string _account;
-		
-		private string _password;
-		
 		private string _name;
+		
+		private double _price;
+		
+		private int _quantity;
 		
 		private string _image;
 		
-		private int _role_id;
+		private int _food_type_id;
 		
-		public login_permissionResult()
+		public get_foodResult()
 		{
 		}
 		
@@ -2318,39 +2289,7 @@ namespace CafeInternet
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_account", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string account
-		{
-			get
-			{
-				return this._account;
-			}
-			set
-			{
-				if ((this._account != value))
-				{
-					this._account = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_password", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string password
-		{
-			get
-			{
-				return this._password;
-			}
-			set
-			{
-				if ((this._password != value))
-				{
-					this._password = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(255)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
 		public string name
 		{
 			get
@@ -2362,6 +2301,38 @@ namespace CafeInternet
 				if ((this._name != value))
 				{
 					this._name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_price", DbType="Float NOT NULL")]
+		public double price
+		{
+			get
+			{
+				return this._price;
+			}
+			set
+			{
+				if ((this._price != value))
+				{
+					this._price = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_quantity", DbType="Int NOT NULL")]
+		public int quantity
+		{
+			get
+			{
+				return this._quantity;
+			}
+			set
+			{
+				if ((this._quantity != value))
+				{
+					this._quantity = value;
 				}
 			}
 		}
@@ -2382,178 +2353,18 @@ namespace CafeInternet
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_role_id", DbType="Int NOT NULL")]
-		public int role_id
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_food_type_id", DbType="Int NOT NULL")]
+		public int food_type_id
 		{
 			get
 			{
-				return this._role_id;
+				return this._food_type_id;
 			}
 			set
 			{
-				if ((this._role_id != value))
+				if ((this._food_type_id != value))
 				{
-					this._role_id = value;
-				}
-			}
-		}
-	}
-	
-	public partial class getAllComputersFromAreaResult
-	{
-		
-		private int _Computer_Id;
-		
-		private string _Computer_Name;
-		
-		private string _Area;
-		
-		private double _Price;
-		
-		public getAllComputersFromAreaResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Computer Id]", Storage="_Computer_Id", DbType="Int NOT NULL")]
-		public int Computer_Id
-		{
-			get
-			{
-				return this._Computer_Id;
-			}
-			set
-			{
-				if ((this._Computer_Id != value))
-				{
-					this._Computer_Id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Computer Name]", Storage="_Computer_Name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string Computer_Name
-		{
-			get
-			{
-				return this._Computer_Name;
-			}
-			set
-			{
-				if ((this._Computer_Name != value))
-				{
-					this._Computer_Name = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Area", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string Area
-		{
-			get
-			{
-				return this._Area;
-			}
-			set
-			{
-				if ((this._Area != value))
-				{
-					this._Area = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Float NOT NULL")]
-		public double Price
-		{
-			get
-			{
-				return this._Price;
-			}
-			set
-			{
-				if ((this._Price != value))
-				{
-					this._Price = value;
-				}
-			}
-		}
-	}
-	
-	public partial class get_price_areaResult
-	{
-		
-		private int _Area;
-		
-		private string _Name;
-		
-		private double _Price;
-		
-		private System.Nullable<int> _Number_of_computers;
-		
-		public get_price_areaResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Area", DbType="Int NOT NULL")]
-		public int Area
-		{
-			get
-			{
-				return this._Area;
-			}
-			set
-			{
-				if ((this._Area != value))
-				{
-					this._Area = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this._Name = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Float NOT NULL")]
-		public double Price
-		{
-			get
-			{
-				return this._Price;
-			}
-			set
-			{
-				if ((this._Price != value))
-				{
-					this._Price = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Number of computers]", Storage="_Number_of_computers", DbType="Int")]
-		public System.Nullable<int> Number_of_computers
-		{
-			get
-			{
-				return this._Number_of_computers;
-			}
-			set
-			{
-				if ((this._Number_of_computers != value))
-				{
-					this._Number_of_computers = value;
+					this._food_type_id = value;
 				}
 			}
 		}
@@ -2675,79 +2486,35 @@ namespace CafeInternet
 		}
 	}
 	
-	public partial class get_foodResult
+	public partial class get_price_areaResult
 	{
 		
-		private int _entity_id;
-		
-		private string _name;
-		
-		private double _price;
-		
-		public get_foodResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_entity_id", DbType="Int NOT NULL")]
-		public int entity_id
-		{
-			get
-			{
-				return this._entity_id;
-			}
-			set
-			{
-				if ((this._entity_id != value))
-				{
-					this._entity_id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string name
-		{
-			get
-			{
-				return this._name;
-			}
-			set
-			{
-				if ((this._name != value))
-				{
-					this._name = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_price", DbType="Float NOT NULL")]
-		public double price
-		{
-			get
-			{
-				return this._price;
-			}
-			set
-			{
-				if ((this._price != value))
-				{
-					this._price = value;
-				}
-			}
-		}
-	}
-	
-	public partial class getFoodsResult
-	{
+		private int _Area;
 		
 		private string _Name;
 		
 		private double _Price;
 		
-		private int _Amount;
+		private System.Nullable<int> _Number_of_computers;
 		
-		public getFoodsResult()
+		public get_price_areaResult()
 		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Area", DbType="Int NOT NULL")]
+		public int Area
+		{
+			get
+			{
+				return this._Area;
+			}
+			set
+			{
+				if ((this._Area != value))
+				{
+					this._Area = value;
+				}
+			}
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
@@ -2782,98 +2549,18 @@ namespace CafeInternet
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Amount", DbType="Int NOT NULL")]
-		public int Amount
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Number of computers]", Storage="_Number_of_computers", DbType="Int")]
+		public System.Nullable<int> Number_of_computers
 		{
 			get
 			{
-				return this._Amount;
+				return this._Number_of_computers;
 			}
 			set
 			{
-				if ((this._Amount != value))
+				if ((this._Number_of_computers != value))
 				{
-					this._Amount = value;
-				}
-			}
-		}
-	}
-	
-	public partial class getServiceResult
-	{
-		
-		private string _Computer_Name;
-		
-		private string _Name;
-		
-		private int _Amont;
-		
-		private double _Total;
-		
-		public getServiceResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Computer Name]", Storage="_Computer_Name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string Computer_Name
-		{
-			get
-			{
-				return this._Computer_Name;
-			}
-			set
-			{
-				if ((this._Computer_Name != value))
-				{
-					this._Computer_Name = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this._Name = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Amont", DbType="Int NOT NULL")]
-		public int Amont
-		{
-			get
-			{
-				return this._Amont;
-			}
-			set
-			{
-				if ((this._Amont != value))
-				{
-					this._Amont = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total", DbType="Float NOT NULL")]
-		public double Total
-		{
-			get
-			{
-				return this._Total;
-			}
-			set
-			{
-				if ((this._Total != value))
-				{
-					this._Total = value;
+					this._Number_of_computers = value;
 				}
 			}
 		}
@@ -2882,7 +2569,7 @@ namespace CafeInternet
 	public partial class get_service_priceResult
 	{
 		
-		private string _Computer_Name;
+		private int _Computer_ID;
 		
 		private string _Service_Name;
 		
@@ -2894,18 +2581,18 @@ namespace CafeInternet
 		{
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Computer Name]", Storage="_Computer_Name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string Computer_Name
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Computer ID]", Storage="_Computer_ID", DbType="Int NOT NULL")]
+		public int Computer_ID
 		{
 			get
 			{
-				return this._Computer_Name;
+				return this._Computer_ID;
 			}
 			set
 			{
-				if ((this._Computer_Name != value))
+				if ((this._Computer_ID != value))
 				{
-					this._Computer_Name = value;
+					this._Computer_ID = value;
 				}
 			}
 		}
@@ -2954,6 +2641,86 @@ namespace CafeInternet
 				if ((this._Total != value))
 				{
 					this._Total = value;
+				}
+			}
+		}
+	}
+	
+	public partial class getAllComputersFromAreaResult
+	{
+		
+		private int _Computer_Id;
+		
+		private string _Computer_Name;
+		
+		private string _Area;
+		
+		private double _Price;
+		
+		public getAllComputersFromAreaResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Computer Id]", Storage="_Computer_Id", DbType="Int NOT NULL")]
+		public int Computer_Id
+		{
+			get
+			{
+				return this._Computer_Id;
+			}
+			set
+			{
+				if ((this._Computer_Id != value))
+				{
+					this._Computer_Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Computer Name]", Storage="_Computer_Name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string Computer_Name
+		{
+			get
+			{
+				return this._Computer_Name;
+			}
+			set
+			{
+				if ((this._Computer_Name != value))
+				{
+					this._Computer_Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Area", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string Area
+		{
+			get
+			{
+				return this._Area;
+			}
+			set
+			{
+				if ((this._Area != value))
+				{
+					this._Area = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Float NOT NULL")]
+		public double Price
+		{
+			get
+			{
+				return this._Price;
+			}
+			set
+			{
+				if ((this._Price != value))
+				{
+					this._Price = value;
 				}
 			}
 		}
@@ -3111,15 +2878,35 @@ namespace CafeInternet
 		}
 	}
 	
-	public partial class sum_serviceResult
+	public partial class getServiceResult
 	{
+		
+		private int _Computer_ID;
 		
 		private string _Name;
 		
-		private System.Nullable<double> _total_money;
+		private int _Amont;
 		
-		public sum_serviceResult()
+		private double _Total;
+		
+		public getServiceResult()
 		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Computer ID]", Storage="_Computer_ID", DbType="Int NOT NULL")]
+		public int Computer_ID
+		{
+			get
+			{
+				return this._Computer_ID;
+			}
+			set
+			{
+				if ((this._Computer_ID != value))
+				{
+					this._Computer_ID = value;
+				}
+			}
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
@@ -3138,18 +2925,346 @@ namespace CafeInternet
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_money", DbType="Float")]
-		public System.Nullable<double> total_money
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Amont", DbType="Int NOT NULL")]
+		public int Amont
 		{
 			get
 			{
-				return this._total_money;
+				return this._Amont;
 			}
 			set
 			{
-				if ((this._total_money != value))
+				if ((this._Amont != value))
 				{
-					this._total_money = value;
+					this._Amont = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total", DbType="Float NOT NULL")]
+		public double Total
+		{
+			get
+			{
+				return this._Total;
+			}
+			set
+			{
+				if ((this._Total != value))
+				{
+					this._Total = value;
+				}
+			}
+		}
+	}
+	
+	public partial class getServiceMoneyResult
+	{
+		
+		private int _entity_id;
+		
+		private int _computer_id;
+		
+		private string _service_name;
+		
+		private int _quantity;
+		
+		private double _total;
+		
+		private byte _computer_status;
+		
+		public getServiceMoneyResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_entity_id", DbType="Int NOT NULL")]
+		public int entity_id
+		{
+			get
+			{
+				return this._entity_id;
+			}
+			set
+			{
+				if ((this._entity_id != value))
+				{
+					this._entity_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_computer_id", DbType="Int NOT NULL")]
+		public int computer_id
+		{
+			get
+			{
+				return this._computer_id;
+			}
+			set
+			{
+				if ((this._computer_id != value))
+				{
+					this._computer_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_service_name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string service_name
+		{
+			get
+			{
+				return this._service_name;
+			}
+			set
+			{
+				if ((this._service_name != value))
+				{
+					this._service_name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_quantity", DbType="Int NOT NULL")]
+		public int quantity
+		{
+			get
+			{
+				return this._quantity;
+			}
+			set
+			{
+				if ((this._quantity != value))
+				{
+					this._quantity = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total", DbType="Float NOT NULL")]
+		public double total
+		{
+			get
+			{
+				return this._total;
+			}
+			set
+			{
+				if ((this._total != value))
+				{
+					this._total = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_computer_status", DbType="TinyInt NOT NULL")]
+		public byte computer_status
+		{
+			get
+			{
+				return this._computer_status;
+			}
+			set
+			{
+				if ((this._computer_status != value))
+				{
+					this._computer_status = value;
+				}
+			}
+		}
+	}
+	
+	public partial class login_permissionResult
+	{
+		
+		private int _entity_id;
+		
+		private string _account;
+		
+		private string _password;
+		
+		private string _name;
+		
+		private string _image;
+		
+		private int _role_id;
+		
+		public login_permissionResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_entity_id", DbType="Int NOT NULL")]
+		public int entity_id
+		{
+			get
+			{
+				return this._entity_id;
+			}
+			set
+			{
+				if ((this._entity_id != value))
+				{
+					this._entity_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_account", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string account
+		{
+			get
+			{
+				return this._account;
+			}
+			set
+			{
+				if ((this._account != value))
+				{
+					this._account = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_password", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string password
+		{
+			get
+			{
+				return this._password;
+			}
+			set
+			{
+				if ((this._password != value))
+				{
+					this._password = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(255)")]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this._name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_image", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string image
+		{
+			get
+			{
+				return this._image;
+			}
+			set
+			{
+				if ((this._image != value))
+				{
+					this._image = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_role_id", DbType="Int NOT NULL")]
+		public int role_id
+		{
+			get
+			{
+				return this._role_id;
+			}
+			set
+			{
+				if ((this._role_id != value))
+				{
+					this._role_id = value;
+				}
+			}
+		}
+	}
+	
+	public partial class search_areaResult
+	{
+		
+		private int _Area;
+		
+		private string _Name;
+		
+		private double _Price;
+		
+		private System.Nullable<int> _Number_of_computers;
+		
+		public search_areaResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Area", DbType="Int NOT NULL")]
+		public int Area
+		{
+			get
+			{
+				return this._Area;
+			}
+			set
+			{
+				if ((this._Area != value))
+				{
+					this._Area = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Float NOT NULL")]
+		public double Price
+		{
+			get
+			{
+				return this._Price;
+			}
+			set
+			{
+				if ((this._Price != value))
+				{
+					this._Price = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Number of computers]", Storage="_Number_of_computers", DbType="Int")]
+		public System.Nullable<int> Number_of_computers
+		{
+			get
+			{
+				return this._Number_of_computers;
+			}
+			set
+			{
+				if ((this._Number_of_computers != value))
+				{
+					this._Number_of_computers = value;
 				}
 			}
 		}

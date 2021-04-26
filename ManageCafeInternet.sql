@@ -72,7 +72,7 @@ GO
 CREATE TABLE [service]
 (
 	entity_id INT PRIMARY KEY IDENTITY,
-	computer_name NVARCHAR(255) NOT NULL,
+	computer_id INT NOT NULL,
 	service_name NVARCHAR(255) NOT NULL,
 	quantity INT NOT NULL,
 	total FLOAT NOT NULL,
@@ -105,9 +105,9 @@ INSERT INTO [role] VALUES
 (N'Shop Manager')
 GO
 INSERT INTO [user] VALUES
-(N'admin',N'123',N'Đặng Tuấn Đạt',N'E:/CafeInternet/CafeInternet/Resources/avatar.jpg',1),
-(N'user1',N'123',N'Đỗ Hồng Ngọc',N'E:/CafeInternet/CafeInternet/Resources/avatar.jpg',2),
-(N'user2',N'123',N'Nguyễn Tuấn Minh',N'E:/CafeInternet/CafeInternet/Resources/redsting.jpg',3)
+(N'admin',N'123',N'Đặng Tuấn Đạt',N'D:\CafeInternet\CafeInternet\Resources\avatar.jpg',1),
+(N'user1',N'123',N'Đỗ Hồng Ngọc',N'D:\CafeInternet\CafeInternet\Resources\avatar.jpg',2),
+(N'user2',N'123',N'Nguyễn Tuấn Minh',N'D:\CafeInternet\CafeInternet\Resources\redsting.jpg',3)
 GO
 INSERT INTO [food_type] VALUES
 (N'Foods'),
@@ -116,10 +116,10 @@ INSERT INTO [food_type] VALUES
 (N'Others')
 GO
 INSERT INTO [food] VALUES
-(N'Red Sting',10000,10,N'E:/CafeInternet/CafeInternet/Resources/redsting.jpg',1),
-(N'Yellow Sting',10000,20,N'E:/CafeInternet/CafeInternet/Resources/yellowsting.jpg',2),
-(N'Egg Cafe',15000,10,N'E:/CafeInternet/CafeInternet/Resources/eggcafe.jpg',3),
-(N'Egg2 Cafe',15000,10,N'E:/CafeInternet/CafeInternet/Resources/eggcafe.jpg',4)
+(N'Red Sting',10000,10,N'D:\CafeInternet\CafeInternet\Resources\redsting.jpg',1),
+(N'Yellow Sting',10000,20,N'D:\CafeInternet\CafeInternet\Resources\yellowsting.jpg',2),
+(N'Egg Cafe',15000,10,N'D:\CafeInternet\CafeInternet\Resources\eggcafe.jpg',3),
+(N'Egg2 Cafe',15000,10,N'D:\CafeInternet\CafeInternet\Resources\eggcafe.jpg',4)
 GO
 INSERT INTO [area] VALUES
 (N'Pro',5000),
@@ -219,27 +219,27 @@ AS
 DELETE [service]
 GO
 CREATE PROC [deleteServiceCondition]
-@name NVARCHAR(255)
+@id INT
 AS
 DELETE [service]
-WHERE [service].computer_name = @name
+WHERE [service].computer_id = @id
 GO
 
 CREATE PROC [getService]
-@name NVARCHAR(255)
+@id INT
 AS
-SELECT	[service].computer_name AS 'Computer Name',	
+SELECT	[service].computer_id AS 'Computer ID',	
 		[service].service_name AS 'Name',
 		[service].quantity AS 'Amont',
 		[service].total AS 'Total'
 FROM [service]
-WHERE [service].computer_name = @name
+WHERE [service].computer_id = @id
 GO
 
 CREATE PROC [get_service_price]
 AS
 SELECT 
-s.computer_name as 'Computer Name',
+s.computer_id as 'Computer ID',
 s.service_name as 'Service Name',
 s.quantity as 'Quantity',
 s.total as 'Total'
@@ -247,31 +247,42 @@ FROM service s
 GO
 
 CREATE PROC [sum_service]
-@name NVARCHAR
+@id INT
 AS
 SELECT
 [computer].name AS 'Name',
 SUM(total) AS 'total_money'
 FROM [service]
 JOIN [computer]
-ON [service].computer_name = @name
+ON [service].computer_id = @id
 WHERE [service].status = 0
 GROUP BY [computer].name
 GO
 
 
---CREATE PROC [sum_service]
---AS
-INSERT INTO [computer_status](service_charge)
-SELECT SUM(total)
-FROM [service]
-JOIN [computer]
-ON [service].computer_name = computer.name
-WHERE [service].status = 0
+
+CREATE PROC [getTotalServiceMoney]
+@id INT
+AS
+DECLARE @total INT
+BEGIN 
+SET @total =  (SELECT SUM(total) FROM [service]
+WHERE computer_id = @id)
+END
+RETURN @total
 GO
 
-
-SELECT * FROM [service]
+CREATE PROC [getServiceMoney]
+AS
+SELECT	[service].entity_id,
+		[service].computer_id,
+		[service].service_name,
+		[service].quantity,
+		[service].total,
+		[computer_status].status AS 'computer_status'
+FROM [service]
+JOIN [computer_status]
+ON [computer_status].computer_id = [service].computer_id
 GO
 SELECT * FROM [computer_status]
 GO

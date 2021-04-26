@@ -36,6 +36,7 @@
             this.lbHour = new System.Windows.Forms.Label();
             this.lbDay = new System.Windows.Forms.Label();
             this.btnStart = new System.Windows.Forms.Button();
+            this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -73,7 +74,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.imageList2 = new System.Windows.Forms.ImageList(this.components);
+            this.button6 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -94,6 +95,7 @@
             this.tableLayoutPanel15.SuspendLayout();
             this.tableLayoutPanel16.SuspendLayout();
             this.tableLayoutPanel17.SuspendLayout();
+            this.tableLayoutPanel11.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -189,6 +191,17 @@
             this.btnStart.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+            // 
+            // imageList2
+            // 
+            this.imageList2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList2.ImageStream")));
+            this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList2.Images.SetKeyName(0, "cash.ico");
+            this.imageList2.Images.SetKeyName(1, "start.ico");
+            this.imageList2.Images.SetKeyName(2, "Login_37128.ico");
+            this.imageList2.Images.SetKeyName(3, "logout_off_exit_14655.ico");
+            this.imageList2.Images.SetKeyName(4, "gui_about_icon_157266.ico");
+            this.imageList2.Images.SetKeyName(5, "password_userpassword_9564.ico");
             // 
             // button1
             // 
@@ -435,7 +448,7 @@
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
             this.tableLayoutPanel10.RowCount = 1;
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 433F));
             this.tableLayoutPanel10.Size = new System.Drawing.Size(413, 433);
             this.tableLayoutPanel10.TabIndex = 0;
             // 
@@ -620,6 +633,7 @@
             this.tableLayoutPanel11.ColumnCount = 2;
             this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel11.Controls.Add(this.button6, 0, 0);
             this.tableLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel11.Location = new System.Drawing.Point(3, 442);
             this.tableLayoutPanel11.Name = "tableLayoutPanel11";
@@ -670,16 +684,15 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // imageList2
+            // button6
             // 
-            this.imageList2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList2.ImageStream")));
-            this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList2.Images.SetKeyName(0, "cash.ico");
-            this.imageList2.Images.SetKeyName(1, "start.ico");
-            this.imageList2.Images.SetKeyName(2, "Login_37128.ico");
-            this.imageList2.Images.SetKeyName(3, "logout_off_exit_14655.ico");
-            this.imageList2.Images.SetKeyName(4, "gui_about_icon_157266.ico");
-            this.imageList2.Images.SetKeyName(5, "password_userpassword_9564.ico");
+            this.button6.Location = new System.Drawing.Point(3, 3);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(75, 23);
+            this.button6.TabIndex = 0;
+            this.button6.Text = "button6";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // frmMain
             // 
@@ -716,6 +729,7 @@
             this.tableLayoutPanel16.ResumeLayout(false);
             this.tableLayoutPanel17.ResumeLayout(false);
             this.tableLayoutPanel17.PerformLayout();
+            this.tableLayoutPanel11.ResumeLayout(false);
             this.tableLayoutPanel9.ResumeLayout(false);
             this.tableLayoutPanel9.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -769,5 +783,6 @@
         private System.Windows.Forms.Button btnDecrease;
         private System.Windows.Forms.Button btnIncrease;
         private System.Windows.Forms.ImageList imageList2;
+        private System.Windows.Forms.Button button6;
     }
 }
