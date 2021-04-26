@@ -13,20 +13,28 @@ namespace CafeInternet
     public partial class frmMain : Form
     {
         public int amount = 0;
+        public int check;
         DataClasses1DataContext dc = new DataClasses1DataContext();
         public frmMain()
         {
             InitializeComponent();
             dc.send_data();
+
+        }
+        public frmMain(int e)
+        {
+            InitializeComponent();
+            check = e;
         }
         private void DisplayPcOn()
         {
-            var food = from m in dc.foods where m.quantity > 0
-                     select new
-                     {
-                         idf = m.entity_id,
-                         namef = m.name
-                     };
+            var food = from m in dc.foods
+                       where m.quantity > 0
+                       select new
+                       {
+                           idf = m.entity_id,
+                           namef = m.name
+                       };
             cbFoods.DataSource = food;
             cbFoods.DisplayMember = "namef";
             cbFoods.ValueMember = "idf";
@@ -77,15 +85,28 @@ namespace CafeInternet
             var f = dc.computer_status.FirstOrDefault(x => x.computer_id == id);
             if (f.status == 1)
             {
-                f.status = 0;
                 f.end_time = DateTime.Now;
                 TimeSpan interval = f.end_time - f.start_time;
                 int k = interval.Seconds;
                 float total = Convert.ToInt32(row.Cells[4].Value.ToString()) * k / 3600;
+                var o = new order();
+                o.computer_id = f.computer_id;
+                o.computer_name = f.name;
+                o.s_time = f.start_time;
+                o.e_time = f.end_time;
+                o.tt_time = interval.Seconds;
+                o.servie = Convert.ToDouble(f.service_charge);
+                dc.orders.InsertOnSubmit(o);
+                dc.SubmitChanges();
+                frmOrder fo = new frmOrder(id, total);
+                fo.ShowDialog();
+                f.status = 0;
                 f.used_times += k;
                 var m = dc.computers.FirstOrDefault(n => n.name == name);
                 m.profit += total;
                 m.total_used_time += k;
+                f.service_charge = 0;
+                dc.deleteServiceCondition(id);
                 dc.SubmitChanges();
             }
             else
@@ -108,34 +129,7 @@ namespace CafeInternet
 
         private void dgvAllCom_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            
-            DataGridViewRow row = dgvAllCom.CurrentRow;
-            int id = Convert.ToInt32(row.Cells[0].Value.ToString());
-            string name = row.Cells[1].Value.ToString();
-            var f = dc.computer_status.FirstOrDefault(x => x.computer_id == id);
-            if (f.status == 0)
-            {
-                f.status = 1;
-                f.start_time = DateTime.Now;
-                dc.SubmitChanges();
-            }
-            else
-            {
-                f.status = 0;
-                f.end_time = DateTime.Now;
-                TimeSpan interval = f.end_time - f.start_time;
-                int k = interval.Seconds;
-                float total = Convert.ToInt32(row.Cells[4].Value.ToString()) * k / 3600;
-                f.used_times += k;
-                var m = dc.computers.FirstOrDefault(n => n.name == name);
-                m.profit += total;
-                m.total_used_time += k;
-                dc.SubmitChanges();
-                dc.deleteServiceCondition(id);
-            }
-            DisplayPcOn();
-            DisplayAll();
-            dgvService.DataSource = dc.get_service_price();
+
         }
         private void button5_Click(object sender, EventArgs e)
         {
@@ -168,80 +162,154 @@ namespace CafeInternet
 
         private void btnIncrease_Click(object sender, EventArgs e)
         {
-            
-            
-                amount++;
-                txtAmount.Text = amount.ToString(); 
+            amount++;
+            txtAmount.Text = amount.ToString();
         }
 
         private void btnDecrease_Click(object sender, EventArgs e)
         {
-            if (amount != 0 )
-            {
-                amount--;
-                txtAmount.Text = amount.ToString();
-            }
+            amount--;
+            txtAmount.Text = amount.ToString();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
             DataGridViewRow row = dgvAllCom.CurrentRow;
-            int id = Convert.ToInt32(row.Cells[0].Value);
-            var u = dc.foods.FirstOrDefault(x => x.entity_id == Convert.ToInt32(cbFoods.SelectedValue));
-            var com = dc.computer_status.FirstOrDefault(x => x.computer_id == id);
-            var f = dc.services.FirstOrDefault(x => x.computer_id == id);
-            if (u.quantity >= Convert.ToInt32(txtAmount.Text))
+            int v = dc.getComputerStatus(Convert.ToInt32(row.Cells[0].Value.ToString()));
+            if (v == 1)
             {
-                if (f == null)
+                int id = Convert.ToInt32(row.Cells[0].Value);
+                var u = dc.foods.FirstOrDefault(x => x.entity_id == Convert.ToInt32(cbFoods.SelectedValue));
+                var com = dc.computer_status.FirstOrDefault(x => x.computer_id == id);
+                var f = dc.services.FirstOrDefault(x => x.computer_id == id);
+                var l = dc.services.FirstOrDefault(x => x.service_name == cbFoods.SelectedValue.ToString());
+                if (u.quantity >= Convert.ToInt32(txtAmount.Text))
                 {
-                    var s = new service();
-                    s.computer_id = id;
-                    s.service_name = cbFoods.SelectedValue.ToString();
-                    s.quantity = Convert.ToInt32(txtAmount.Text);
-                    s.total = u.price * Convert.ToInt32(txtAmount.Text);
-                    dc.services.InsertOnSubmit(s);
-                    dc.SubmitChanges();
-                    
-                }
-                else
-                {
-                    var m = dc.services.FirstOrDefault(x => x.computer_id == id && x.service_name == cbFoods.SelectedValue.ToString());
-                    if (m != null)
+                    if (f == null)
                     {
-                        m.quantity += Convert.ToInt32(txtAmount.Text);
-                        m.total += u.price * Convert.ToInt32(txtAmount.Text);
-                        dc.SubmitChanges();
-                        
+                        if (amount > 0)
+                        {
+                            var s = new service();
+                            s.computer_id = id;
+                            s.service_name = cbFoods.SelectedValue.ToString();
+                            s.quantity = Convert.ToInt32(txtAmount.Text);
+                            s.total = u.price * Convert.ToInt32(txtAmount.Text);
+                            u.quantity -= s.quantity;
+                            dc.services.InsertOnSubmit(s);
+                            dc.SubmitChanges();
+                            amount = 0;
+                            txtAmount.Text = "0";
+                        }
+                        else
+                        {
+                            MessageBox.Show("Amount must be more than 0", "INFORMATION", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                     }
                     else
                     {
-                        var s = new service();
-                        s.computer_id = id;
-                        s.service_name = cbFoods.SelectedValue.ToString();
-                        s.quantity = Convert.ToInt32(txtAmount.Text);
-                        s.total = u.price * Convert.ToInt32(txtAmount.Text);
-                        dc.services.InsertOnSubmit(s);
-                        dc.SubmitChanges();
-                        //m.quantity += Convert.ToInt32(txtAmount.Text);
-                        //m.total = u.price * Convert.ToInt32(txtAmount.Text);
-                        //dc.services.InsertOnSubmit(m);
-                        //dc.SubmitChanges();
+                        var m = dc.services.FirstOrDefault(x => x.computer_id == id && x.service_name == cbFoods.SelectedValue.ToString());
+                        if (m != null)
+                        {
+                            if (m.quantity + Convert.ToInt32(txtAmount.Text) >= 0)
+                            {
+                                m.quantity += Convert.ToInt32(txtAmount.Text);
+                                m.total += u.price * Convert.ToInt32(txtAmount.Text);
+                                u.quantity -= amount;
+                                dc.SubmitChanges();
+                                amount = 0;
+                                txtAmount.Text = "0";
+                            }
+                            else
+                            {
+                                MessageBox.Show("This user orders only " + m.quantity + " items", "INFORMATION", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                        }
+                        else
+                        {
+                            if (amount>0)
+                            {
+                                var s = new service();
+                                s.computer_id = id;
+                                s.service_name = cbFoods.SelectedValue.ToString();
+                                s.quantity = Convert.ToInt32(txtAmount.Text);
+                                s.total = u.price * Convert.ToInt32(txtAmount.Text);
+                                dc.services.InsertOnSubmit(s);
+                                u.quantity -= s.quantity;
+                                dc.SubmitChanges();
+                                amount = 0;
+                                txtAmount.Text = "0";
+                            }
+                            else
+                            {
+                                MessageBox.Show("Amount must be more than 0", "INFORMATION", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            //m.quantity += Convert.ToInt32(txtAmount.Text);
+                            //m.total = u.price * Convert.ToInt32(txtAmount.Text);
+                            //dc.services.InsertOnSubmit(m);
+                            //dc.SubmitChanges();
+                        }
                     }
+                    dgvService.DataSource = dc.getServiceMoney(Convert.ToInt32(row.Cells[0].Value.ToString()));
+
                 }
-                dgvService.DataSource = dc.get_service_price();
+                else
+                {
+                    MessageBox.Show("There are only " + u.quantity + " items remain!", "INFORMATION", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             else
             {
-                MessageBox.Show("There are only " + u.quantity + " items remain!", "INFORMATION", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("This PC is not in used!", "INFORMATION", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            var f = dc.computer_status.FirstOrDefault(x => x.status == 1);
-            f.service_charge = dc.getTotalServiceMoney(f.entity_id);
-            dc.SubmitChanges();   
-            DisplayAll();
+            DataGridViewRow row = dgvAllCom.CurrentRow;
+            int v = dc.getComputerStatus(Convert.ToInt32(row.Cells[0].Value.ToString()));
+            if (v == 1)
+            {
+                var f = dc.computer_status.FirstOrDefault(x => x.computer_id == Convert.ToInt32(row.Cells[0].Value.ToString()));
+                f.service_charge = dc.getTotalServiceMoney(f.computer_id);
+                dc.SubmitChanges();
+                DisplayAll();
+            }
+            else
+            {
+                MessageBox.Show("This PC is not in used!", "INFORMATION", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+        }
+
+        private void dgvAllCom_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow row = dgvAllCom.CurrentRow;
+            int v = dc.getComputerStatus(Convert.ToInt32(row.Cells[0].Value.ToString()));
+            if (v == 1)
+            {
+                dgvService.DataSource = dc.getServiceMoney(Convert.ToInt32(row.Cells[0].Value.ToString()));
+            }
+            else
+            {
+                dgvService.DataSource = null;
+            }
+        }
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            if (dgvService.CurrentRow != null)
+            {
+                if (MessageBox.Show("Do you want to delete?", "INFORMATION",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    DataGridViewRow row = dgvService.CurrentRow;
+                    int v = Convert.ToInt32(row.Cells[0].Value);
+                    dc.deleteS(v);
+                    DataGridViewRow row2 = dgvAllCom.CurrentRow;
+                    int ev = dc.getComputerStatus(Convert.ToInt32(row2.Cells[0].Value.ToString()));
+                    dgvService.DataSource = dc.getServiceMoney(Convert.ToInt32(row2.Cells[0].Value.ToString()));
+                }
+            }
         }
     }
 }

@@ -35,13 +35,7 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.lbHour = new System.Windows.Forms.Label();
             this.lbDay = new System.Windows.Forms.Label();
-            this.btnStart = new System.Windows.Forms.Button();
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -65,16 +59,22 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.tableLayoutPanel17 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnIncrease = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.txtAmount = new System.Windows.Forms.TextBox();
-            this.btnDecrease = new System.Windows.Forms.Button();
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
+            this.button6 = new System.Windows.Forms.Button();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.button6 = new System.Windows.Forms.Button();
+            this.btnIncrease = new System.Windows.Forms.Button();
+            this.btnDecrease = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnStart = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -177,21 +177,6 @@
             this.lbDay.TabIndex = 1;
             this.lbDay.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btnStart
-            // 
-            this.btnStart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnStart.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnStart.ImageIndex = 3;
-            this.btnStart.ImageList = this.imageList2;
-            this.btnStart.Location = new System.Drawing.Point(3, 3);
-            this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(135, 73);
-            this.btnStart.TabIndex = 2;
-            this.btnStart.Text = "Start";
-            this.btnStart.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnStart.UseVisualStyleBackColor = true;
-            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
-            // 
             // imageList2
             // 
             this.imageList2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList2.ImageStream")));
@@ -202,78 +187,6 @@
             this.imageList2.Images.SetKeyName(3, "logout_off_exit_14655.ico");
             this.imageList2.Images.SetKeyName(4, "gui_about_icon_157266.ico");
             this.imageList2.Images.SetKeyName(5, "password_userpassword_9564.ico");
-            // 
-            // button1
-            // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.ImageIndex = 0;
-            this.button1.ImageList = this.imageList2;
-            this.button1.Location = new System.Drawing.Point(144, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(135, 73);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Cash";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.ImageIndex = 5;
-            this.button2.ImageList = this.imageList2;
-            this.button2.Location = new System.Drawing.Point(285, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(135, 73);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Setting";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.ImageIndex = 4;
-            this.button3.ImageList = this.imageList2;
-            this.button3.Location = new System.Drawing.Point(426, 3);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(135, 73);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "About";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.ImageIndex = 2;
-            this.button4.ImageList = this.imageList2;
-            this.button4.Location = new System.Drawing.Point(567, 3);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(135, 73);
-            this.button4.TabIndex = 6;
-            this.button4.Text = "Log Out";
-            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            this.button5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button5.ImageIndex = 3;
-            this.button5.ImageList = this.imageList2;
-            this.button5.Location = new System.Drawing.Point(708, 3);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(135, 73);
-            this.button5.TabIndex = 7;
-            this.button5.Text = "Exit";
-            this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // tableLayoutPanel4
             // 
@@ -376,6 +289,7 @@
             // 
             this.pnlShow.Controls.Add(this.dgvAllCom);
             this.pnlShow.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlShow.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pnlShow.Location = new System.Drawing.Point(3, 3);
             this.pnlShow.Name = "pnlShow";
             this.pnlShow.Size = new System.Drawing.Size(634, 405);
@@ -392,7 +306,7 @@
             this.dgvAllCom.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvAllCom.Size = new System.Drawing.Size(634, 405);
             this.dgvAllCom.TabIndex = 1;
-            this.dgvAllCom.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAllCom_CellDoubleClick);
+            this.dgvAllCom.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAllCom_CellClick);
             // 
             // dgvLog
             // 
@@ -473,7 +387,10 @@
             this.dgvService.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvService.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvService.Location = new System.Drawing.Point(3, 3);
+            this.dgvService.MultiSelect = false;
             this.dgvService.Name = "dgvService";
+            this.dgvService.ReadOnly = true;
+            this.dgvService.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvService.Size = new System.Drawing.Size(401, 292);
             this.dgvService.TabIndex = 0;
             // 
@@ -561,8 +478,9 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(87, 48);
             this.btnCancel.TabIndex = 1;
-            this.btnCancel.Text = "Cancel";
+            this.btnCancel.Text = "Delete";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // tableLayoutPanel17
             // 
@@ -580,18 +498,6 @@
             this.tableLayoutPanel17.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel17.Size = new System.Drawing.Size(186, 32);
             this.tableLayoutPanel17.TabIndex = 1;
-            // 
-            // btnIncrease
-            // 
-            this.btnIncrease.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnIncrease.ImageIndex = 1;
-            this.btnIncrease.ImageList = this.imageList1;
-            this.btnIncrease.Location = new System.Drawing.Point(127, 3);
-            this.btnIncrease.Name = "btnIncrease";
-            this.btnIncrease.Size = new System.Drawing.Size(56, 26);
-            this.btnIncrease.TabIndex = 2;
-            this.btnIncrease.UseVisualStyleBackColor = true;
-            this.btnIncrease.Click += new System.EventHandler(this.btnIncrease_Click);
             // 
             // imageList1
             // 
@@ -615,25 +521,12 @@
             this.txtAmount.Text = "0";
             this.txtAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // btnDecrease
-            // 
-            this.btnDecrease.BackColor = System.Drawing.SystemColors.Control;
-            this.btnDecrease.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnDecrease.ImageIndex = 0;
-            this.btnDecrease.ImageList = this.imageList1;
-            this.btnDecrease.Location = new System.Drawing.Point(3, 3);
-            this.btnDecrease.Name = "btnDecrease";
-            this.btnDecrease.Size = new System.Drawing.Size(56, 26);
-            this.btnDecrease.TabIndex = 1;
-            this.btnDecrease.UseVisualStyleBackColor = false;
-            this.btnDecrease.Click += new System.EventHandler(this.btnDecrease_Click);
-            // 
             // tableLayoutPanel11
             // 
             this.tableLayoutPanel11.ColumnCount = 2;
             this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel11.Controls.Add(this.button6, 0, 0);
+            this.tableLayoutPanel11.Controls.Add(this.button6, 1, 0);
             this.tableLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel11.Location = new System.Drawing.Point(3, 442);
             this.tableLayoutPanel11.Name = "tableLayoutPanel11";
@@ -641,6 +534,17 @@
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel11.Size = new System.Drawing.Size(413, 46);
             this.tableLayoutPanel11.TabIndex = 1;
+            // 
+            // button6
+            // 
+            this.button6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button6.Location = new System.Drawing.Point(209, 3);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(201, 40);
+            this.button6.TabIndex = 0;
+            this.button6.Text = "Order";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // tableLayoutPanel9
             // 
@@ -656,17 +560,6 @@
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel9.Size = new System.Drawing.Size(419, 47);
             this.tableLayoutPanel9.TabIndex = 1;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox1.Image = global::CafeInternet.Properties.Resources._1486505264_food_fork_kitchen_knife_meanns_restaurant_81404;
-            this.pictureBox1.Location = new System.Drawing.Point(151, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(52, 41);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // label1
             // 
@@ -684,15 +577,128 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // button6
+            // btnIncrease
             // 
-            this.button6.Location = new System.Drawing.Point(3, 3);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 0;
-            this.button6.Text = "button6";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.btnIncrease.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnIncrease.ImageIndex = 1;
+            this.btnIncrease.ImageList = this.imageList1;
+            this.btnIncrease.Location = new System.Drawing.Point(127, 3);
+            this.btnIncrease.Name = "btnIncrease";
+            this.btnIncrease.Size = new System.Drawing.Size(56, 26);
+            this.btnIncrease.TabIndex = 2;
+            this.btnIncrease.UseVisualStyleBackColor = true;
+            this.btnIncrease.Click += new System.EventHandler(this.btnIncrease_Click);
+            // 
+            // btnDecrease
+            // 
+            this.btnDecrease.BackColor = System.Drawing.SystemColors.Control;
+            this.btnDecrease.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnDecrease.ImageIndex = 0;
+            this.btnDecrease.ImageList = this.imageList1;
+            this.btnDecrease.Location = new System.Drawing.Point(3, 3);
+            this.btnDecrease.Name = "btnDecrease";
+            this.btnDecrease.Size = new System.Drawing.Size(56, 26);
+            this.btnDecrease.TabIndex = 1;
+            this.btnDecrease.UseVisualStyleBackColor = false;
+            this.btnDecrease.Click += new System.EventHandler(this.btnDecrease_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pictureBox1.Image = global::CafeInternet.Properties.Resources._1486505264_food_fork_kitchen_knife_meanns_restaurant_81404;
+            this.pictureBox1.Location = new System.Drawing.Point(151, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(52, 41);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // btnStart
+            // 
+            this.btnStart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnStart.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStart.ImageIndex = 3;
+            this.btnStart.ImageList = this.imageList2;
+            this.btnStart.Location = new System.Drawing.Point(3, 3);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(135, 73);
+            this.btnStart.TabIndex = 2;
+            this.btnStart.Text = "Start";
+            this.btnStart.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnStart.UseVisualStyleBackColor = true;
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+            // 
+            // button1
+            // 
+            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.ImageIndex = 0;
+            this.button1.ImageList = this.imageList2;
+            this.button1.Location = new System.Drawing.Point(144, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(135, 73);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Cash";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.ImageIndex = 5;
+            this.button2.ImageList = this.imageList2;
+            this.button2.Location = new System.Drawing.Point(285, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(135, 73);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "Setting";
+            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button3.ImageIndex = 4;
+            this.button3.ImageList = this.imageList2;
+            this.button3.Location = new System.Drawing.Point(426, 3);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(135, 73);
+            this.button3.TabIndex = 5;
+            this.button3.Text = "About";
+            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button4.ImageIndex = 2;
+            this.button4.ImageList = this.imageList2;
+            this.button4.Location = new System.Drawing.Point(567, 3);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(135, 73);
+            this.button4.TabIndex = 6;
+            this.button4.Text = "Log Out";
+            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button5.ImageIndex = 3;
+            this.button5.ImageList = this.imageList2;
+            this.button5.Location = new System.Drawing.Point(708, 3);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(135, 73);
+            this.button5.TabIndex = 7;
+            this.button5.Text = "Exit";
+            this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // frmMain
             // 

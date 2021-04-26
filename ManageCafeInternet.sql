@@ -83,8 +83,12 @@ GO
 CREATE TABLE [order]
 (
 	entity_id INT PRIMARY KEY IDENTITY,
-	computer_status_id INT NOT NULL,
-	FOREIGN KEY (computer_status_id) REFERENCES [computer_status](entity_id)
+	computer_id INT NOT NULL,
+	computer_name NVARCHAR(255) NOT NULL,
+	s_time DATETIME NOT NULL,
+	e_time DATETIME NOT NULL,
+	tt_time INT NOT NULL,
+	servie FLOAT NOT NULL
 )
 GO
 CREATE TABLE [report]
@@ -272,17 +276,52 @@ END
 RETURN @total
 GO
 
-CREATE PROC [getServiceMoney]
+ALTER PROC [getServiceMoney]
+@id INT
 AS
-SELECT	[service].entity_id,
-		[service].computer_id,
-		[service].service_name,
-		[service].quantity,
-		[service].total,
-		[computer_status].status AS 'computer_status'
+SELECT  [service].entity_id AS 'Id',
+		[computer_status].name AS 'Computer Name',
+		[service].computer_id AS 'Computer Id',
+		[service].service_name AS 'Service Name',
+		[service].quantity AS 'Quantity',
+		[service].total AS 'Total'
 FROM [service]
 JOIN [computer_status]
 ON [computer_status].computer_id = [service].computer_id
+WHERE [service].computer_id = @id
 GO
-SELECT * FROM [computer_status]
+
+CREATE PROC [getOrder]
+@id INT
+AS
+SELECT TOP 1 
+		[order].computer_name AS 'PC',
+		[order].s_time AS 'Start Time',
+		[order].e_time AS 'End Time',
+		[order].tt_time AS'Total Used Time',
+		[order].servie AS 'Service Monery' 
+FROM [order]
+WHERE computer_id = 8
+ORDER BY entity_id DESC
+GO
+
+CREATE PROC [getComputerStatus]
+@id INT
+AS
+DECLARE @status TINYINT
+BEGIN 
+SET @status =  (SELECT [computer_status].status FROM computer_status
+WHERE computer_id = @id)
+END
+RETURN @status
+GO
+
+SELECT * FROM [food]
+GO
+
+CREATE PROC [deleteS]
+@id INT
+AS
+DELETE [service]
+WHERE [service].entity_id = @id
 GO
