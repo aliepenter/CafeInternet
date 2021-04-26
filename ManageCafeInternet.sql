@@ -62,6 +62,7 @@ CREATE TABLE [computer_status]
 	area_id INT NOT NULL,
 	status TINYINT NOT NULL,
 	used_times INT NOT NULL,
+	service_charge FLOAT,
 	start_time DATETIME NOT NULL,
 	end_time DATETIME NOT NULL,
 	food_id NVARCHAR(255),
@@ -74,11 +75,11 @@ CREATE TABLE [service]
 	computer_name NVARCHAR(255) NOT NULL,
 	service_name NVARCHAR(255) NOT NULL,
 	quantity INT NOT NULL,
-	total FLOAT NOT NULL
+	total FLOAT NOT NULL,
+	status TINYINT NOT NULL
 )
 GO
-SELECT * FROM [food_type]
-GO
+
 CREATE TABLE [order]
 (
 	entity_id INT PRIMARY KEY IDENTITY,
@@ -127,6 +128,12 @@ INSERT INTO [area] VALUES
 GO
 INSERT INTO [computer] VALUES
 (N'PC01',1,0,100,500000),
+(N'PC02',1,0,0,0),
+(N'PC03',1,0,0,0),
+(N'PC04',1,0,0,0),
+(N'PC05',1,0,0,0),
+(N'PC06',1,0,0,0),
+(N'PC07',1,0,0,7500000),
 (N'PC11',2,0,800,8000000),
 (N'PC21',3,0,500,7500000)
 GO
@@ -142,7 +149,7 @@ SELECT * FROM [user] WHERE account = @account
 GO
 CREATE PROC [get_food]
 AS
-SELECT * FROM [area]
+SELECT * FROM [food]
 GO
 CREATE PROC [get_price_area]
 AS
@@ -155,12 +162,14 @@ FROM computer c
 right join area a on a.entity_id = c.area_id
 group by a.entity_id,a.price,a.name
 GO
+
 CREATE PROC [send_data]
 AS
-INSERT INTO [computer_status](computer_id,name, area_id, status,used_times,start_time, end_time)
-SELECT [computer].entity_id, [computer].name, [computer].area_id,0,0,CURRENT_TIMESTAMP,0 FROM [computer]
+INSERT INTO [computer_status](computer_id,name, area_id, status,used_times,service_charge,start_time, end_time)
+SELECT [computer].entity_id, [computer].name, [computer].area_id,0,0,0,CURRENT_TIMESTAMP,0 FROM [computer]
 WHERE [computer].status = 0;
 GO
+
 CREATE PROC [search_area]
 @name NVARCHAR(255)
 AS
@@ -174,6 +183,7 @@ right join area a on a.entity_id = c.area_id
 WHERE a.name like @name
 group by a.entity_id,a.price,a.name
 GO
+
 CREATE PROC [getAllComputersFromArea]
 AS
 SELECT	[computer].entity_id AS 'Computer Id',
@@ -192,7 +202,8 @@ SELECT	[computer_status].computer_id AS 'Computer Id',
 		[area].name AS 'Area',
 		[area].price AS 'Price',
 		[computer_status].start_time AS 'Start Time',
-		[computer_status].used_times AS 'Used_time'
+		[computer_status].used_times AS 'Used Time',
+		[computer_status].service_charge AS 'Service Money'
 FROM computer_status
 JOIN area
 ON [computer_status].area_id = area.entity_id
@@ -201,4 +212,66 @@ GO
 CREATE PROC [deleteComputerStatus]
 AS
 DELETE [computer_status]
+GO
+
+CREATE PROC [deleteService]
+AS
+DELETE [service]
+GO
+CREATE PROC [deleteServiceCondition]
+@name NVARCHAR(255)
+AS
+DELETE [service]
+WHERE [service].computer_name = @name
+GO
+
+CREATE PROC [getService]
+@name NVARCHAR(255)
+AS
+SELECT	[service].computer_name AS 'Computer Name',	
+		[service].service_name AS 'Name',
+		[service].quantity AS 'Amont',
+		[service].total AS 'Total'
+FROM [service]
+WHERE [service].computer_name = @name
+GO
+
+CREATE PROC [get_service_price]
+AS
+SELECT 
+s.computer_name as 'Computer Name',
+s.service_name as 'Service Name',
+s.quantity as 'Quantity',
+s.total as 'Total'
+FROM service s
+GO
+
+CREATE PROC [sum_service]
+@name NVARCHAR
+AS
+SELECT
+[computer].name AS 'Name',
+SUM(total) AS 'total_money'
+FROM [service]
+JOIN [computer]
+ON [service].computer_name = @name
+WHERE [service].status = 0
+GROUP BY [computer].name
+GO
+
+
+--CREATE PROC [sum_service]
+--AS
+INSERT INTO [computer_status](service_charge)
+SELECT SUM(total)
+FROM [service]
+JOIN [computer]
+ON [service].computer_name = computer.name
+WHERE [service].status = 0
+GO
+
+
+SELECT * FROM [service]
+GO
+SELECT * FROM [computer_status]
 GO

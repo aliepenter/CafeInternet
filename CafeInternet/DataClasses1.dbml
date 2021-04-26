@@ -67,6 +67,13 @@
       <Association Name="area_computer_status" Member="computer_status" ThisKey="entity_id" OtherKey="area_id" Type="computer_status" />
     </Type>
   </Table>
+  <Table Name="dbo.food_type" Member="food_types">
+    <Type Name="food_type">
+      <Column Name="entity_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="food_type_food" Member="foods" ThisKey="entity_id" OtherKey="food_type_id" Type="food" />
+    </Type>
+  </Table>
   <Table Name="dbo.computer_status" Member="computer_status">
     <Type Name="computer_status">
       <Column Name="entity_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -75,6 +82,7 @@
       <Column Name="area_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
       <Column Name="used_times" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="service_charge" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="start_time" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="end_time" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="food_id" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
@@ -89,13 +97,7 @@
       <Column Name="service_name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="total" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.food_type" Member="food_types">
-    <Type Name="food_type">
-      <Column Name="entity_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Association Name="food_type_food" Member="foods" ThisKey="entity_id" OtherKey="food_type_id" Type="food" />
+      <Column Name="status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Function Name="dbo.search_area" Method="search_area">
@@ -156,6 +158,37 @@
   <Function Name="dbo.deleteComputerStatus" Method="deleteComputerStatus">
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.getFoods" Method="getFoods">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <ElementType Name="getFoodsResult">
+      <Column Name="Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Amount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.send_data" Method="send_data">
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.getService" Method="getService">
+    <Parameter Name="name" Type="System.String" DbType="NVarChar(255)" />
+    <ElementType Name="getServiceResult">
+      <Column Name="[Computer Name]" Member="Computer_Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Amont" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Total" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.get_service_price" Method="get_service_price">
+    <ElementType Name="get_service_priceResult">
+      <Column Name="[Computer Name]" Member="Computer_Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="[Service Name]" Member="Service_Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Total" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.deleteService" Method="deleteService">
+    <Return Type="System.Int32" />
+  </Function>
   <Function Name="dbo.getAllComputersFromComputerStatus" Method="getAllComputersFromComputerStatus">
     <ElementType Name="getAllComputersFromComputerStatusResult">
       <Column Name="[Computer Id]" Member="Computer_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -164,10 +197,19 @@
       <Column Name="Area" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="Price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="[Start Time]" Member="Start_Time" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="Used_time" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Used Time]" Member="Used_Time" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Service Money]" Member="Service_Money" Type="System.Double" DbType="Float" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.send_data" Method="send_data">
+  <Function Name="dbo.sum_service" Method="sum_service">
+    <Parameter Name="name" Type="System.String" DbType="NVarChar(1)" />
+    <ElementType Name="sum_serviceResult">
+      <Column Name="Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="total_money" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.deleteServiceCondition" Method="deleteServiceCondition">
+    <Parameter Name="name" Type="System.String" DbType="NVarChar(255)" />
     <Return Type="System.Int32" />
   </Function>
 </Database>

@@ -59,6 +59,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataClasses1.dbml</DependentUpon>
     </Compile>
+    <Compile Include="IU Shop Manage\frmQuantity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IU Shop Manage\frmQuantity.Designer.cs">
+      <DependentUpon>frmQuantity.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportAdmin\crpArea1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -151,6 +157,9 @@
     </None>
     <EmbeddedResource Include="IU Shop Manage\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IU Shop Manage\frmQuantity.resx">
+      <DependentUpon>frmQuantity.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportAdmin\crpArea1.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

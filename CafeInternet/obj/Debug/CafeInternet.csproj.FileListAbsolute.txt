@@ -147,3 +147,4 @@ D:\CafeInternet\CafeInternet\obj\Debug\CafeInternet.exe
 D:\CafeInternet\CafeInternet\obj\Debug\CafeInternet.pdb
 D:\CafeInternet\CafeInternet\obj\Debug\CafeInternet.frmMain.resources
 E:\CafeInternet\CafeInternet\obj\Debug\CafeInternet.frmMain.resources
+E:\CafeInternet\CafeInternet\obj\Debug\CafeInternet.IU_Shop_Manage.frmQuantity.resources
