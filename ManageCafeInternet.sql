@@ -91,6 +91,16 @@ CREATE TABLE [order]
 	servie FLOAT NOT NULL
 )
 GO
+CREATE TABLE [log]
+(
+	entity_id INT PRIMARY KEY IDENTITY,
+	timenow DATETIME NOT NULL,
+	computer_name NVARCHAR(255) NOT NULL,
+	notice NVARCHAR(255) NOT NULL,
+	total FLOAT 
+)
+GO
+
 CREATE TABLE [report]
 (
 	entity_id INT PRIMARY KEY IDENTITY,
@@ -109,9 +119,9 @@ INSERT INTO [role] VALUES
 (N'Shop Manager')
 GO
 INSERT INTO [user] VALUES
-(N'admin',N'123',N'Đặng Tuấn Đạt',N'D:\CafeInternet\CafeInternet\Resources\avatar.jpg',1),
-(N'user1',N'123',N'Đỗ Hồng Ngọc',N'D:\CafeInternet\CafeInternet\Resources\avatar.jpg',2),
-(N'user2',N'123',N'Nguyễn Tuấn Minh',N'D:\CafeInternet\CafeInternet\Resources\redsting.jpg',3)
+(N'admin',N'123',N'Đặng Tuấn Đạt',N'E:\CafeInternet\CafeInternet\Resources\avatar.jpg',1),
+(N'user1',N'123',N'Đỗ Hồng Ngọc',N'E:\CafeInternet\CafeInternet\Resources\avt2.jpg',2),
+(N'user2',N'123',N'Nguyễn Tuấn Minh',N'E:\CafeInternet\CafeInternet\Resources\avt3.jpg',3)
 GO
 INSERT INTO [food_type] VALUES
 (N'Foods'),
@@ -120,10 +130,12 @@ INSERT INTO [food_type] VALUES
 (N'Others')
 GO
 INSERT INTO [food] VALUES
-(N'Red Sting',10000,10,N'D:\CafeInternet\CafeInternet\Resources\redsting.jpg',1),
-(N'Yellow Sting',10000,20,N'D:\CafeInternet\CafeInternet\Resources\yellowsting.jpg',2),
-(N'Egg Cafe',15000,10,N'D:\CafeInternet\CafeInternet\Resources\eggcafe.jpg',3),
-(N'Egg2 Cafe',15000,10,N'D:\CafeInternet\CafeInternet\Resources\eggcafe.jpg',4)
+(N'Noodle',20000,2,N'E:\CafeInternet\CafeInternet\Resources\noodle.jpg',1),
+(N'Red Sting',10000,10,N'E:\CafeInternet\CafeInternet\Resources\redsting.jpg',2),
+(N'Yellow Sting',10000,20,N'E:\CafeInternet\CafeInternet\Resources\yellowsting.jpg',2),
+(N'Egg Cafe',15000,10,N'E:\CafeInternet\CafeInternet\Resources\eggcafe.jpg',3),
+(N'fruit juice',15000,10,N'E:\CafeInternet\CafeInternet\Resources\sinh-to-trai-cay.jpg',3),
+(N'cigarette',25000,10,N'E:\CafeInternet\CafeInternet\Resources\thang_long_cung.jpg',4)
 GO
 INSERT INTO [area] VALUES
 (N'Pro',5000),
@@ -139,7 +151,8 @@ INSERT INTO [computer] VALUES
 (N'PC06',1,0,0,0),
 (N'PC07',1,0,0,7500000),
 (N'PC11',2,0,800,8000000),
-(N'PC21',3,0,500,7500000)
+(N'PC21',3,0,500,7500000),
+(N'PC22',3,0,0,0)
 GO
 CREATE PROC [login_permission] 
 @account NVARCHAR(255), @password NVARCHAR(255)
@@ -276,7 +289,26 @@ END
 RETURN @total
 GO
 
-ALTER PROC [getServiceMoney]
+CREATE PROC [countTotalPc]
+AS
+DECLARE @total INT
+BEGIN 
+SET @total =  (SELECT COUNT(computer_id) FROM [computer_status])
+END
+RETURN @total
+GO
+
+CREATE PROC [countOfflinePc]
+AS
+DECLARE @total INT
+BEGIN 
+SET @total =  (SELECT COUNT(computer_id) FROM [computer_status]
+WHERE [computer_status].status =0 )
+END
+RETURN @total
+GO
+
+CREATE PROC [getServiceMoney]
 @id INT
 AS
 SELECT  [service].entity_id AS 'Id',
@@ -301,7 +333,7 @@ SELECT TOP 1
 		[order].tt_time AS'Total Used Time',
 		[order].servie AS 'Service Monery' 
 FROM [order]
-WHERE computer_id = 8
+WHERE computer_id = @id
 ORDER BY entity_id DESC
 GO
 
@@ -317,6 +349,21 @@ RETURN @status
 GO
 
 SELECT * FROM [food]
+GO
+
+CREATE PROC [getLog]
+AS
+SELECT 
+s.timenow as 'Time',
+s.computer_name as 'Computer',
+s.notice as 'Notice',
+s.total as 'Total'
+FROM [log] s
+GO
+
+CREATE PROC [deletelog]
+AS
+DELETE [log]
 GO
 
 CREATE PROC [deleteS]

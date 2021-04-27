@@ -13,19 +13,22 @@ namespace CafeInternet
     public partial class frmMain : Form
     {
         public int amount = 0;
-        public int check;
+        public string check;
         DataClasses1DataContext dc = new DataClasses1DataContext();
-        public frmMain()
+        public frmMain(string f)
         {
             InitializeComponent();
             dc.send_data();
-
+            check = f;
+            this.dgvLog.DefaultCellStyle.ForeColor = Color.Blue;
+            this.dgvLog.DefaultCellStyle.SelectionBackColor = this.dgvLog.DefaultCellStyle.BackColor;
+            this.dgvLog.DefaultCellStyle.SelectionForeColor = this.dgvLog.DefaultCellStyle.ForeColor;
         }
-        public frmMain(int e)
-        {
-            InitializeComponent();
-            check = e;
-        }
+        //public frmMain()
+        //{
+        //    InitializeComponent();
+        //    
+        //}
         private void DisplayPcOn()
         {
             var food = from m in dc.foods
@@ -56,6 +59,8 @@ namespace CafeInternet
                 if (row.Cells[2].Value.ToString() == "ONLINE")
                 {
                     row.DefaultCellStyle.BackColor = Color.Green;
+                    row.DefaultCellStyle.ForeColor = Color.Yellow;
+                    row.DefaultCellStyle.Font = new Font("Microsoft Sans Serif", 12, FontStyle.Bold);
                 }
             }
         }
@@ -69,6 +74,14 @@ namespace CafeInternet
                 f.status = 1;
                 f.start_time = DateTime.Now;
                 dc.SubmitChanges();
+                var k = new log();
+                k.timenow = DateTime.Now;
+                k.computer_name = f.name;
+                k.notice = "Session started";
+                dc.logs.InsertOnSubmit(k);
+                dc.SubmitChanges();
+                dgvLog.DataSource = dc.getLog();
+                dgvLog.Sort(dgvLog.Columns[0], ListSortDirection.Descending);
             }
             else
             {
@@ -82,6 +95,7 @@ namespace CafeInternet
             DataGridViewRow row = dgvAllCom.CurrentRow;
             int id = Convert.ToInt32(row.Cells[0].Value.ToString());
             string name = row.Cells[1].Value.ToString();
+            int pro = 0;
             var f = dc.computer_status.FirstOrDefault(x => x.computer_id == id);
             if (f.status == 1)
             {
@@ -105,9 +119,20 @@ namespace CafeInternet
                 var m = dc.computers.FirstOrDefault(n => n.name == name);
                 m.profit += total;
                 m.total_used_time += k;
-                f.service_charge = 0;
+                
                 dc.deleteServiceCondition(id);
                 dc.SubmitChanges();
+                var p = new log();
+                p.timenow = DateTime.Now;
+                p.computer_name = f.name;
+                p.notice = "Session stopped";
+                p.total = f.service_charge + total;
+                dc.logs.InsertOnSubmit(p);
+                f.service_charge = 0;
+                dc.SubmitChanges();
+                dgvLog.DataSource = dc.getLog();
+                dgvLog.Sort(dgvLog.Columns[0], ListSortDirection.Descending);
+                
             }
             else
             {
@@ -119,6 +144,12 @@ namespace CafeInternet
             timer1.Start();
             DisplayAll();
             DisplayPcOn();
+            dgvLog.DataSource = dc.getLog().ToList();
+            lbNameCashier.Text = check;
+            lbTotalPc.Text = (dc.countTotalPc()).ToString();
+            lbOff.Text = (dc.countOfflinePc()).ToString();
+            lbOn.Text = (dc.countTotalPc() - dc.countOfflinePc()).ToString();
+            lbRatio.Text = ((Convert.ToDouble(dc.countTotalPc()) - Convert.ToDouble(dc.countOfflinePc())) / Convert.ToDouble(dc.countTotalPc()) * 100).ToString("0");
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -126,28 +157,40 @@ namespace CafeInternet
             lbHour.Text = DateTime.Now.ToLongTimeString();
             lbDay.Text = DateTime.Now.ToLongDateString();
         }
-
-        private void dgvAllCom_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
         private void button5_Click(object sender, EventArgs e)
         {
-            this.Dispose();
-            dc.deleteComputerStatus();
-            dc.deleteService();
+            var k = dc.computer_status.FirstOrDefault(x => x.status == 1);
+            if (k == null)
+            {
+                this.Dispose();
+                dc.deleteComputerStatus();
+                dc.deleteService();
+                dc.deletelog();
+            }
+            else
+            {
+                MessageBox.Show("You can not exit this time!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             TurnOffCom();
             DisplayAll();
+            lbOff.Text = (dc.countOfflinePc()).ToString();
+            lbOn.Text = (dc.countTotalPc() - dc.countOfflinePc()).ToString();
+            lbRatio.Text = ((Convert.ToDouble(dc.countTotalPc()) - Convert.ToDouble(dc.countOfflinePc())) / Convert.ToDouble(dc.countTotalPc()) * 100).ToString("0");
         }
         private void btnStart_Click(object sender, EventArgs e)
         {
+            
             OpenCom();
             DisplayPcOn();
             DisplayAll();
+            lbOff.Text = (dc.countOfflinePc()).ToString();
+            lbOn.Text = (dc.countTotalPc() - dc.countOfflinePc()).ToString();
+            lbRatio.Text = ((Convert.ToDouble(dc.countTotalPc()) - Convert.ToDouble(dc.countOfflinePc())) / Convert.ToDouble(dc.countTotalPc())*100).ToString("0");
+
         }
 
         private void dgvFoods_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -274,14 +317,20 @@ namespace CafeInternet
                 f.service_charge = dc.getTotalServiceMoney(f.computer_id);
                 dc.SubmitChanges();
                 DisplayAll();
+                var k = new log();
+                k.timenow = DateTime.Now;
+                k.computer_name = f.name;
+                k.notice = "Order service";
+                dc.logs.InsertOnSubmit(k);
+                dc.SubmitChanges();
+                dgvLog.DataSource = dc.getLog();
+                dgvLog.Sort(dgvLog.Columns[0], ListSortDirection.Descending);
             }
             else
             {
                 MessageBox.Show("This PC is not in used!", "INFORMATION", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
         }
-
         private void dgvAllCom_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewRow row = dgvAllCom.CurrentRow;
@@ -311,5 +360,34 @@ namespace CafeInternet
                 }
             }
         }
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+                this.Dispose();
+                dc.deleteComputerStatus();
+                dc.deleteService();
+            dc.deletelog();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var k = dc.computer_status.FirstOrDefault(x => x.status == 1);
+            if (k == null)
+            {
+                this.Dispose();
+                dc.deleteComputerStatus();
+                dc.deleteService();
+                dc.deletelog();
+                frmLogin f = new frmLogin();
+                this.Hide();
+                f.ShowDialog();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("You can not exit this time!", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            
+        }
+
     }
 }

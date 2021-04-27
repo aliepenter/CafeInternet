@@ -31,14 +31,17 @@ namespace CafeInternet
                         if (u.role_id == 2)
                         {
                             frmAdmin frm = new frmAdmin(u.image, u.name, u.account, u.role_id);
-                            frm.Show();
                             this.Hide();
+                            frm.ShowDialog();
+                            this.Close();
+
                         }
                         else
                         {
-                            frmMain frm1 = new frmMain();
-                            frm1.Show();
+                            frmMain frm1 = new frmMain(u.name);
                             this.Hide();
+                            frm1.ShowDialog();
+                            this.Close();
                         }
                     }
                     else

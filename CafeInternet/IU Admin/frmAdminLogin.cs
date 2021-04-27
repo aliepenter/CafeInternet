@@ -52,8 +52,9 @@ namespace CafeInternet
         private void btnLogOut_Click(object sender, EventArgs e)
         {
             frmLogin f = new frmLogin();
-            f.Show();
             this.Hide();
+            f.ShowDialog();
+            this.Close();
         }
 
         private void btnInventor_Click(object sender, EventArgs e)
@@ -67,7 +68,7 @@ namespace CafeInternet
         private void btnShop_Click(object sender, EventArgs e)
         {
             this.Hide();
-            frmMain frm = new frmMain();
+            frmMain frm = new frmMain(nameAdmin);
             frm.ShowDialog();
             this.Close();
         }

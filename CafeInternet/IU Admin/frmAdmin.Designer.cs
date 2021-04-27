@@ -204,6 +204,7 @@
             this.imageList1.Images.SetKeyName(4, "gameroom_6044.ico");
             this.imageList1.Images.SetKeyName(5, "1486564180-finance-financial-report_81493.ico");
             this.imageList1.Images.SetKeyName(6, "businessapplication_edit_male_user_thepencil_theclient_negocio_2321.ico");
+            this.imageList1.Images.SetKeyName(7, "Login_37128.ico");
             // 
             // btnReport
             // 
@@ -274,13 +275,13 @@
             this.btnArea.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnArea.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnArea.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnArea.ImageIndex = 4;
+            this.btnArea.ImageIndex = 7;
             this.btnArea.ImageList = this.imageList1;
             this.btnArea.Location = new System.Drawing.Point(4, 371);
             this.btnArea.Name = "btnArea";
             this.btnArea.Size = new System.Drawing.Size(176, 67);
             this.btnArea.TabIndex = 3;
-            this.btnArea.Text = "Area";
+            this.btnArea.Text = "Log Out";
             this.btnArea.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnArea.UseVisualStyleBackColor = false;
             this.btnArea.Click += new System.EventHandler(this.btnArea_Click);

@@ -103,6 +103,15 @@
       <Column Name="servie" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
+  <Table Name="dbo.[log]" Member="logs">
+    <Type Name="log">
+      <Column Name="entity_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="timenow" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="computer_name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="notice" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="total" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </Type>
+  </Table>
   <Function Name="dbo.deleteComputerStatus" Method="deleteComputerStatus">
     <Return Type="System.Int32" />
   </Function>
@@ -112,6 +121,10 @@
       <Column Name="Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="total_money" Type="System.Double" DbType="Float" CanBeNull="true" />
     </ElementType>
+  </Function>
+  <Function Name="dbo.deleteS" Method="deleteS">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
   </Function>
   <Function Name="dbo.deleteService" Method="deleteService">
     <Return Type="System.Int32" />
@@ -177,12 +190,37 @@
       <Column Name="[Service Money]" Member="Service_Money" Type="System.Double" DbType="Float" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.getComputerStatus" Method="getComputerStatus">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.getOrder" Method="getOrder">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <ElementType Name="getOrderResult">
+      <Column Name="PC" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="[Start Time]" Member="Start_Time" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="[End Time]" Member="End_Time" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="[Total Used Time]" Member="Total_Used_Time" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Service Monery]" Member="Service_Monery" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
   <Function Name="dbo.getService" Method="getService">
     <Parameter Name="id" Type="System.Int32" DbType="Int" />
     <ElementType Name="getServiceResult">
       <Column Name="[Computer ID]" Member="Computer_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="Amont" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Total" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.getServiceMoney" Method="getServiceMoney">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <ElementType Name="getServiceMoneyResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Computer Name]" Member="Computer_Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="[Computer Id]" Member="Computer_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Service Name]" Member="Service_Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Total" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
@@ -214,33 +252,21 @@
   <Function Name="dbo.send_data" Method="send_data">
     <Return Type="System.Int32" />
   </Function>
-  <Function Name="dbo.getComputerStatus" Method="getComputerStatus">
-    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+  <Function Name="dbo.countTotalPc" Method="countTotalPc">
     <Return Type="System.Int32" />
   </Function>
-  <Function Name="dbo.getOrder" Method="getOrder">
-    <Parameter Name="id" Type="System.Int32" DbType="Int" />
-    <ElementType Name="getOrderResult">
-      <Column Name="PC" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="[Start Time]" Member="Start_Time" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="[End Time]" Member="End_Time" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="[Total Used Time]" Member="Total_Used_Time" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="[Service Monery]" Member="Service_Monery" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.deleteS" Method="deleteS">
-    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+  <Function Name="dbo.countOfflinePc" Method="countOfflinePc">
     <Return Type="System.Int32" />
   </Function>
-  <Function Name="dbo.getServiceMoney" Method="getServiceMoney">
-    <Parameter Name="id" Type="System.Int32" DbType="Int" />
-    <ElementType Name="getServiceMoneyResult">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="[Computer Name]" Member="Computer_Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="[Computer Id]" Member="Computer_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="[Service Name]" Member="Service_Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Total" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+  <Function Name="dbo.getLog" Method="getLog">
+    <ElementType Name="getLogResult">
+      <Column Name="Time" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Computer" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Notice" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Total" Type="System.Double" DbType="Float" CanBeNull="true" />
     </ElementType>
+  </Function>
+  <Function Name="dbo.deletelog" Method="deletelog">
+    <Return Type="System.Int32" />
   </Function>
 </Database>

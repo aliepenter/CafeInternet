@@ -154,6 +154,10 @@ namespace CafeInternet
             //frmar.Dock = DockStyle.Fill;
             //frmar.Show();
             //pnlMain.Controls.Add(frmar);
+            frmLogin f = new frmLogin();
+            this.Hide();
+            f.ShowDialog();
+            this.Close();
         }
 
         private void btnUser_Click(object sender, EventArgs e)

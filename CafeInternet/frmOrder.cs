@@ -24,7 +24,7 @@ namespace CafeInternet
         private void DisplayTotal()
         {
             DataGridViewRow r = dgvOrder.CurrentRow;
-            lbTotal.Text = (Convert.ToInt32(r.Cells[4].Value) + total).ToString();
+            lbTotal.Text =(Convert.ToInt32(r.Cells[4].Value)+total).ToString();
         }
         
         private void frmOrder_Load(object sender, EventArgs e)
