@@ -65,7 +65,6 @@ CREATE TABLE [computer_status]
 	service_charge FLOAT,
 	start_time DATETIME NOT NULL,
 	end_time DATETIME NOT NULL,
-	food_id NVARCHAR(255),
 	FOREIGN KEY (area_id) REFERENCES [area](entity_id)
 )
 GO
@@ -98,6 +97,22 @@ CREATE TABLE [log]
 	computer_name NVARCHAR(255) NOT NULL,
 	notice NVARCHAR(255) NOT NULL,
 	total FLOAT 
+)
+GO
+
+CREATE TABLE [history]
+(
+	entity_id INT PRIMARY KEY IDENTITY,
+	d DATETIME NOT NULL,
+	t DATETIME NOT NULL,
+	computer_id INT NOT NULL,
+	computer_name NVARCHAR(255) NOT NULL,
+	area_id INT NOT NULL,
+	used_times INT NOT NULL,
+	service_charge FLOAT NOT NULL,
+	start_time DATETIME NOT NULL,
+	end_time DATETIME NOT NULL,
+	total_profit FLOAT NOT NULL
 )
 GO
 
@@ -348,8 +363,6 @@ END
 RETURN @status
 GO
 
-SELECT * FROM [food]
-GO
 
 CREATE PROC [getLog]
 AS
@@ -359,6 +372,34 @@ s.computer_name as 'Computer',
 s.notice as 'Notice',
 s.total as 'Total'
 FROM [log] s
+GO
+
+CREATE PROC [showHistory]
+AS
+SELECT 
+s.t as 'Time',
+s.computer_name as 'Computer',
+s.area_id as 'Area',
+s.used_times as 'Used Time',
+s.total_profit as 'Total'
+FROM [history] s
+GO
+
+CREATE PROC [getHistory]
+AS
+SELECT 
+s.entity_id as 'Id',
+s.d as 'Day',
+s.t as 'Time',
+s.computer_id as 'Computer Id',
+s.computer_name as 'Computer',
+s.area_id as 'Area',
+s.start_time as 'Start Time',
+s.end_time as 'End Time',
+s.service_charge as 'Service',
+s.used_times as 'Used Time',
+s.total_profit as 'Total'
+FROM [history] s
 GO
 
 CREATE PROC [deletelog]

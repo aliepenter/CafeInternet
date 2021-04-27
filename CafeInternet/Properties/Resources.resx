@@ -118,17 +118,29 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="1486564180-finance-financial-report_81493" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1486564180-finance-financial-report_81493.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="woman_user_avatar_account_female_icon_153149" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\woman_user_avatar_account_female_icon_153149.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="gameroom_6044" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\gameroom_6044.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="images-removebg-preview (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\images-removebg-preview (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="shop_cafe_22672" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\shop_cafe_22672.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="HomeServer_icon-icons.com_55232" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HomeServer_icon-icons.com_55232.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cyber" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cyber.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="images-removebg-preview" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\images-removebg-preview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="61_85304" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\61_85304.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -141,5 +153,8 @@
   </data>
   <data name="businessapplication_edit_male_user_thepencil_theclient_negocio_2321" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\businessapplication_edit_male_user_thepencil_theclient_negocio_2321.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bf98af5094807683b24574280afca319-removebg-preview" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bf98af5094807683b24574280afca319-removebg-preview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

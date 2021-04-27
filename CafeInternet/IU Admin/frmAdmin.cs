@@ -41,6 +41,7 @@ namespace CafeInternet
         }
         private void frmAdmin_Load(object sender, EventArgs e)
         {
+            timer1.Start();
             Rectangle r = new Rectangle(0, 0, ptbAdminAvatar.Width, ptbAdminAvatar.Height);
             System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
             gp.AddEllipse(0, 0, ptbAdminAvatar.Width - 3, ptbAdminAvatar.Height - 3);
@@ -170,6 +171,12 @@ namespace CafeInternet
             fu.Dock = DockStyle.Fill;
             fu.Show();
             pnlMain.Controls.Add(fu);
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            lbHour.Text = DateTime.Now.ToLongTimeString();
+            lbDay.Text = DateTime.Now.ToLongDateString();
         }
     }
 }

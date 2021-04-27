@@ -32,28 +32,35 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAdmin));
             this.pnlTop = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.lbNameAdmin = new System.Windows.Forms.Label();
             this.lbPosition = new System.Windows.Forms.Label();
-            this.ptbAdminAvatar = new System.Windows.Forms.PictureBox();
             this.pnlButton = new System.Windows.Forms.Panel();
-            this.btnDashbroad = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.pnlMain = new System.Windows.Forms.Panel();
+            this.btnDashbroad = new System.Windows.Forms.Button();
             this.btnReport = new System.Windows.Forms.Button();
             this.btnComputer = new System.Windows.Forms.Button();
             this.btnUser = new System.Windows.Forms.Button();
             this.btnArea = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnFood = new System.Windows.Forms.Button();
-            this.pnlMain = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.ptbAdminAvatar = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.lbHour = new System.Windows.Forms.Label();
+            this.lbDay = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.pnlTop.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ptbAdminAvatar)).BeginInit();
             this.pnlButton.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbAdminAvatar)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlTop
@@ -77,6 +84,7 @@
             this.tableLayoutPanel1.Controls.Add(this.label1, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 4, 0);
             this.tableLayoutPanel1.Controls.Add(this.ptbAdminAvatar, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.panel1, 2, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -84,17 +92,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1072, 60);
             this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox1.Image = global::CafeInternet.Properties.Resources.shop_cafe_22672;
-            this.pictureBox1.Location = new System.Drawing.Point(4, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(55, 54);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
             // 
             // label1
             // 
@@ -145,16 +142,6 @@
             this.lbPosition.Size = new System.Drawing.Size(170, 27);
             this.lbPosition.TabIndex = 5;
             // 
-            // ptbAdminAvatar
-            // 
-            this.ptbAdminAvatar.Dock = System.Windows.Forms.DockStyle.Right;
-            this.ptbAdminAvatar.Location = new System.Drawing.Point(829, 3);
-            this.ptbAdminAvatar.Name = "ptbAdminAvatar";
-            this.ptbAdminAvatar.Size = new System.Drawing.Size(58, 54);
-            this.ptbAdminAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.ptbAdminAvatar.TabIndex = 7;
-            this.ptbAdminAvatar.TabStop = false;
-            // 
             // pnlButton
             // 
             this.pnlButton.AutoSize = true;
@@ -170,6 +157,30 @@
             this.pnlButton.Name = "pnlButton";
             this.pnlButton.Size = new System.Drawing.Size(183, 522);
             this.pnlButton.TabIndex = 1;
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "1486505264-food-fork-kitchen-knife-meanns-restaurant_81404.png");
+            this.imageList1.Images.SetKeyName(1, "dashboard_icon_182989.ico");
+            this.imageList1.Images.SetKeyName(2, "1486504817-delete-minus-cancel-exit-remove_81373.ico");
+            this.imageList1.Images.SetKeyName(3, "HomeServer_icon-icons.com_55232.ico");
+            this.imageList1.Images.SetKeyName(4, "gameroom_6044.ico");
+            this.imageList1.Images.SetKeyName(5, "1486564180-finance-financial-report_81493.ico");
+            this.imageList1.Images.SetKeyName(6, "businessapplication_edit_male_user_thepencil_theclient_negocio_2321.ico");
+            this.imageList1.Images.SetKeyName(7, "Login_37128.ico");
+            // 
+            // pnlMain
+            // 
+            this.pnlMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlMain.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.pnlMain.Location = new System.Drawing.Point(188, 60);
+            this.pnlMain.Name = "pnlMain";
+            this.pnlMain.Size = new System.Drawing.Size(884, 522);
+            this.pnlMain.TabIndex = 2;
             // 
             // btnDashbroad
             // 
@@ -192,19 +203,6 @@
             this.btnDashbroad.Click += new System.EventHandler(this.btnDashbroad_Click);
             this.btnDashbroad.MouseLeave += new System.EventHandler(this.button3_MouseLeave);
             this.btnDashbroad.MouseHover += new System.EventHandler(this.button3_MouseHover);
-            // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "1486505264-food-fork-kitchen-knife-meanns-restaurant_81404.png");
-            this.imageList1.Images.SetKeyName(1, "dashboard_icon_182989.ico");
-            this.imageList1.Images.SetKeyName(2, "1486504817-delete-minus-cancel-exit-remove_81373.ico");
-            this.imageList1.Images.SetKeyName(3, "HomeServer_icon-icons.com_55232.ico");
-            this.imageList1.Images.SetKeyName(4, "gameroom_6044.ico");
-            this.imageList1.Images.SetKeyName(5, "1486564180-finance-financial-report_81493.ico");
-            this.imageList1.Images.SetKeyName(6, "businessapplication_edit_male_user_thepencil_theclient_negocio_2321.ico");
-            this.imageList1.Images.SetKeyName(7, "Login_37128.ico");
             // 
             // btnReport
             // 
@@ -326,16 +324,81 @@
             this.btnFood.UseVisualStyleBackColor = false;
             this.btnFood.Click += new System.EventHandler(this.button1_Click);
             // 
-            // pnlMain
+            // pictureBox1
             // 
-            this.pnlMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlMain.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.pnlMain.Location = new System.Drawing.Point(188, 60);
-            this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(884, 522);
-            this.pnlMain.TabIndex = 2;
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pictureBox1.Image = global::CafeInternet.Properties.Resources.shop_cafe_22672;
+            this.pictureBox1.Location = new System.Drawing.Point(4, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(55, 54);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
+            // 
+            // ptbAdminAvatar
+            // 
+            this.ptbAdminAvatar.Dock = System.Windows.Forms.DockStyle.Right;
+            this.ptbAdminAvatar.Location = new System.Drawing.Point(829, 3);
+            this.ptbAdminAvatar.Name = "ptbAdminAvatar";
+            this.ptbAdminAvatar.Size = new System.Drawing.Size(58, 54);
+            this.ptbAdminAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.ptbAdminAvatar.TabIndex = 7;
+            this.ptbAdminAvatar.TabStop = false;
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.tableLayoutPanel3);
+            this.panel1.Location = new System.Drawing.Point(653, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(170, 54);
+            this.panel1.TabIndex = 9;
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.BackColor = System.Drawing.SystemColors.Control;
+            this.tableLayoutPanel3.ColumnCount = 1;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Controls.Add(this.lbHour, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.lbDay, 0, 1);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 2;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(170, 54);
+            this.tableLayoutPanel3.TabIndex = 1;
+            // 
+            // lbHour
+            // 
+            this.lbHour.AutoSize = true;
+            this.lbHour.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbHour.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbHour.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lbHour.Location = new System.Drawing.Point(3, 0);
+            this.lbHour.Name = "lbHour";
+            this.lbHour.Size = new System.Drawing.Size(164, 27);
+            this.lbHour.TabIndex = 0;
+            this.lbHour.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // lbDay
+            // 
+            this.lbDay.AutoSize = true;
+            this.lbDay.BackColor = System.Drawing.SystemColors.Control;
+            this.lbDay.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbDay.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbDay.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lbDay.Location = new System.Drawing.Point(3, 27);
+            this.lbDay.Name = "lbDay";
+            this.lbDay.Size = new System.Drawing.Size(164, 27);
+            this.lbDay.TabIndex = 1;
+            this.lbDay.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // frmAdmin
             // 
@@ -353,12 +416,15 @@
             this.pnlTop.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ptbAdminAvatar)).EndInit();
             this.pnlButton.ResumeLayout(false);
             this.pnlButton.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbAdminAvatar)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -384,5 +450,10 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label lbNameAdmin;
         private System.Windows.Forms.Label lbPosition;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.Label lbHour;
+        private System.Windows.Forms.Label lbDay;
+        private System.Windows.Forms.Timer timer1;
     }
 }

@@ -12,10 +12,15 @@ namespace CafeInternet
 {
     public partial class frmDashbroad : Form
     {
+        DataClasses1DataContext dc = new DataClasses1DataContext();
         public frmDashbroad()
         {
             InitializeComponent();
         }
 
+        private void frmDashbroad_Load(object sender, EventArgs e)
+        {
+            dgvProfit.DataSource = dc.showHistory();
+        }
     }
 }

@@ -67,21 +67,6 @@
       <Association Name="food_type_food" Member="foods" ThisKey="entity_id" OtherKey="food_type_id" Type="food" />
     </Type>
   </Table>
-  <Table Name="dbo.computer_status" Member="computer_status">
-    <Type Name="computer_status">
-      <Column Name="entity_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="computer_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="area_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Column Name="used_times" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="service_charge" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="start_time" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="end_time" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="food_id" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Association Name="area_computer_status" Member="area" ThisKey="area_id" OtherKey="entity_id" Type="area" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.service" Member="services">
     <Type Name="service">
       <Column Name="entity_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -110,6 +95,35 @@
       <Column Name="computer_name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="notice" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="total" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.computer_status" Member="computer_status">
+    <Type Name="computer_status">
+      <Column Name="entity_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="computer_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="area_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="used_times" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="service_charge" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="start_time" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="end_time" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="area_computer_status" Member="area" ThisKey="area_id" OtherKey="entity_id" Type="area" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.history" Member="histories">
+    <Type Name="history">
+      <Column Name="entity_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="d" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="t" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="computer_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="computer_name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="area_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="used_times" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="service_charge" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="start_time" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="end_time" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="total_profit" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Function Name="dbo.deleteComputerStatus" Method="deleteComputerStatus">
@@ -268,5 +282,29 @@
   </Function>
   <Function Name="dbo.deletelog" Method="deletelog">
     <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.showHistory" Method="showHistory">
+    <ElementType Name="showHistoryResult">
+      <Column Name="Time" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Computer" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Area" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Used Time]" Member="Used_Time" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Total" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.getHistory" Method="getHistory">
+    <ElementType Name="getHistoryResult">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Day" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Time" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="[Computer Id]" Member="Computer_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Computer" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Area" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Start Time]" Member="Start_Time" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="[End Time]" Member="End_Time" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Service" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="[Used Time]" Member="Used_Time" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Total" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+    </ElementType>
   </Function>
 </Database>

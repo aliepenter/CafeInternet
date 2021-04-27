@@ -73,6 +73,16 @@ namespace CafeInternet.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _1486564180_finance_financial_report_81493 {
+            get {
+                object obj = ResourceManager.GetObject("1486564180-finance-financial-report_81493", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _61_85304 {
             get {
                 object obj = ResourceManager.GetObject("61_85304", resourceCulture);
@@ -83,9 +93,29 @@ namespace CafeInternet.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bf98af5094807683b24574280afca319_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("bf98af5094807683b24574280afca319-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap businessapplication_edit_male_user_thepencil_theclient_negocio_2321 {
             get {
                 object obj = ResourceManager.GetObject("businessapplication_edit_male_user_thepencil_theclient_negocio_2321", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cyber {
+            get {
+                object obj = ResourceManager.GetObject("cyber", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -106,6 +136,26 @@ namespace CafeInternet.Properties {
         internal static System.Drawing.Bitmap HomeServer_icon_icons_com_55232 {
             get {
                 object obj = ResourceManager.GetObject("HomeServer_icon-icons.com_55232", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap images_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("images-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap images_removebg_preview__1_ {
+            get {
+                object obj = ResourceManager.GetObject("images-removebg-preview (1)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

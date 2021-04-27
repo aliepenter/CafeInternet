@@ -51,9 +51,6 @@ namespace CafeInternet
     partial void Insertfood_type(food_type instance);
     partial void Updatefood_type(food_type instance);
     partial void Deletefood_type(food_type instance);
-    partial void Insertcomputer_status(computer_status instance);
-    partial void Updatecomputer_status(computer_status instance);
-    partial void Deletecomputer_status(computer_status instance);
     partial void Insertservice(service instance);
     partial void Updateservice(service instance);
     partial void Deleteservice(service instance);
@@ -63,6 +60,12 @@ namespace CafeInternet
     partial void Insertlog(log instance);
     partial void Updatelog(log instance);
     partial void Deletelog(log instance);
+    partial void Insertcomputer_status(computer_status instance);
+    partial void Updatecomputer_status(computer_status instance);
+    partial void Deletecomputer_status(computer_status instance);
+    partial void Inserthistory(history instance);
+    partial void Updatehistory(history instance);
+    partial void Deletehistory(history instance);
     #endregion
 		
 		public DataClasses1DataContext() : 
@@ -151,14 +154,6 @@ namespace CafeInternet
 			}
 		}
 		
-		public System.Data.Linq.Table<computer_status> computer_status
-		{
-			get
-			{
-				return this.GetTable<computer_status>();
-			}
-		}
-		
 		public System.Data.Linq.Table<service> services
 		{
 			get
@@ -180,6 +175,22 @@ namespace CafeInternet
 			get
 			{
 				return this.GetTable<log>();
+			}
+		}
+		
+		public System.Data.Linq.Table<computer_status> computer_status
+		{
+			get
+			{
+				return this.GetTable<computer_status>();
+			}
+		}
+		
+		public System.Data.Linq.Table<history> histories
+		{
+			get
+			{
+				return this.GetTable<history>();
 			}
 		}
 		
@@ -342,6 +353,20 @@ namespace CafeInternet
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.showHistory")]
+		public ISingleResult<showHistoryResult> showHistory()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<showHistoryResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.getHistory")]
+		public ISingleResult<getHistoryResult> getHistory()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<getHistoryResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -1614,325 +1639,6 @@ namespace CafeInternet
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.computer_status")]
-	public partial class computer_status : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _entity_id;
-		
-		private int _computer_id;
-		
-		private string _name;
-		
-		private int _area_id;
-		
-		private byte _status;
-		
-		private int _used_times;
-		
-		private System.Nullable<double> _service_charge;
-		
-		private System.DateTime _start_time;
-		
-		private System.DateTime _end_time;
-		
-		private string _food_id;
-		
-		private EntityRef<area> _area;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onentity_idChanging(int value);
-    partial void Onentity_idChanged();
-    partial void Oncomputer_idChanging(int value);
-    partial void Oncomputer_idChanged();
-    partial void OnnameChanging(string value);
-    partial void OnnameChanged();
-    partial void Onarea_idChanging(int value);
-    partial void Onarea_idChanged();
-    partial void OnstatusChanging(byte value);
-    partial void OnstatusChanged();
-    partial void Onused_timesChanging(int value);
-    partial void Onused_timesChanged();
-    partial void Onservice_chargeChanging(System.Nullable<double> value);
-    partial void Onservice_chargeChanged();
-    partial void Onstart_timeChanging(System.DateTime value);
-    partial void Onstart_timeChanged();
-    partial void Onend_timeChanging(System.DateTime value);
-    partial void Onend_timeChanged();
-    partial void Onfood_idChanging(string value);
-    partial void Onfood_idChanged();
-    #endregion
-		
-		public computer_status()
-		{
-			this._area = default(EntityRef<area>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_entity_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int entity_id
-		{
-			get
-			{
-				return this._entity_id;
-			}
-			set
-			{
-				if ((this._entity_id != value))
-				{
-					this.Onentity_idChanging(value);
-					this.SendPropertyChanging();
-					this._entity_id = value;
-					this.SendPropertyChanged("entity_id");
-					this.Onentity_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_computer_id", DbType="Int NOT NULL")]
-		public int computer_id
-		{
-			get
-			{
-				return this._computer_id;
-			}
-			set
-			{
-				if ((this._computer_id != value))
-				{
-					this.Oncomputer_idChanging(value);
-					this.SendPropertyChanging();
-					this._computer_id = value;
-					this.SendPropertyChanged("computer_id");
-					this.Oncomputer_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string name
-		{
-			get
-			{
-				return this._name;
-			}
-			set
-			{
-				if ((this._name != value))
-				{
-					this.OnnameChanging(value);
-					this.SendPropertyChanging();
-					this._name = value;
-					this.SendPropertyChanged("name");
-					this.OnnameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_area_id", DbType="Int NOT NULL")]
-		public int area_id
-		{
-			get
-			{
-				return this._area_id;
-			}
-			set
-			{
-				if ((this._area_id != value))
-				{
-					if (this._area.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onarea_idChanging(value);
-					this.SendPropertyChanging();
-					this._area_id = value;
-					this.SendPropertyChanged("area_id");
-					this.Onarea_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="TinyInt NOT NULL")]
-		public byte status
-		{
-			get
-			{
-				return this._status;
-			}
-			set
-			{
-				if ((this._status != value))
-				{
-					this.OnstatusChanging(value);
-					this.SendPropertyChanging();
-					this._status = value;
-					this.SendPropertyChanged("status");
-					this.OnstatusChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_used_times", DbType="Int NOT NULL")]
-		public int used_times
-		{
-			get
-			{
-				return this._used_times;
-			}
-			set
-			{
-				if ((this._used_times != value))
-				{
-					this.Onused_timesChanging(value);
-					this.SendPropertyChanging();
-					this._used_times = value;
-					this.SendPropertyChanged("used_times");
-					this.Onused_timesChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_service_charge", DbType="Float")]
-		public System.Nullable<double> service_charge
-		{
-			get
-			{
-				return this._service_charge;
-			}
-			set
-			{
-				if ((this._service_charge != value))
-				{
-					this.Onservice_chargeChanging(value);
-					this.SendPropertyChanging();
-					this._service_charge = value;
-					this.SendPropertyChanged("service_charge");
-					this.Onservice_chargeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_start_time", DbType="DateTime NOT NULL")]
-		public System.DateTime start_time
-		{
-			get
-			{
-				return this._start_time;
-			}
-			set
-			{
-				if ((this._start_time != value))
-				{
-					this.Onstart_timeChanging(value);
-					this.SendPropertyChanging();
-					this._start_time = value;
-					this.SendPropertyChanged("start_time");
-					this.Onstart_timeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_end_time", DbType="DateTime NOT NULL")]
-		public System.DateTime end_time
-		{
-			get
-			{
-				return this._end_time;
-			}
-			set
-			{
-				if ((this._end_time != value))
-				{
-					this.Onend_timeChanging(value);
-					this.SendPropertyChanging();
-					this._end_time = value;
-					this.SendPropertyChanged("end_time");
-					this.Onend_timeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_food_id", DbType="NVarChar(255)")]
-		public string food_id
-		{
-			get
-			{
-				return this._food_id;
-			}
-			set
-			{
-				if ((this._food_id != value))
-				{
-					this.Onfood_idChanging(value);
-					this.SendPropertyChanging();
-					this._food_id = value;
-					this.SendPropertyChanged("food_id");
-					this.Onfood_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="area_computer_status", Storage="_area", ThisKey="area_id", OtherKey="entity_id", IsForeignKey=true)]
-		public area area
-		{
-			get
-			{
-				return this._area.Entity;
-			}
-			set
-			{
-				area previousValue = this._area.Entity;
-				if (((previousValue != value) 
-							|| (this._area.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._area.Entity = null;
-						previousValue.computer_status.Remove(this);
-					}
-					this._area.Entity = value;
-					if ((value != null))
-					{
-						value.computer_status.Add(this);
-						this._area_id = value.entity_id;
-					}
-					else
-					{
-						this._area_id = default(int);
-					}
-					this.SendPropertyChanged("area");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.service")]
 	public partial class service : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -2454,6 +2160,603 @@ namespace CafeInternet
 					this._total = value;
 					this.SendPropertyChanged("total");
 					this.OntotalChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.computer_status")]
+	public partial class computer_status : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _entity_id;
+		
+		private int _computer_id;
+		
+		private string _name;
+		
+		private int _area_id;
+		
+		private byte _status;
+		
+		private int _used_times;
+		
+		private System.Nullable<double> _service_charge;
+		
+		private System.DateTime _start_time;
+		
+		private System.DateTime _end_time;
+		
+		private EntityRef<area> _area;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onentity_idChanging(int value);
+    partial void Onentity_idChanged();
+    partial void Oncomputer_idChanging(int value);
+    partial void Oncomputer_idChanged();
+    partial void OnnameChanging(string value);
+    partial void OnnameChanged();
+    partial void Onarea_idChanging(int value);
+    partial void Onarea_idChanged();
+    partial void OnstatusChanging(byte value);
+    partial void OnstatusChanged();
+    partial void Onused_timesChanging(int value);
+    partial void Onused_timesChanged();
+    partial void Onservice_chargeChanging(System.Nullable<double> value);
+    partial void Onservice_chargeChanged();
+    partial void Onstart_timeChanging(System.DateTime value);
+    partial void Onstart_timeChanged();
+    partial void Onend_timeChanging(System.DateTime value);
+    partial void Onend_timeChanged();
+    #endregion
+		
+		public computer_status()
+		{
+			this._area = default(EntityRef<area>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_entity_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int entity_id
+		{
+			get
+			{
+				return this._entity_id;
+			}
+			set
+			{
+				if ((this._entity_id != value))
+				{
+					this.Onentity_idChanging(value);
+					this.SendPropertyChanging();
+					this._entity_id = value;
+					this.SendPropertyChanged("entity_id");
+					this.Onentity_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_computer_id", DbType="Int NOT NULL")]
+		public int computer_id
+		{
+			get
+			{
+				return this._computer_id;
+			}
+			set
+			{
+				if ((this._computer_id != value))
+				{
+					this.Oncomputer_idChanging(value);
+					this.SendPropertyChanging();
+					this._computer_id = value;
+					this.SendPropertyChanged("computer_id");
+					this.Oncomputer_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this.OnnameChanging(value);
+					this.SendPropertyChanging();
+					this._name = value;
+					this.SendPropertyChanged("name");
+					this.OnnameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_area_id", DbType="Int NOT NULL")]
+		public int area_id
+		{
+			get
+			{
+				return this._area_id;
+			}
+			set
+			{
+				if ((this._area_id != value))
+				{
+					if (this._area.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onarea_idChanging(value);
+					this.SendPropertyChanging();
+					this._area_id = value;
+					this.SendPropertyChanged("area_id");
+					this.Onarea_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="TinyInt NOT NULL")]
+		public byte status
+		{
+			get
+			{
+				return this._status;
+			}
+			set
+			{
+				if ((this._status != value))
+				{
+					this.OnstatusChanging(value);
+					this.SendPropertyChanging();
+					this._status = value;
+					this.SendPropertyChanged("status");
+					this.OnstatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_used_times", DbType="Int NOT NULL")]
+		public int used_times
+		{
+			get
+			{
+				return this._used_times;
+			}
+			set
+			{
+				if ((this._used_times != value))
+				{
+					this.Onused_timesChanging(value);
+					this.SendPropertyChanging();
+					this._used_times = value;
+					this.SendPropertyChanged("used_times");
+					this.Onused_timesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_service_charge", DbType="Float")]
+		public System.Nullable<double> service_charge
+		{
+			get
+			{
+				return this._service_charge;
+			}
+			set
+			{
+				if ((this._service_charge != value))
+				{
+					this.Onservice_chargeChanging(value);
+					this.SendPropertyChanging();
+					this._service_charge = value;
+					this.SendPropertyChanged("service_charge");
+					this.Onservice_chargeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_start_time", DbType="DateTime NOT NULL")]
+		public System.DateTime start_time
+		{
+			get
+			{
+				return this._start_time;
+			}
+			set
+			{
+				if ((this._start_time != value))
+				{
+					this.Onstart_timeChanging(value);
+					this.SendPropertyChanging();
+					this._start_time = value;
+					this.SendPropertyChanged("start_time");
+					this.Onstart_timeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_end_time", DbType="DateTime NOT NULL")]
+		public System.DateTime end_time
+		{
+			get
+			{
+				return this._end_time;
+			}
+			set
+			{
+				if ((this._end_time != value))
+				{
+					this.Onend_timeChanging(value);
+					this.SendPropertyChanging();
+					this._end_time = value;
+					this.SendPropertyChanged("end_time");
+					this.Onend_timeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="area_computer_status", Storage="_area", ThisKey="area_id", OtherKey="entity_id", IsForeignKey=true)]
+		public area area
+		{
+			get
+			{
+				return this._area.Entity;
+			}
+			set
+			{
+				area previousValue = this._area.Entity;
+				if (((previousValue != value) 
+							|| (this._area.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._area.Entity = null;
+						previousValue.computer_status.Remove(this);
+					}
+					this._area.Entity = value;
+					if ((value != null))
+					{
+						value.computer_status.Add(this);
+						this._area_id = value.entity_id;
+					}
+					else
+					{
+						this._area_id = default(int);
+					}
+					this.SendPropertyChanged("area");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.history")]
+	public partial class history : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _entity_id;
+		
+		private System.DateTime _d;
+		
+		private System.DateTime _t;
+		
+		private int _computer_id;
+		
+		private string _computer_name;
+		
+		private int _area_id;
+		
+		private int _used_times;
+		
+		private double _service_charge;
+		
+		private System.DateTime _start_time;
+		
+		private System.DateTime _end_time;
+		
+		private double _total_profit;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onentity_idChanging(int value);
+    partial void Onentity_idChanged();
+    partial void OndChanging(System.DateTime value);
+    partial void OndChanged();
+    partial void OntChanging(System.DateTime value);
+    partial void OntChanged();
+    partial void Oncomputer_idChanging(int value);
+    partial void Oncomputer_idChanged();
+    partial void Oncomputer_nameChanging(string value);
+    partial void Oncomputer_nameChanged();
+    partial void Onarea_idChanging(int value);
+    partial void Onarea_idChanged();
+    partial void Onused_timesChanging(int value);
+    partial void Onused_timesChanged();
+    partial void Onservice_chargeChanging(double value);
+    partial void Onservice_chargeChanged();
+    partial void Onstart_timeChanging(System.DateTime value);
+    partial void Onstart_timeChanged();
+    partial void Onend_timeChanging(System.DateTime value);
+    partial void Onend_timeChanged();
+    partial void Ontotal_profitChanging(double value);
+    partial void Ontotal_profitChanged();
+    #endregion
+		
+		public history()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_entity_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int entity_id
+		{
+			get
+			{
+				return this._entity_id;
+			}
+			set
+			{
+				if ((this._entity_id != value))
+				{
+					this.Onentity_idChanging(value);
+					this.SendPropertyChanging();
+					this._entity_id = value;
+					this.SendPropertyChanged("entity_id");
+					this.Onentity_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_d", DbType="DateTime NOT NULL")]
+		public System.DateTime d
+		{
+			get
+			{
+				return this._d;
+			}
+			set
+			{
+				if ((this._d != value))
+				{
+					this.OndChanging(value);
+					this.SendPropertyChanging();
+					this._d = value;
+					this.SendPropertyChanged("d");
+					this.OndChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_t", DbType="DateTime NOT NULL")]
+		public System.DateTime t
+		{
+			get
+			{
+				return this._t;
+			}
+			set
+			{
+				if ((this._t != value))
+				{
+					this.OntChanging(value);
+					this.SendPropertyChanging();
+					this._t = value;
+					this.SendPropertyChanged("t");
+					this.OntChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_computer_id", DbType="Int NOT NULL")]
+		public int computer_id
+		{
+			get
+			{
+				return this._computer_id;
+			}
+			set
+			{
+				if ((this._computer_id != value))
+				{
+					this.Oncomputer_idChanging(value);
+					this.SendPropertyChanging();
+					this._computer_id = value;
+					this.SendPropertyChanged("computer_id");
+					this.Oncomputer_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_computer_name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string computer_name
+		{
+			get
+			{
+				return this._computer_name;
+			}
+			set
+			{
+				if ((this._computer_name != value))
+				{
+					this.Oncomputer_nameChanging(value);
+					this.SendPropertyChanging();
+					this._computer_name = value;
+					this.SendPropertyChanged("computer_name");
+					this.Oncomputer_nameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_area_id", DbType="Int NOT NULL")]
+		public int area_id
+		{
+			get
+			{
+				return this._area_id;
+			}
+			set
+			{
+				if ((this._area_id != value))
+				{
+					this.Onarea_idChanging(value);
+					this.SendPropertyChanging();
+					this._area_id = value;
+					this.SendPropertyChanged("area_id");
+					this.Onarea_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_used_times", DbType="Int NOT NULL")]
+		public int used_times
+		{
+			get
+			{
+				return this._used_times;
+			}
+			set
+			{
+				if ((this._used_times != value))
+				{
+					this.Onused_timesChanging(value);
+					this.SendPropertyChanging();
+					this._used_times = value;
+					this.SendPropertyChanged("used_times");
+					this.Onused_timesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_service_charge", DbType="Float NOT NULL")]
+		public double service_charge
+		{
+			get
+			{
+				return this._service_charge;
+			}
+			set
+			{
+				if ((this._service_charge != value))
+				{
+					this.Onservice_chargeChanging(value);
+					this.SendPropertyChanging();
+					this._service_charge = value;
+					this.SendPropertyChanged("service_charge");
+					this.Onservice_chargeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_start_time", DbType="DateTime NOT NULL")]
+		public System.DateTime start_time
+		{
+			get
+			{
+				return this._start_time;
+			}
+			set
+			{
+				if ((this._start_time != value))
+				{
+					this.Onstart_timeChanging(value);
+					this.SendPropertyChanging();
+					this._start_time = value;
+					this.SendPropertyChanged("start_time");
+					this.Onstart_timeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_end_time", DbType="DateTime NOT NULL")]
+		public System.DateTime end_time
+		{
+			get
+			{
+				return this._end_time;
+			}
+			set
+			{
+				if ((this._end_time != value))
+				{
+					this.Onend_timeChanging(value);
+					this.SendPropertyChanging();
+					this._end_time = value;
+					this.SendPropertyChanged("end_time");
+					this.Onend_timeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total_profit", DbType="Float NOT NULL")]
+		public double total_profit
+		{
+			get
+			{
+				return this._total_profit;
+			}
+			set
+			{
+				if ((this._total_profit != value))
+				{
+					this.Ontotal_profitChanging(value);
+					this.SendPropertyChanging();
+					this._total_profit = value;
+					this.SendPropertyChanged("total_profit");
+					this.Ontotal_profitChanged();
 				}
 			}
 		}
@@ -3702,6 +4005,310 @@ namespace CafeInternet
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total", DbType="Float")]
 		public System.Nullable<double> Total
+		{
+			get
+			{
+				return this._Total;
+			}
+			set
+			{
+				if ((this._Total != value))
+				{
+					this._Total = value;
+				}
+			}
+		}
+	}
+	
+	public partial class showHistoryResult
+	{
+		
+		private System.DateTime _Time;
+		
+		private string _Computer;
+		
+		private int _Area;
+		
+		private int _Used_Time;
+		
+		private double _Total;
+		
+		public showHistoryResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Time", DbType="DateTime NOT NULL")]
+		public System.DateTime Time
+		{
+			get
+			{
+				return this._Time;
+			}
+			set
+			{
+				if ((this._Time != value))
+				{
+					this._Time = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Computer", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string Computer
+		{
+			get
+			{
+				return this._Computer;
+			}
+			set
+			{
+				if ((this._Computer != value))
+				{
+					this._Computer = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Area", DbType="Int NOT NULL")]
+		public int Area
+		{
+			get
+			{
+				return this._Area;
+			}
+			set
+			{
+				if ((this._Area != value))
+				{
+					this._Area = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Used Time]", Storage="_Used_Time", DbType="Int NOT NULL")]
+		public int Used_Time
+		{
+			get
+			{
+				return this._Used_Time;
+			}
+			set
+			{
+				if ((this._Used_Time != value))
+				{
+					this._Used_Time = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total", DbType="Float NOT NULL")]
+		public double Total
+		{
+			get
+			{
+				return this._Total;
+			}
+			set
+			{
+				if ((this._Total != value))
+				{
+					this._Total = value;
+				}
+			}
+		}
+	}
+	
+	public partial class getHistoryResult
+	{
+		
+		private int _Id;
+		
+		private System.DateTime _Day;
+		
+		private System.DateTime _Time;
+		
+		private int _Computer_Id;
+		
+		private string _Computer;
+		
+		private int _Area;
+		
+		private System.DateTime _Start_Time;
+		
+		private System.DateTime _End_Time;
+		
+		private double _Service;
+		
+		private int _Used_Time;
+		
+		private double _Total;
+		
+		public getHistoryResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Day", DbType="DateTime NOT NULL")]
+		public System.DateTime Day
+		{
+			get
+			{
+				return this._Day;
+			}
+			set
+			{
+				if ((this._Day != value))
+				{
+					this._Day = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Time", DbType="DateTime NOT NULL")]
+		public System.DateTime Time
+		{
+			get
+			{
+				return this._Time;
+			}
+			set
+			{
+				if ((this._Time != value))
+				{
+					this._Time = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Computer Id]", Storage="_Computer_Id", DbType="Int NOT NULL")]
+		public int Computer_Id
+		{
+			get
+			{
+				return this._Computer_Id;
+			}
+			set
+			{
+				if ((this._Computer_Id != value))
+				{
+					this._Computer_Id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Computer", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string Computer
+		{
+			get
+			{
+				return this._Computer;
+			}
+			set
+			{
+				if ((this._Computer != value))
+				{
+					this._Computer = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Area", DbType="Int NOT NULL")]
+		public int Area
+		{
+			get
+			{
+				return this._Area;
+			}
+			set
+			{
+				if ((this._Area != value))
+				{
+					this._Area = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Start Time]", Storage="_Start_Time", DbType="DateTime NOT NULL")]
+		public System.DateTime Start_Time
+		{
+			get
+			{
+				return this._Start_Time;
+			}
+			set
+			{
+				if ((this._Start_Time != value))
+				{
+					this._Start_Time = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[End Time]", Storage="_End_Time", DbType="DateTime NOT NULL")]
+		public System.DateTime End_Time
+		{
+			get
+			{
+				return this._End_Time;
+			}
+			set
+			{
+				if ((this._End_Time != value))
+				{
+					this._End_Time = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Service", DbType="Float NOT NULL")]
+		public double Service
+		{
+			get
+			{
+				return this._Service;
+			}
+			set
+			{
+				if ((this._Service != value))
+				{
+					this._Service = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Used Time]", Storage="_Used_Time", DbType="Int NOT NULL")]
+		public int Used_Time
+		{
+			get
+			{
+				return this._Used_Time;
+			}
+			set
+			{
+				if ((this._Used_Time != value))
+				{
+					this._Used_Time = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total", DbType="Float NOT NULL")]
+		public double Total
 		{
 			get
 			{

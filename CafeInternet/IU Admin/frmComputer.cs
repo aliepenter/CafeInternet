@@ -551,7 +551,7 @@ namespace CafeInternet
             {
                 Entity_id = f.entity_id,
                 Name = f.name,
-                Status = f.status == 1 ? "Good" : "Break",
+                Status = f.status == 0 ? "Good" : "Break",
                 Total_used_time = f.total_used_time,
                 Profit = f.profit,
                 Area_Id = f.area_id

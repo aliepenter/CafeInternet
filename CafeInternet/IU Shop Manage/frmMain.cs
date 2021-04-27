@@ -128,11 +128,30 @@ namespace CafeInternet
                 p.notice = "Session stopped";
                 p.total = f.service_charge + total;
                 dc.logs.InsertOnSubmit(p);
-                f.service_charge = 0;
+                
                 dc.SubmitChanges();
                 dgvLog.DataSource = dc.getLog();
                 dgvLog.Sort(dgvLog.Columns[0], ListSortDirection.Descending);
+
+                var h = new history();
+                h.d = DateTime.Today;
+                h.t = DateTime.Now;
+                h.computer_id = f.computer_id;
+                h.computer_name = f.name;
+                h.area_id = f.area_id;
                 
+                h.start_time = f.start_time;
+                h.end_time = f.end_time;
+                h.used_times = f.used_times;
+                h.service_charge = Convert.ToDouble(f.service_charge);
+                h.total_profit = Convert.ToDouble(f.service_charge + total);
+                dc.histories.InsertOnSubmit(h);
+                dc.SubmitChanges();
+                dgvhistory.DataSource = dc.showHistory();
+                dgvhistory.Sort(dgvhistory.Columns[0], ListSortDirection.Descending);
+                f.service_charge = 0;
+                dc.SubmitChanges();
+
             }
             else
             {
@@ -150,6 +169,7 @@ namespace CafeInternet
             lbOff.Text = (dc.countOfflinePc()).ToString();
             lbOn.Text = (dc.countTotalPc() - dc.countOfflinePc()).ToString();
             lbRatio.Text = ((Convert.ToDouble(dc.countTotalPc()) - Convert.ToDouble(dc.countOfflinePc())) / Convert.ToDouble(dc.countTotalPc()) * 100).ToString("0");
+            dgvhistory.DataSource = dc.showHistory();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -346,19 +366,19 @@ namespace CafeInternet
         }
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            if (dgvService.CurrentRow != null)
-            {
-                if (MessageBox.Show("Do you want to delete?", "INFORMATION",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    DataGridViewRow row = dgvService.CurrentRow;
-                    int v = Convert.ToInt32(row.Cells[0].Value);
-                    dc.deleteS(v);
-                    DataGridViewRow row2 = dgvAllCom.CurrentRow;
-                    int ev = dc.getComputerStatus(Convert.ToInt32(row2.Cells[0].Value.ToString()));
-                    dgvService.DataSource = dc.getServiceMoney(Convert.ToInt32(row2.Cells[0].Value.ToString()));
-                }
-            }
+            //if (dgvService.CurrentRow != null)
+            //{
+            //    if (MessageBox.Show("Do you want to delete?", "INFORMATION",
+            //    MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            //    {
+            //        DataGridViewRow row = dgvService.CurrentRow;
+            //        int v = Convert.ToInt32(row.Cells[0].Value);
+            //        dc.deleteS(v);
+            //        DataGridViewRow row2 = dgvAllCom.CurrentRow;
+            //        int ev = dc.getComputerStatus(Convert.ToInt32(row2.Cells[0].Value.ToString()));
+            //        dgvService.DataSource = dc.getServiceMoney(Convert.ToInt32(row2.Cells[0].Value.ToString()));
+            //    }
+            //}
         }
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -389,5 +409,27 @@ namespace CafeInternet
             
         }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            frmViewer fv = new frmViewer();
+            ReportAdmin.crpHistory c = new ReportAdmin.crpHistory();
+            var com = dc.histories.Select(f => new
+            {
+                Entity_id = f.entity_id,
+                T = f.t.ToShortTimeString(),
+                Computer_Id = f.computer_id,
+                Computer_Name = f.computer_name,
+                Area_Id = f.area_id,
+                Start_Time = f.start_time.ToShortTimeString(),
+                End_Time = f.end_time.ToShortTimeString(),
+                Used_Times = f.used_times,
+                Service_charge = f.service_charge,
+                Total_Profit = f.total_profit
+            }).ToList();
+            c.SetDataSource(com);
+            fv.crpView.ReportSource = c;
+            fv.crpView.Refresh();
+            fv.Show();
+        }
     }
 }
